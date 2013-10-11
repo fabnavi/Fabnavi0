@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Open Sans Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/fonts/OpenSans-Light-webfont.woff");
+}
+
+button {
+  font-family: 'Open Sans Light', Helvetica, sans-serif;  
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #eee;
+  font-family: 'Open Sans Light', Helvetica, sans-serif;  
+  font-size : 14px;
+  font-weight: 400;
+}
