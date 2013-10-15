@@ -1,3 +1,8 @@
 Options -Indexes
 DirectoryIndex index.php
 SetEnv DATA_DIRECTORY data/
+SetEnv PHOTO_ROTATE 180.5
+SetEnv PHOTO_CROP_X 200
+SetEnv PHOTO_CROP_Y 100
+SetEnv PHOTO_CROP_W 800
+SetEnv PHOTO_CROP_H 600

@@ -10,6 +10,11 @@
     $dataDirectory = getenv("DATA_DIRECTORY");
     $directory = "../".$dataDirectory."/".$id;
     if (mkdir($directory)) {
+    } else {
+      throw new Exception("Could not make a directory[".$directory."]");
+    }
+    $directory = "../".$dataDirectory."/".$id."/original";
+    if (mkdir($directory)) {
       $result["id"] = $id;
     } else {
       throw new Exception("Could not make a directory[".$directory."]");
