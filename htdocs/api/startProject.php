@@ -1,30 +1,21 @@
 <?php
   date_default_timezone_set("Asia/Tokyo");
 
-  include('local-database-functions.php.inc');
-  $connection = openConnection();
+  include_once("camera.php.inc");
+  openCamera();
 
   $result = array();
   try {
-    $datetime =  date("Y-m-d H:i:s", time());
-    $query4insert = "INSERT INTO projects(created,updated) VALUES (?,?)";
-    $statement4insert = $connection->prepare($query4insert);
-    $statement4insert->execute(array($datetime, $datetime));
-
-    $query4select = "SELECT id FROM projects WHERE created=?";
-    $statement4select = $connection->prepare($query4select);
-    $statement4select->execute(array($datetime));
-    if ($row = $statement4select->fetch(PDO::FETCH_ASSOC)) {
-      $result["id"] = $row["id"];
+    $id = time();
+    $dataDirectory = getenv("DATA_DIRECTORY");
+    $directory = "../".$dataDirectory."/".$id;
+    if (mkdir($directory)) {
+      $result["id"] = $id;
     } else {
-      $result["error"] = "NO DATA FOUND";
+      throw new Exception("Could not make a directory[".$directory."]");
     }
-    $statement4select->closeCursor();
   } catch (Exception $e) {
     $result["error"] = $e->getMessage();
   }
-
-  closeConnection($connection);
-
   echo json_encode($result);
 ?>

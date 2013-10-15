@@ -21,11 +21,16 @@ var RecordController = {
   },
 
   take: function() {
-    CommonController.getJSON("/api/takePicture.php", function(result, error) {
+    CommonController.getJSON("/api/takePicture.php?project_id="+RecordController.project_id, function(result, error) {
       if (error) {
         alert(error);
         return;
       }
+      var li = $(document.createElement("li"));
+      var img = $(document.createElement("img"));
+      img.attr("src", result["url"]);
+      li.append(img);
+      $("#processes").append(li);
     });
   }
 };
