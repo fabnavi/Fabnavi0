@@ -1,5 +1,9 @@
 readme
 
+環境
+・PHP の動作する Apache Web Server
+・
+
 １．セットアップ
 
 １．１．NEX
@@ -14,7 +18,7 @@ htdocs の下に data ディレクトリを 777 で作成
 127.0.0.1	fabnavi.local
 
 １．４．apache VirtualHost の設定
-以下のような内容で /etc/apache2/other/fabnavi.conf を作成。のち、apache を再起動。
+以下のような内容で /etc/apache2/other/fabnavi.conf を作成。のち、apache を再起動(apachectl restart )。
 ※ご自分の環境にあわせてください。
 
 <VirtualHost *:80>
@@ -58,4 +62,16 @@ SetEnv PHOTO_CROP_H 600
 "take a picture" ボタンを押すと、三秒後にシャッターがおります。
 
 全てのデータは、htdocs/data ディレクトリに保存されており、現在のところデータベースなどは使わないで動作します。
+
+３．プレイ
+３．１．プロジェクト一覧の表示
+ブラウザで http://fabnavi.local/play.php へアクセス
+
+３．２．プロジェクトの選択
+写真の一覧からプロジェクトをクリック
+
+３．３．プレイ
+→：次へ
+←：前へ
+ESC：一覧へ
 
