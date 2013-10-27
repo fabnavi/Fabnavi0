@@ -5,10 +5,12 @@ var PlayController = {
   init: function() {
     $(window).keydown(function(e) {
       switch (e.keyCode) {
+        case 97 : 
         case 37 : {
           PlayController.previous();
           break;
         }
+        case 99 : 
         case 39 : {
           PlayController.next();
           break;
