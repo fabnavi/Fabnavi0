@@ -34,7 +34,7 @@ var RecordController = {
         li.append(img);
         $("#processes").append(li);
       });
-    }, 3000);
+    }, 10);
   }
 };
 

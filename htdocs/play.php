@@ -19,15 +19,6 @@
       <ul id="project-list"></ul>
     </div>
     <div id="controller">
-      <!--
-      <div id="close-container"><button id="close">close</button></div>
-      <div id="photo-container"><img id="photo"></div>
-      <div id="counter"></div>
-      <div id="button-container">
-        <button id="previous">previous</button>
-        <button id="next">next</button>
-      </div>
-      -->
       <img id="photo">
       <div id="counter"></div>
     </div>
