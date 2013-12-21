@@ -31,5 +31,24 @@ var CommonController = {
     .error(function(xhr, textStatus, errorThrown) {
       callback(null, textStatus+":"+xhr.responseText);
     })
+  },
+
+  getContents: function(url) {
+    var parameter = {url: url, type:"GET"};
+
+    var deferred = new $.Deferred();
+
+    parameter.cache = false;
+
+    parameter.success = function(result) {
+      deferred.resolve(result);
+    };
+
+    parameter.error = function(xhr, textStatus, errorThrown) {
+      deferred.reject(xhr);
+    };
+
+    $.ajax(parameter);
+    return deferred.promise();
   }
 }

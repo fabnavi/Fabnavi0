@@ -21,6 +21,7 @@
     <div id="controller">
       <img id="photo">
       <div id="counter"></div>
+      <div id="arrow">▶</div>
     </div>
     <?php include('footer.php.inc'); ?>
   </body>

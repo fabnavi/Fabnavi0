@@ -17,7 +17,7 @@
       $projectDirectoryRef = opendir($projectDirectory);
       $lastImageFile = null;
       while($imageFile = readdir($projectDirectoryRef)) {
-        if (strpos($imageFile, ".") === 0) {
+        if (!preg_match("/[.](jpe?g)|(png)$/i", $imageFile)) {
           continue;
         }
         if (is_dir($projectDirectory."/".$imageFile) == true) {

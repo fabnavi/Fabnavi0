@@ -60,3 +60,13 @@ li {
   left: 5px;
   color: white;
 }
+
+#arrow {
+  position: absolute;
+/*  right: 5px;
+  bottom: 5px; */
+  top: 5px;
+  color: white;
+  width: 100%;
+  text-align: center;
+}

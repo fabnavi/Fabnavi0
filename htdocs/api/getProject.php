@@ -8,7 +8,10 @@
     $projectDirectory = $dataDirectory.$project_id;
     $projectDirectoryRef = opendir($projectDirectory);
     while($imageFile = readdir($projectDirectoryRef)) {
-      if (strpos($imageFile, ".") === 0) {
+//      if (strpos($imageFile, ".") === 0) {
+//        continue;
+//      }
+      if (!preg_match("/[.](jpe?g)|(png)$/i", $imageFile)) {
         continue;
       }
       if (is_dir($projectDirectory."/".$imageFile) == true) {
