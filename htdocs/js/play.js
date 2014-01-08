@@ -4,6 +4,30 @@
 var PlayController = {
   init: function() {
     PlayController.current_index = -1;
+    
+    PlayController.configList=[
+      {
+        tag:'animations', 
+        name:'animation',
+        values:{
+          startIndex:'int',
+          endIndex:'int',
+          duration:'int'
+        }
+      },
+      {
+        tag:'annotations',
+        name:'annotation',
+        values:{
+          index:'int',
+          image:'string',
+          x:'int',
+          y:'int',
+          w:'int',
+          h:'int',
+        }    
+      }
+    ];
 
     $(window).keydown(function(e) {
       switch (e.keyCode) {
@@ -67,6 +91,45 @@ var PlayController = {
     });
   },
 
+  configParser: function(text){
+    var parser = new DOMParser();
+    doc = parser.parseFromString(text, "application/xml");
+    var animations = PlayController.getObjectsFromXML(doc,PlayController.configList[0]);
+    var annotations = PlayController.getObjectsFromXML(doc,PlayController.configList[1]);
+    if(animations.length > 0)for(i in animations)PlayController.animations.push(animations[i]);
+  }, 
+
+  getObjectsFromXML: function(doc,conf){
+    var nodes= doc.getElementsByTagName(conf.tag);
+    if(nodes.length == 0){
+      console.log(conf.tag + " tag not found");
+      return {};
+    }
+    var objs = [];
+    nodes = nodes[0].children;
+    for(var i=0;i<nodes.length;i++){
+      if(nodes[i].tagName == conf.name){
+        var obj = {};
+        for(key in conf.values){
+            var v = nodes[i].getAttribute(key);
+            if(v == null){
+              console.log("Attribute " +key+" not found");
+            }else if(conf.values[key] == 'int'){
+              var r = parseInt(v,10);
+              if(isNaN(r))console.log(v+" is declared as int, but NaN");
+              else obj[key] = r;
+            }else if(conf.values[key] == 'string'){
+              obj[key] = v;
+            } else {
+              console.log("cannot understand the type :"+conf.values[key] + " of " + key);
+            }
+        }
+        objs.push(obj);
+      }
+    }
+    return objs;
+  },
+
   play: function(e) {
     var target = $(e.currentTarget);
     var id = target.attr("id");
@@ -74,8 +137,9 @@ var PlayController = {
     PlayController.animations = [];
     CommonController.getContents(url)
     .then(function(result) {
-      var lines = result.split("\n");
-      for (var i = 0, n = lines.length; i < n; i++) {
+      PlayController.configParser(result);
+      //var lines = result.split("\n");
+      /*for (var i = 0, n = lines.length; i < n; i++) {
         var line = $.trim(lines[i]);
         if (line.indexOf("#") == 0 || line.length == 0) {
           continue;
@@ -83,8 +147,9 @@ var PlayController = {
         var elements = line.split(" ");
         var timeElements = elements[0].split("-");
         var animation = {startIndex: parseInt(timeElements[0]), endIndex: parseInt(timeElements[1]), speed: parseInt(elements[1])};
+
         PlayController.animations.push(animation);
-      }
+      }*/
     })
     .done(function() {
       CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
@@ -165,7 +230,7 @@ var PlayController = {
         if (PlayController.animations[i].startIndex == index) {
           animation = PlayController.animations[i];
           PlayController.current_index = animation.endIndex;
-          PlayController.animate(index, animation.startIndex, animation.endIndex, animation.speed);
+          PlayController.animate(index, animation.startIndex, animation.endIndex, animation.duration);
           PlayController.current_animation = animation;
           break;
         }
