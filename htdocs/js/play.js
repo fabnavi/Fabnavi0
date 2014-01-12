@@ -5,8 +5,8 @@ var PlayController = {
   init: function() {
     PlayController.current_index = -1;
     
-    PlayController.configList=[
-      {
+    PlayController.configList={
+      animation:{
         tag:'animations', 
         name:'animation',
         values:{
@@ -15,7 +15,7 @@ var PlayController = {
           duration:'int'
         }
       },
-      {
+      annotation:{
         tag:'annotations',
         name:'annotation',
         values:{
@@ -25,9 +25,10 @@ var PlayController = {
           y:'int',
           w:'int',
           h:'int',
+          angle:'int'
         }    
       }
-    ];
+    };
 
     $(window).keydown(function(e) {
       switch (e.keyCode) {
@@ -94,15 +95,24 @@ var PlayController = {
   configParser: function(text){
     var parser = new DOMParser();
     doc = parser.parseFromString(text, "application/xml");
-    var animations = PlayController.getObjectsFromXML(doc,PlayController.configList[0]);
-    var annotations = PlayController.getObjectsFromXML(doc,PlayController.configList[1]);
-    if(animations.length > 0)for(i in animations)PlayController.animations.push(animations[i]);
+
+    var animations = PlayController.getObjectsFromXML(doc,PlayController.configList['animation']);
+    var annotations = PlayController.getObjectsFromXML(doc,PlayController.configList['annotation']);
+    if(animations.length > 0)for(i in animations){
+      animations[i].index--;
+      PlayController.animations.push(animations[i]);
+    }
+
+    if(annotations.length > 0)for(i in annotations){
+      annotations[i].index--;
+      PlayController.annotations.push(annotations[i]);
+    }
+
   }, 
 
   getObjectsFromXML: function(doc,conf){
     var nodes= doc.getElementsByTagName(conf.tag);
     if(nodes.length == 0){
-      console.log(conf.tag + " tag not found");
       return {};
     }
     var objs = [];
@@ -135,21 +145,10 @@ var PlayController = {
     var id = target.attr("id");
     var url = "data/"+id+"/fabnavi.play.config";
     PlayController.animations = [];
+    PlayController.annotations = [];
     CommonController.getContents(url)
     .then(function(result) {
       PlayController.configParser(result);
-      //var lines = result.split("\n");
-      /*for (var i = 0, n = lines.length; i < n; i++) {
-        var line = $.trim(lines[i]);
-        if (line.indexOf("#") == 0 || line.length == 0) {
-          continue;
-        }
-        var elements = line.split(" ");
-        var timeElements = elements[0].split("-");
-        var animation = {startIndex: parseInt(timeElements[0]), endIndex: parseInt(timeElements[1]), speed: parseInt(elements[1])};
-
-        PlayController.animations.push(animation);
-      }*/
     })
     .done(function() {
       CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
@@ -236,12 +235,35 @@ var PlayController = {
         }
       }
     }
+    $('.annotations').hide();
+    for (var i=0; i<PlayController.annotations.length;i++){
+      if(index == PlayController.annotations[i].index){
+        PlayController.setAnnotation(
+          PlayController.annotations[i].x,
+          PlayController.annotations[i].y,
+          PlayController.annotations[i].angle);
+        break;
+      }
+    }
     if (!animation) {
       PlayController.current_animation = null;
       PlayController.current_index = index;
       PlayController.setPhoto(index);
     }
   },
+
+  setAnnotation: function(x,y,angle){
+    var a = $('#annotation');
+    a.attr('src','annotations/arrow.svg'); 
+    a.css({
+      "left":-200+x+"px", //padding of coordinate image pointed 
+      "top":-50+y+"px", //TODO : get from configXML in htdocs/annotations
+      "transform-origin":"200px 50px", //pointed coordinate
+      "transform":"rotate("+angle+"deg)"
+    });
+    a.show(); 
+  },
+
 
   animate: function(index, startIndex, endIndex, speed) {
     PlayController.setPhoto(index);
