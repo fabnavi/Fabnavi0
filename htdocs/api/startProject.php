@@ -10,6 +10,7 @@
     $dataDirectory = getenv("DATA_DIRECTORY");
     $directory = "../".$dataDirectory."/".$id;
     if (mkdir($directory)) {
+      touch("../".$dataDirectory."/".$id."/fabnavi.play.config");
     } else {
       throw new Exception("Could not make a directory[".$directory."]");
     }

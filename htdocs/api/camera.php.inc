@@ -8,6 +8,12 @@ function takePicture() {
   return execute("actTakePicture", array(), 2);
 }
 
+function dbg($data){
+  date_default_timezone_set("Asia/Tokeyo");
+  error_log(date("[Y/m/d H:i:s]").rtrim(print_r($data, true))."\n",3,'/var/tmp/app.log');
+
+}
+
 function execute($method, $params, $id) {
   $host = "192.168.122.1";
   $port = 8080;

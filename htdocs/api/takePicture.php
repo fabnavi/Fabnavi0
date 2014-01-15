@@ -19,7 +19,10 @@
 
     $photoContents = file_get_contents($photoURL);
     file_put_contents($originalFilePath, $photoContents);
-
+    //file_put_contents($localPath,$photoContents);
+    dbg('original: '.$originalFilePath);
+    dbg('local: '.($localPath));
+    dbg('photo: '.$photoURL);
     //rotate and crop
     $degree = floatval(getenv("PHOTO_ROTATE"));
     $width = intval(getenv("PHOTO_CROP_W"));
@@ -29,7 +32,9 @@
     $source = imagecreatefromjpeg($originalFilePath);
     $rotated = imagerotate($source, $degree, 0);
     $image = imagecreatetruecolor($width, $height);
-    imagecopyresized($image, $rotated, 0, 0, $x, $y, $width, $height, $width, $height);
+    //imagecopyresized($image, $rotated, 0, 0, $x, $y, $width, $height, $width, $height);
+    dbg($x.":".$y." ,  ".$width.":".$height);
+    imagecopyresized($image,$rotated, 0, 0, 0, 0, $width, $height, $width, $height);
     imagejpeg($image, $localPath);
 
     imagedestroy($source);
