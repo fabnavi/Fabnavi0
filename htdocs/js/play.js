@@ -235,14 +235,13 @@ var PlayController = {
         }
       }
     }
-    $('.annotations').hide();
+    $('.annotations').remove();
     for (var i=0; i<PlayController.annotations.length;i++){
       if(index == PlayController.annotations[i].index){
         PlayController.setAnnotation(
           PlayController.annotations[i].x,
           PlayController.annotations[i].y,
           PlayController.annotations[i].angle);
-        break;
       }
     }
     if (!animation) {
@@ -253,7 +252,7 @@ var PlayController = {
   },
 
   setAnnotation: function(x,y,angle){
-    var a = $('#annotation');
+    var a = $('<img>',{class:'annotations'});
     a.attr('src','annotations/arrow.svg'); 
     a.css({
       "left":-200+x+"px", //padding of coordinate image pointed 
@@ -261,7 +260,7 @@ var PlayController = {
       "transform-origin":"200px 50px", //pointed coordinate
       "transform":"rotate("+angle+"deg)"
     });
-    a.show(); 
+    a.appendTo($('#controller'));
   },
 
 

@@ -20,7 +20,6 @@
     </div>
     <div id="controller">
       <img id="photo">
-      <img id="annotation" class="annotations">
       <div id="counter"></div>
       <div id="arrow">▶</div>
     </div>
