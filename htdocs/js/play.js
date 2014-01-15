@@ -223,7 +223,7 @@ var PlayController = {
   show: function(index, toNEXT) {
     $("#arrow").text("");
     clearTimeout(PlayController.timerid);
-    var animation = null;
+    /*var animation = null;
     if (toNEXT == true) {
       for (var i = 0, n = PlayController.animations.length; i < n; i++) {
         if (PlayController.animations[i].startIndex == index) {
@@ -234,7 +234,7 @@ var PlayController = {
           break;
         }
       }
-    }
+    }*/
     $('.annotations').remove();
     for (var i=0; i<PlayController.annotations.length;i++){
       if(index == PlayController.annotations[i].index){
@@ -244,11 +244,11 @@ var PlayController = {
           PlayController.annotations[i].angle);
       }
     }
-    if (!animation) {
+    //if (!animation) {
       PlayController.current_animation = null;
       PlayController.current_index = index;
       PlayController.setPhoto(index);
-    }
+    //}
   },
 
   setAnnotation: function(x,y,angle){
@@ -263,7 +263,7 @@ var PlayController = {
     a.appendTo($('#controller'));
   },
 
-
+/*
   animate: function(index, startIndex, endIndex, speed) {
     PlayController.setPhoto(index);
     var nextIndex = index + 1;
@@ -283,7 +283,7 @@ var PlayController = {
     PlayController.current_index = index;
     PlayController.timerid = setTimeout(PlayController.animate, nextSpeed, nextIndex, startIndex, endIndex, speed);
   },
-
+*/
   setPhoto: function(index) {
     $("#photo").attr("src", PlayController.current_project[index]);
     $("#counter").text((index+1)+"/"+PlayController.current_project.length);
