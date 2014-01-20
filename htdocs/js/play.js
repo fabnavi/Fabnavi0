@@ -54,6 +54,10 @@ var PlayController = {
           PlayController.next();
           break;
         }
+        case 105 : {
+          window.close();
+          break;
+        }
       }
     });
 
@@ -64,6 +68,7 @@ var PlayController = {
     $("#next").click(PlayController.next);
 
     PlayController.load();
+    if(ID != "")PlayController.play(ID);
   },
 
   load: function() {
@@ -85,7 +90,11 @@ var PlayController = {
         var li = $(document.createElement("li"));
         li.append(image);
         li.attr("id", id);
-        li.click(PlayController.play);
+        li.click(function(e){
+          var target = $(e.currentTarget);
+          var id = target.attr("id");
+          PlayController.play(id);       
+        });
 
         projectList.append(li);
       }
@@ -140,9 +149,7 @@ var PlayController = {
     return objs;
   },
 
-  play: function(e) {
-    var target = $(e.currentTarget);
-    var id = target.attr("id");
+  play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
     PlayController.animations = [];
     PlayController.annotations = [];

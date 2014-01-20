@@ -8,6 +8,7 @@
     <title data-l10n-id="title">PlayController : FabNavi</title>
     <link rel="stylesheet" href="/css/common.css" type="text/css">
     <link rel="stylesheet" href="/css/play.css" type="text/css">
+    <script>var ID = "<?php if(isset($_GET['id']))echo $_GET['id'] ?>"; </script>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/play.js"></script>

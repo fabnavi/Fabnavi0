@@ -27,6 +27,9 @@ var RecordController = {
               $('#take').show();      
             }
             break;
+          case 105:
+            if(RecordController.project_id != "undefined")window.open('/play.php?id='+RecordController.project_id,'new tab');
+            break;
           default:
             break;
         }
@@ -43,9 +46,6 @@ var RecordController = {
       RecordController.project_id = result["id"];
 //      $("#take").show();
       $("#take").click(RecordController.take);
-
-              
-       //       RecordController.take);
     });
   },
 
