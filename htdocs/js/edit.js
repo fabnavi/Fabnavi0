@@ -75,6 +75,7 @@ var PlayController = {
     $('#photo').click(function (e) {
       PlayController.makeAnnotation(e)
     });
+    PlayController.updateAnnotationsTable();
   },
 
   makeAnnotation: function (e) {
@@ -324,6 +325,21 @@ var PlayController = {
       PlayController.makeAnnotation(e)
     });
     a.appendTo($('#controller'));
+  },
+
+  updateAnnotationsTable: function(){
+    var table = $('#annotationsTable')[0];
+    for(var i=0; i<PlayController.newAnnotations.length;i++){
+      var a = PlayController.newAnnotations[i];
+      var row = $("<tr/>");
+      row.innerHTML = "<td>"+a['index']+"</td><td>"+
+        a['image']+"</td><td>"+
+        a['x']+"</td><td>"+
+        a['y']+"</td><td>"+
+        a['angle']+"</td>";
+      row[0].appendTo(table);
+    }
+
   },
 
   /*

@@ -22,6 +22,12 @@
       <img id="photo">
       <div id="counter"></div>
       <div id="arrow">▶</div>
+      <div class="listView" style="border:4px solid red;float:left; position:absolute;top:500px;left:100px;">
+        <table>
+                <tbody id="annotationsTable">
+                </tbody>
+        </table>
+      </div>
     </div>
     <?php include('footer.php.inc'); ?>
   </body>
