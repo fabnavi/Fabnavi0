@@ -59,6 +59,9 @@ var PlayController = {
           window.close();
           break;
         }
+        case 104 : {
+          location.reload();
+        }
       }
     });
 
