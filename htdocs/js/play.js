@@ -70,8 +70,15 @@ var PlayController = {
 
     PlayController.load();
     if(ID != ""){
+      $('#contents').hide();
+      $('#controller').hide();
+      $('img').hide();
       PlayController.play(ID)
-      window.setTimeout(PlayController.previous,300);
+      $('img').hide();
+      window.setTimeout(function(){
+        PlayController.previous
+        $('img').show();
+      },300);
     }
   },
 
