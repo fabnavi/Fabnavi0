@@ -8,12 +8,13 @@
     <title data-l10n-id="title">PlayController : FabNavi</title>
     <link rel="stylesheet" href="/css/common.css" type="text/css">
     <link rel="stylesheet" href="/css/play.css" type="text/css">
+    <link rel="stylesheet" href="/css/calibrate.css" type="text/css">
     <script>
       var ID = "<?php if(isset($_GET['id']))echo $_GET['id'] ?>"; 
     </script>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/play.js"></script>
+    <script type="text/javascript" src="/js/calibrate.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no">
   </head>
   <body>
@@ -25,6 +26,24 @@
       <img id="photo">
       <div id="counter"></div>
       <div id="arrow">▶</div>
+      <canvas id="cvs" ></canvas>
+      <div id="panel">
+      <div class="param">
+              <div id="px"></div>
+              <input max="2000" min="1" type="range" id="x">
+      </div>
+      <div class="param">
+              <div id="py"></div>
+              <input max="2000" min="1" type="range" id="y">
+      </div>
+      <div class="param">
+              <div id="pw"></div>
+              <input max="2000" min="1" type="range" id="w">
+      </div>
+      <div class="param">
+              <div id="ph"></div>
+              <input max="2000" min="1" type="range" id="h">
+      </div>
     </div>
     <?php include('footer.php.inc'); ?>
   </body>
