@@ -8,10 +8,10 @@
   try {
     include_once("camera.php.inc");
     $resultString = takePicture();
-
+    dbg($resultString);
     preg_match("/(http:.+[.]JPG)/i", $resultString, $photoMatches);
     $photoURL = $photoMatches[0];
-    $result["photoURL"] = $photoURL;
+    $result["photoURL"] = dbg($photoURL);
     preg_match("/([^\/]+)$/i", $photoURL, $fileMatches);
     $localPath = $directory."/".$fileMatches[0];
     $result["url"] = $localPath;

@@ -11,6 +11,7 @@ var RecordController = {
         console.log(e.keyCode);
         switch(e.keyCode){
           case 101:
+          case 13:
             if($('#start').is(':visible')){
               RecordController.start();
               $('#take').hide();
