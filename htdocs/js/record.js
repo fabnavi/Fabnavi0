@@ -8,7 +8,6 @@ var RecordController = {
         $('#take').hide();
       });
       $(window).keydown(function(e){
-        console.log(e.keyCode);
         switch(e.keyCode){
           case 101:
           case 13:
@@ -29,6 +28,7 @@ var RecordController = {
             }
             break;
           case 105:
+          case 32:
             if(RecordController.project_id != "undefined")window.open('/play.php?id='+RecordController.project_id,'new tab');
             break;
           default:

@@ -9,13 +9,14 @@
     include_once("camera.php.inc");
     $resultString = takePicture();
     dbg($resultString);
-    preg_match("/(http:.+[.]JPG)/i", $resultString, $photoMatches);
+    preg_match('/http:(.*)%21/', $resultString, $photoMatches);
     $photoURL = $photoMatches[0];
+//    $photoURL = substr($photoURL,strlen($photoURL)-2);
     $result["photoURL"] = dbg($photoURL);
-    preg_match("/([^\/]+)$/i", $photoURL, $fileMatches);
-    $localPath = $directory."/".$fileMatches[0];
+    preg_match("/pict(.*).JPG/i", $photoURL, $fileMatches);
+    $localPath = $directory."/".$fileMatches[0].".jpg";
     $result["url"] = $localPath;
-    $originalFilePath = $directory."/original/".$fileMatches[0];
+    $originalFilePath = $directory."/original/".$fileMatches[0].".jpg";
 
     $photoContents = file_get_contents($photoURL);
     file_put_contents($originalFilePath, $photoContents);

@@ -31,7 +31,6 @@ var PlayController = {
     };
 
     $(window).keydown(function(e) {
-      console.log(e.Keycode);
       switch (e.keyCode) {
         case 97 : 
         case 37 : {
@@ -56,6 +55,7 @@ var PlayController = {
           break;
         }
         case 105 : {
+        case 32:
           window.close();
           break;
         }
@@ -186,7 +186,6 @@ var PlayController = {
         }
         PlayController.show(startIndex, true);
         $("#controller").show();
-        console.log("finished loading");
       });
     });
   },
