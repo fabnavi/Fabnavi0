@@ -4,7 +4,7 @@
 var PlayController = {
   init: function() {
     PlayController.current_index = -1;
-    
+
     PlayController.configList={
       animation:{
         tag:'animations', 
@@ -43,6 +43,7 @@ var PlayController = {
           PlayController.nextWithAnimation();
           break;
         }
+        case 81 :
         case 27 : {
           $("#controller").hide();
           break;
@@ -77,7 +78,7 @@ var PlayController = {
       $('#controller').hide();
       $('img').hide();
       PlayController.play(ID)
-      $('img').hide();
+        $('img').hide();
       window.setTimeout(function(){
         PlayController.previous
         $('img').show();
@@ -144,18 +145,18 @@ var PlayController = {
       if(nodes[i].tagName == conf.name){
         var obj = {};
         for(key in conf.values){
-            var v = nodes[i].getAttribute(key);
-            if(v == null){
-              console.log("Attribute " +key+" not found");
-            }else if(conf.values[key] == 'int'){
-              var r = parseInt(v,10);
-              if(isNaN(r))console.log(v+" is declared as int, but NaN");
-              else obj[key] = r;
-            }else if(conf.values[key] == 'string'){
-              obj[key] = v;
-            } else {
-              console.log("cannot understand the type :"+conf.values[key] + " of " + key);
-            }
+          var v = nodes[i].getAttribute(key);
+          if(v == null){
+            console.log("Attribute " +key+" not found");
+          }else if(conf.values[key] == 'int'){
+            var r = parseInt(v,10);
+            if(isNaN(r))console.log(v+" is declared as int, but NaN");
+            else obj[key] = r;
+          }else if(conf.values[key] == 'string'){
+            obj[key] = v;
+          } else {
+            console.log("cannot understand the type :"+conf.values[key] + " of " + key);
+          }
         }
         objs.push(obj);
       }
@@ -168,9 +169,9 @@ var PlayController = {
     PlayController.animations = [];
     PlayController.annotations = [];
     CommonController.getContents(url)
-    .then(function(result) {
-      PlayController.configParser(result);
-    })
+      .then(function(result) {
+        PlayController.configParser(result);
+      })
     .done(function() {
       CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
         if (error) {
@@ -246,30 +247,30 @@ var PlayController = {
     $("#arrow").text("");
     clearTimeout(PlayController.timerid);
     /*var animation = null;
-    if (toNEXT == true) {
+      if (toNEXT == true) {
       for (var i = 0, n = PlayController.animations.length; i < n; i++) {
-        if (PlayController.animations[i].startIndex == index) {
-          animation = PlayController.animations[i];
-          PlayController.current_index = animation.endIndex;
-          PlayController.animate(index, animation.startIndex, animation.endIndex, animation.duration);
-          PlayController.current_animation = animation;
-          break;
-        }
+      if (PlayController.animations[i].startIndex == index) {
+      animation = PlayController.animations[i];
+      PlayController.current_index = animation.endIndex;
+      PlayController.animate(index, animation.startIndex, animation.endIndex, animation.duration);
+      PlayController.current_animation = animation;
+      break;
       }
-    }*/
+      }
+      }*/
     $('.annotations').remove();
     for (var i=0; i<PlayController.annotations.length;i++){
       if(index == PlayController.annotations[i].index){
         PlayController.setAnnotation(
-          PlayController.annotations[i].x,
-          PlayController.annotations[i].y,
-          PlayController.annotations[i].angle);
+            PlayController.annotations[i].x,
+            PlayController.annotations[i].y,
+            PlayController.annotations[i].angle);
       }
     }
     //if (!animation) {
-      PlayController.current_animation = null;
-      PlayController.current_index = index;
-      PlayController.setPhoto(index);
+    PlayController.current_animation = null;
+    PlayController.current_index = index;
+    PlayController.setPhoto(index);
     //}
   },
 
@@ -285,27 +286,27 @@ var PlayController = {
     a.appendTo($('#controller'));
   },
 
-/*
-  animate: function(index, startIndex, endIndex, speed) {
-    PlayController.setPhoto(index);
-    var nextIndex = index + 1;
-    var nextSpeed = speed;
-    if (nextIndex > endIndex) {
-      nextIndex = startIndex;
-      nextSpeed *= 1.5;
-    }
-    var text = "";
-    for (var i = startIndex; i < index; i++) {
-      text += "　";
-    }
-    for (var i = index; i < endIndex+1; i++) {
-      text += "▶";
-    }
-    $("#arrow").text(text);
-    PlayController.current_index = index;
-    PlayController.timerid = setTimeout(PlayController.animate, nextSpeed, nextIndex, startIndex, endIndex, speed);
-  },
-*/
+  /*
+     animate: function(index, startIndex, endIndex, speed) {
+     PlayController.setPhoto(index);
+     var nextIndex = index + 1;
+     var nextSpeed = speed;
+     if (nextIndex > endIndex) {
+     nextIndex = startIndex;
+     nextSpeed *= 1.5;
+     }
+     var text = "";
+     for (var i = startIndex; i < index; i++) {
+     text += "　";
+     }
+     for (var i = index; i < endIndex+1; i++) {
+     text += "▶";
+     }
+     $("#arrow").text(text);
+     PlayController.current_index = index;
+     PlayController.timerid = setTimeout(PlayController.animate, nextSpeed, nextIndex, startIndex, endIndex, speed);
+     },
+     */
   setPhoto: function(index) {
     $("#photo").attr("src", PlayController.current_project[index]);
     $("#counter").text((index+1)+"/"+PlayController.current_project.length);

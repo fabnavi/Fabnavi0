@@ -42,6 +42,7 @@ var CalibrateController = {
           CalibrateController.nextWithAnimation();
           break;
         }
+        case 81 :
         case 27 : {
           $("#controller").hide();
           break;
