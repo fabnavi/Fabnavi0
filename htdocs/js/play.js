@@ -54,8 +54,8 @@ var PlayController = {
           PlayController.next();
           break;
         }
+        case 32 :
         case 105 : {
-        case 32:
           window.close();
           break;
         }
