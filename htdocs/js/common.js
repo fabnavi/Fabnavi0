@@ -3,6 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 var CommonController = {
+  localConfig:"",
   getParametersFromQuery: function() {
     var parameters = {};
     var url = window.location.href;
@@ -50,5 +51,34 @@ var CommonController = {
 
     $.ajax(parameter);
     return deferred.promise();
+  },
+
+  setLocalData: function(key,jsonData){
+    var d = jsonData.toSource();
+    console.log(d);
+    localStorage.setItem(key,d);
+  },
+
+  getLocalData: function(key){
+    var data = localStorage.getItem(key);
+    if(data == null)return false;
+    //    console.log(data);
+    return eval(data);
+  },
+
+  getLocalConfig: function(id){
+    console.log("getLocalConfig");
+    var res = CommonController.getLocalData(id);
+    if(!res)return false;
+
+    CommonController.localConfig = res;
+  },
+
+  setLocalConfig: function(id){
+    if(CommonController.localConfig == null){
+      alert("there is no config");
+      return false;
+    }
+    CommonController.setLocalData(id,CommonController.localConfig);
   }
 }

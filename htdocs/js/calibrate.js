@@ -4,7 +4,6 @@
 var CalibrateController = {
   init: function() {
     CalibrateController.current_index = -1;
-
     CalibrateController.configList={
       animation:{
         tag:'animations', 
@@ -116,13 +115,22 @@ var CalibrateController = {
       h = CalibrateController.image.naturalHeight - $('#y').val();
       $('#h').val(h);
     }
+    var x = $('#x').val();
+    var y = $('#y').val();
     CalibrateController.ctx.drawImage(
         CalibrateController.image,
-        $('#x').val(),
-        $('#y').val(),
+        x,y,
         w,h,
         0,0,
         CalibrateController.cvs.width,CalibrateController.cvs.height);
+    CommonController.localConfig = {
+      x:x,y:y,w:w,h:h
+    };
+
+  },
+
+  saveConfig : function(){
+    CommonController.setLocalConfig(CalibrateController.id);
   },
 
   postConfig : function(){
@@ -215,6 +223,15 @@ var CalibrateController = {
   },
 
   play: function(id) {
+    CalibrateController.id = id;
+    CommonController.getLocalConfig(id);
+
+    if(CommonController.localConfig != ""){
+      $('#x').val(CommonController.localConfig.x);
+      $('#y').val(CommonController.localConfig.y);
+      $('#w').val(CommonController.localConfig.w);
+      $('#h').val(CommonController.localConfig.h);
+    }
     document.title = "Calibration : " +id;
     var url = "data/"+id+"/fabnavi.play.config";
     CalibrateController.animations = [];
