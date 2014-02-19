@@ -4,7 +4,6 @@
 var CalibrateController = {
   init: function() {
     CalibrateController.current_index = -1;
-    
     CalibrateController.configList={
       animation:{
         tag:'animations', 
@@ -45,6 +44,8 @@ var CalibrateController = {
         case 81 :
         case 27 : {
           $("#controller").hide();
+          $("img").show();
+          document.title = "Calibration : FabNavi";
           break;
         }
         case 52 : {
@@ -61,6 +62,10 @@ var CalibrateController = {
         }
         case 104 : {
           location.reload();
+        }
+        case 86 : {
+          CalibrateController.info();
+          break;
         }
       }
     });
@@ -83,6 +88,7 @@ var CalibrateController = {
     });
     $("#previous").click(CalibrateController.previous);
     $("#next").click(CalibrateController.next);
+    $("#save").click(CalibrateController.saveConfig);
 
     CalibrateController.load();
     if(ID != ""){
@@ -90,7 +96,7 @@ var CalibrateController = {
       $('#controller').hide();
       $('img').hide();
       CalibrateController.play(ID)
-      $('img').hide();
+        $('img').hide();
       window.setTimeout(function(){
         CalibrateController.previous
       },300);
@@ -110,15 +116,22 @@ var CalibrateController = {
       h = CalibrateController.image.naturalHeight - $('#y').val();
       $('#h').val(h);
     }
-    //$('#w').attr('max',CalibrateController.image.naturalWidth -$('#x'));
-    //$('#h').attr('max',CalibrateController.image.naturalHeight -$('#y'));
+    var x = $('#x').val();
+    var y = $('#y').val();
     CalibrateController.ctx.drawImage(
-      CalibrateController.image,
-      $('#x').val(),
-      $('#y').val(),
-      w,h,
-      0,0,
-      CalibrateController.cvs.width,CalibrateController.cvs.height);
+        CalibrateController.image,
+        x,y,
+        w,h,
+        0,0,
+        CalibrateController.cvs.width,CalibrateController.cvs.height);
+    CommonController.localConfig = {
+      x:x,y:y,w:w,h:h
+    };
+
+  },
+
+  saveConfig : function(){
+    if(CommonController.localConfig != "")CommonController.setLocalConfig(CalibrateController.id);
   },
 
   postConfig : function(){
@@ -191,18 +204,18 @@ var CalibrateController = {
       if(nodes[i].tagName == conf.name){
         var obj = {};
         for(key in conf.values){
-            var v = nodes[i].getAttribute(key);
-            if(v == null){
-              console.log("Attribute " +key+" not found");
-            }else if(conf.values[key] == 'int'){
-              var r = parseInt(v,10);
-              if(isNaN(r))console.log(v+" is declared as int, but NaN");
-              else obj[key] = r;
-            }else if(conf.values[key] == 'string'){
-              obj[key] = v;
-            } else {
-              console.log("cannot understand the type :"+conf.values[key] + " of " + key);
-            }
+          var v = nodes[i].getAttribute(key);
+          if(v == null){
+            console.log("Attribute " +key+" not found");
+          }else if(conf.values[key] == 'int'){
+            var r = parseInt(v,10);
+            if(isNaN(r))console.log(v+" is declared as int, but NaN");
+            else obj[key] = r;
+          }else if(conf.values[key] == 'string'){
+            obj[key] = v;
+          } else {
+            console.log("cannot understand the type :"+conf.values[key] + " of " + key);
+          }
         }
         objs.push(obj);
       }
@@ -211,14 +224,24 @@ var CalibrateController = {
   },
 
   play: function(id) {
+    CalibrateController.id = id;
+    CommonController.getLocalConfig(id);
+
+    if(CommonController.localConfig != ""){
+      $('#x').val(CommonController.localConfig.x);
+      $('#y').val(CommonController.localConfig.y);
+      $('#w').val(CommonController.localConfig.w);
+      $('#h').val(CommonController.localConfig.h);
+    }
+    document.title = "Calibration : " +id;
     var url = "data/"+id+"/fabnavi.play.config";
     CalibrateController.animations = [];
     CalibrateController.annotations = [];
     console.log(url);
     CommonController.getContents(url)
-    .then(function(result) {
-      CalibrateController.configParser(result);
-    })
+      .then(function(result) {
+        CalibrateController.configParser(result);
+      })
     .done(function() {
       CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
         if (error) {
@@ -226,7 +249,6 @@ var CalibrateController = {
           return;
         }
         CalibrateController.current_project = result;
-
         var parameters = CalibrateController.getParametersFromQuery();
         var startIndex = 0;
         if (parameters["s"]) {
@@ -235,7 +257,7 @@ var CalibrateController = {
         CalibrateController.show(startIndex, true);
         $("#controller").show();
         $('img').hide();
-        
+
       });
     });
   },
@@ -298,14 +320,14 @@ var CalibrateController = {
     for (var i=0; i<CalibrateController.annotations.length;i++){
       if(index == CalibrateController.annotations[i].index){
         CalibrateController.setAnnotation(
-          CalibrateController.annotations[i].x,
-          CalibrateController.annotations[i].y,
-          CalibrateController.annotations[i].angle);
+            CalibrateController.annotations[i].x,
+            CalibrateController.annotations[i].y,
+            CalibrateController.annotations[i].angle);
       }
     }
-      CalibrateController.current_animation = null;
-      CalibrateController.current_index = index;
-      CalibrateController.setPhoto(index);
+    CalibrateController.current_animation = null;
+    CalibrateController.current_index = index;
+    CalibrateController.setPhoto(index);
   },
 
   setAnnotation: function(x,y,angle){
@@ -329,7 +351,16 @@ var CalibrateController = {
       CalibrateController.drawImage();
     };
     $("#counter").text((index+1)+"/"+CalibrateController.current_project.length);
+  },
+
+  info : function(){
+    var elem = $('#panel');
+    if(elem.is(":visible"))
+      elem.hide();
+    else 
+      elem.show();
   }
+
 }
 
 $(document).ready(function() {
