@@ -5,7 +5,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title data-l10n-id="title">PlayController : FabNavi</title>
+    <title data-l10n-id="title">Calibration : FabNavi</title>
     <link rel="stylesheet" href="/css/common.css" type="text/css">
     <link rel="stylesheet" href="/css/play.css" type="text/css">
     <link rel="stylesheet" href="/css/calibrate.css" type="text/css">
@@ -43,6 +43,8 @@
       <div class="param">
               <div id="ph"></div>
               <input max="2000" min="1" type="range" id="h">
+      </div>
+      <div id="info">
       </div>
     </div>
     <?php include('footer.php.inc'); ?>
