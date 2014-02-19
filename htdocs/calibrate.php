@@ -46,6 +46,7 @@
       </div>
       <div id="info">
       </div>
+      <input type="button" value="save config" id="save">
     </div>
     <?php include('footer.php.inc'); ?>
   </body>

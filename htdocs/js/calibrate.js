@@ -88,6 +88,7 @@ var CalibrateController = {
     });
     $("#previous").click(CalibrateController.previous);
     $("#next").click(CalibrateController.next);
+    $("#save").click(CalibrateController.saveConfig);
 
     CalibrateController.load();
     if(ID != ""){
@@ -130,7 +131,7 @@ var CalibrateController = {
   },
 
   saveConfig : function(){
-    CommonController.setLocalConfig(CalibrateController.id);
+    if(CommonController.localConfig != "")CommonController.setLocalConfig(CalibrateController.id);
   },
 
   postConfig : function(){
