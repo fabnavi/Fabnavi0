@@ -35,33 +35,33 @@ var PlayController = {
 
     $(window).keydown(function (e) {
       switch (e.keyCode) {
-      case 97:
-      case 37:
-        {
-          PlayController.previousWithAnimation();
-          break;
-        }
-      case 99:
-      case 39:
-        {
-          PlayController.nextWithAnimation();
-          break;
-        }
-      case 27:
-        {
-          $("#controller").hide();
-          break;
-        }
-      case 52:
-        {
-          PlayController.previous();
-          break;
-        }
-      case 54:
-        {
-          PlayController.next();
-          break;
-        }
+        case 97:
+        case 37:
+          {
+            PlayController.previousWithAnimation();
+            break;
+          }
+        case 99:
+        case 39:
+          {
+            PlayController.nextWithAnimation();
+            break;
+          }
+        case 27:
+          {
+            $("#controller").hide();
+            break;
+          }
+        case 52:
+          {
+            PlayController.previous();
+            break;
+          }
+        case 54:
+          {
+            PlayController.next();
+            break;
+          }
       }
     });
 
@@ -109,10 +109,10 @@ var PlayController = {
   postAnnotations: function () {
     $.ajax({
       type: "POST",
-      url: "api/newAnnotation.php",
-      data: {
-        data: PlayController.newAnnotations
-      }
+    url: "api/newAnnotation.php",
+    data: {
+      data: PlayController.newAnnotations
+    }
     });
   },
 
@@ -203,23 +203,23 @@ var PlayController = {
       .then(function (result) {
         PlayController.configParser(result);
       })
-      .done(function () {
-        CommonController.getJSON("api/getProject.php?project_id=" + id, function (result, error) {
-          if (error) {
-            alert(error);
-            return;
-          }
-          PlayController.current_project = result;
+    .done(function () {
+      CommonController.getJSON("api/getProject.php?project_id=" + id, function (result, error) {
+        if (error) {
+          alert(error);
+          return;
+        }
+        PlayController.current_project = result;
 
-          var parameters = PlayController.getParametersFromQuery();
-          var startIndex = 0;
-          if (parameters["s"]) {
-            startIndex = parseInt(parameters["s"]) - 1;
-          }
-          PlayController.show(startIndex, true);
-          $("#controller").show();
-        });
+        var parameters = PlayController.getParametersFromQuery();
+        var startIndex = 0;
+        if (parameters["s"]) {
+          startIndex = parseInt(parameters["s"]) - 1;
+        }
+        PlayController.show(startIndex, true);
+        $("#controller").show();
       });
+    });
   },
 
   getParametersFromQuery: function () {
@@ -276,33 +276,33 @@ var PlayController = {
   show: function (index, toNEXT) {
     $("#arrow").text("");
     /*clearTimeout(PlayController.timerid);
-    var animation = null;
-    if (toNEXT == true) {
+      var animation = null;
+      if (toNEXT == true) {
       for (var i = 0, n = PlayController.animations.length; i < n; i++) {
-        if (PlayController.animations[i].startIndex == index) {
-          animation = PlayController.animations[i];
-          PlayController.current_index = animation.endIndex;
-          PlayController.animate(index, animation.startIndex, animation.endIndex, animation.duration);
-          PlayController.current_animation = animation;
-          break;
-        }
+      if (PlayController.animations[i].startIndex == index) {
+      animation = PlayController.animations[i];
+      PlayController.current_index = animation.endIndex;
+      PlayController.animate(index, animation.startIndex, animation.endIndex, animation.duration);
+      PlayController.current_animation = animation;
+      break;
       }
-    }*/
+      }
+      }*/
     $('.annotations').remove();
     for (var i = 0; i < PlayController.annotations.length; i++) {
       if (index == PlayController.annotations[i].index) {
         PlayController.setAnnotation(
-          PlayController.annotations[i].x,
-          PlayController.annotations[i].y,
-          PlayController.annotations[i].angle);
+            PlayController.annotations[i].x,
+            PlayController.annotations[i].y,
+            PlayController.annotations[i].angle);
       }
     }
     for (var i = 0; i < PlayController.newAnnotations.length; i++) {
       if (index + 1 == PlayController.newAnnotations[i].index) {
         PlayController.setAnnotation(
-          PlayController.newAnnotations[i].x,
-          PlayController.newAnnotations[i].y,
-          PlayController.newAnnotations[i].angle);
+            PlayController.newAnnotations[i].x,
+            PlayController.newAnnotations[i].y,
+            PlayController.newAnnotations[i].angle);
       }
     }
     PlayController.current_animation = null;
@@ -343,32 +343,32 @@ var PlayController = {
   },
 
   /*
-  animate: function(index, startIndex, endIndex, speed) {
-    PlayController.setPhoto(index);
-    var nextIndex = index + 1;
-    var nextSpeed = speed;
-    if (nextIndex > endIndex) {
-      nextIndex = startIndex;
-      nextSpeed *= 1.5;
-    }
-    var text = "";
-    for (var i = startIndex; i < index; i++) {
-      text += "　";
-    }
-    for (var i = index; i < endIndex+1; i++) {
-      text += "▶";
-    }
-    $("#arrow").text(text);
-    PlayController.current_index = index;
-    PlayController.timerid = setTimeout(PlayController.animate, nextSpeed, nextIndex, startIndex, endIndex, speed);
-  },
-*/
+     animate: function(index, startIndex, endIndex, speed) {
+     PlayController.setPhoto(index);
+     var nextIndex = index + 1;
+     var nextSpeed = speed;
+     if (nextIndex > endIndex) {
+     nextIndex = startIndex;
+     nextSpeed *= 1.5;
+     }
+     var text = "";
+     for (var i = startIndex; i < index; i++) {
+     text += "　";
+     }
+     for (var i = index; i < endIndex+1; i++) {
+     text += "▶";
+     }
+     $("#arrow").text(text);
+     PlayController.current_index = index;
+     PlayController.timerid = setTimeout(PlayController.animate, nextSpeed, nextIndex, startIndex, endIndex, speed);
+     },
+     */
   setPhoto: function (index) {
     $("#photo").attr("src", PlayController.current_project[index]);
     $("#counter").text((index + 1) + "/" + PlayController.current_project.length);
   }
-}
+  }
 
-$(document).ready(function () {
-  PlayController.init();
-});
+        $(document).ready(function () {
+          PlayController.init();
+        });
