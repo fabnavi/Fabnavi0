@@ -45,6 +45,7 @@ var PlayController = {
         case 81 :
         case 27 : {
           $("#controller").hide();
+          ListController.clear();
           break;
         }
         case 52 : {
@@ -180,6 +181,11 @@ var PlayController = {
           return;
         }
         PlayController.current_project = result;
+        
+        for(i in PlayController.current_project){
+          ListController.append(PlayController.current_project[i]);
+
+        }
 
         var parameters = PlayController.getParametersFromQuery();
         var startIndex = 0;

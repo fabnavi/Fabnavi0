@@ -3,7 +3,7 @@ var ListController　= {
   init : function () {
     this.elem = $('<div>');
     this.elem.html(
-      '<table border="5">\
+      '<table border="5" width="300">\
        <tbody id="list">\
         <tr>\
          <td>#</td>\
@@ -12,25 +12,34 @@ var ListController　= {
         </tr>\
        </tbody>\
       </table>');
-    $("body").append(this.elem);
-    this.elem.hide();
+    $("#controller").append(this.elem);
     this.show();
   },
   
   show : function (){
-    this.elem.show();
   },
   
   append : function (data){
-    var row = $('<tr><td class="tableIndex"></td><td>'+data+'</td><td></td></tr>'); 
+    var a = data.split('/');
+    var row = $('<tr class="data"><td class="tableIndex"></td><td>'+a[a.length-1]+'</td><td></td></tr>'); 
+    
     $('#list').append(row);
+  },
+
+  exchange : function ( index1, index2){
+
+
   },
 
   insert : function (data,index){
 
   },
 
-  removeCell : function(index){
+  remove: function(index){
 
+  },
+
+  clear : function(){
+    $('.data').remove(); 
   }
 };
