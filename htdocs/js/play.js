@@ -84,6 +84,7 @@ var PlayController = {
         $('img').show();
       },300);
     }
+    ListController.init();
   },
 
   load: function() {
