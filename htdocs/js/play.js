@@ -73,6 +73,7 @@ var PlayController = {
     $("#previous").click(PlayController.previous);
     $("#next").click(PlayController.next);
 
+
     PlayController.load();
     if(ID != ""){
       $('#contents').hide();
@@ -86,6 +87,16 @@ var PlayController = {
       },300);
     }
     ListController.init();
+
+    ListController.rowClicked = function(e){
+      for(i in PlayController.current_project){
+        if(PlayController.current_project[i].indexOf(e.currentTarget.id) != -1){
+          PlayController.setPhoto(i);
+          PlayController.current_index = i;
+          break;
+        }
+      }
+    };
   },
 
   load: function() {
