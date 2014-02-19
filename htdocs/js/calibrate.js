@@ -214,12 +214,13 @@ var CalibrateController = {
     var url = "data/"+id+"/fabnavi.play.config";
     CalibrateController.animations = [];
     CalibrateController.annotations = [];
+    console.log(url);
     CommonController.getContents(url)
     .then(function(result) {
       CalibrateController.configParser(result);
     })
     .done(function() {
-      CommonController.getJSON("api/getOriginal.php?project_id="+id, function(result, error) {
+      CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
         if (error) {
           alert(error);
           return;
