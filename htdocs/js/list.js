@@ -21,7 +21,8 @@ var ListController　= {
   
   append : function (data){
     var a = data.split('/');
-    var row = $('<tr class="data"><td class="tableIndex"></td><td>'+a[a.length-1]+'</td><td></td></tr>'); 
+    var str = a[a.length-1];
+    var row = $('<tr class="data" id="'+str.split('.')[0]+'"><td class="tableIndex"></td><td>'+str+'</td><td></td></tr>'); 
     
     $('#list').append(row);
   },
@@ -37,6 +38,18 @@ var ListController　= {
 
   remove: function(index){
 
+  },
+
+  selectByIndex: function(index){
+    
+  },
+
+  selectByName: function(data){
+    $('.data').css('background-color','transparent');
+    var a = data.split('/');
+    var str = a[a.length-1];
+    var name = str.split('.')[0];
+    $('#'+name).css('background-color','rgba(200,0,0,0.7)');
   },
 
   clear : function(){

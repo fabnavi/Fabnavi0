@@ -314,6 +314,7 @@ var PlayController = {
      },
      */
   setPhoto: function(index) {
+    ListController.selectByName(PlayController.current_project[index]);
     $("#photo").attr("src", PlayController.current_project[index]);
     $("#counter").text((index+1)+"/"+PlayController.current_project.length);
   }
