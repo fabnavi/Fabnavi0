@@ -45,6 +45,8 @@ var CalibrateController = {
         case 81 :
         case 27 : {
           $("#controller").hide();
+          $("img").show();
+          document.title = "Calibration : FabNavi";
           break;
         }
         case 52 : {
@@ -114,8 +116,6 @@ var CalibrateController = {
       h = CalibrateController.image.naturalHeight - $('#y').val();
       $('#h').val(h);
     }
-    //$('#w').attr('max',CalibrateController.image.naturalWidth -$('#x'));
-    //$('#h').attr('max',CalibrateController.image.naturalHeight -$('#y'));
     CalibrateController.ctx.drawImage(
         CalibrateController.image,
         $('#x').val(),
@@ -219,7 +219,6 @@ var CalibrateController = {
     var url = "data/"+id+"/fabnavi.play.config";
     CalibrateController.animations = [];
     CalibrateController.annotations = [];
-    console.log(url);
     CommonController.getContents(url)
       .then(function(result) {
         CalibrateController.configParser(result);
@@ -231,7 +230,6 @@ var CalibrateController = {
           return;
         }
         CalibrateController.current_project = result;
-
         var parameters = CalibrateController.getParametersFromQuery();
         var startIndex = 0;
         if (parameters["s"]) {
