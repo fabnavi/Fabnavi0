@@ -4,8 +4,8 @@
 var PlayController = {
   init: function() {
     PlayController.current_index = -1;
-
-    PlayController.configList={
+    ConfigController.init();
+    ConfigController.configList={
       animation:{
         tag:'animations', 
         name:'animation',
@@ -142,7 +142,7 @@ var PlayController = {
 
     if(annotations.length > 0)for(i in annotations){
       annotations[i].index--;
-      PlayController.annotations.push(annotations[i]);
+      ConfigController.annotations.push(annotations[i]);
     }
 
   }, 
@@ -180,11 +180,11 @@ var PlayController = {
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
     PlayController.project_id = id;
-    PlayController.animations = [];
-    PlayController.annotations = [];
+    ConfigController.animations = [];
+    ConfigController.annotations = [];
     CommonController.getContents(url)
       .then(function(result) {
-        PlayController.configParser(result);
+        ConfigController.parse(result);
       })
     .done(function() {
       CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
@@ -277,12 +277,12 @@ var PlayController = {
       }
       }*/
     $('.annotations').remove();
-    for (var i=0; i<PlayController.annotations.length;i++){
-      if(index == PlayController.annotations[i].index){
+    for (var i=0; i<ConfigController.annotations.length;i++){
+      if(index == ConfigController.annotations[i].index){
         PlayController.setAnnotation(
-            PlayController.annotations[i].x,
-            PlayController.annotations[i].y,
-            PlayController.annotations[i].angle);
+            ConfigController.annotations[i].x,
+            ConfigController.annotations[i].y,
+            ConfigController.annotations[i].angle);
       }
     }
     //if (!animation) {
