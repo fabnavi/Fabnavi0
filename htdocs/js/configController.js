@@ -1,10 +1,9 @@
 var ConfigController = {
   init : function(){
     console.log("config controller initialized");
-
   },
 
-  parse: function(xml){
+  parse: function(xml){ //called once when project loaded
 
     var parser = new DOMParser();
     doc = parser.parseFromString(xml, "application/xml");
@@ -59,6 +58,13 @@ var ConfigController = {
 
   addAnimation : function(){
 
+  },
+
+  postConfig: function(){
+    $.post("/api/postConfig.php",
+          {project:PlayController.project_id,data:xml},
+          function(){console.log("posted");},
+          "json");
   }
 
 
