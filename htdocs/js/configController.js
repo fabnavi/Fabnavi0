@@ -3,22 +3,22 @@ var ConfigController = {
     console.log("config controller initialized");
   },
 
+
   parse: function(xml){ //called once when project loaded
 
     var parser = new DOMParser();
     doc = parser.parseFromString(xml, "application/xml");
     this.xml = xml;
-
     var animations = this.getObjectsFromXML(doc,this.configList['animation']);
     var annotations = this.getObjectsFromXML(doc,this.configList['annotation']);
     if(animations.length > 0)for(i in animations){
       animations[i].index--;
-      this.animations.push(animations[i]);
+      CommonController.animations.push(animations[i]);
     }
 
     if(annotations.length > 0)for(i in annotations){
       annotations[i].index--;
-      this.annotations.push(annotations[i]);
+      CommonController.annotations.push(annotations[i]);
     }
   },
 
@@ -62,7 +62,7 @@ var ConfigController = {
 
   postConfig: function(){
     $.post("/api/postConfig.php",
-          {project:PlayController.project_id,data:xml},
+          {project:this.project_id,data:this.xml},
           function(){console.log("posted");},
           "json");
   }

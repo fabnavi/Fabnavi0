@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var PlayController = {
   init: function() {
-    PlayController.current_index = -1;
+    CommonController.index = -1;
     ConfigController.init();
     ConfigController.configList={
       animation:{
@@ -89,10 +89,10 @@ var PlayController = {
     ListController.init();
 
     ListController.rowClicked = function(e){
-      for(i in PlayController.current_project){
-        if(PlayController.current_project[i].indexOf(e.currentTarget.id) != -1){
+      for(i in CommonController.imgURLs){
+        if(CommonController.imgURLs[i].indexOf(e.currentTarget.id) != -1){
           PlayController.setPhoto(i);
-          PlayController.current_index = i;
+          CommonController.index = i;
           break;
         }
       }
@@ -131,9 +131,9 @@ var PlayController = {
 
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
-    PlayController.project_id = id;
-    ConfigController.animations = [];
-    ConfigController.annotations = [];
+    CommonController.projectName = id;
+    CommonController.animations = [];
+    CommonController.annotations = [];
     CommonController.getContents(url)
       .then(function(result) {
         ConfigController.parse(result);
@@ -144,10 +144,10 @@ var PlayController = {
           alert(error);
           return;
         }
-        PlayController.current_project = result;
-        
-        for(i in PlayController.current_project){
-          ListController.append(PlayController.current_project[i]);
+        CommonController.imgURLs = result;
+
+        for(i in CommonController.imgURLs){
+          ListController.append(CommonController.imgURLs[i]);
         }
 
         var parameters = PlayController.getParametersFromQuery();
@@ -179,16 +179,16 @@ var PlayController = {
   },
 
   previous: function() {
-    if (PlayController.current_index == 0) {
-      PlayController.show(PlayController.current_project.length-1, false);
+    if (CommonController.index == 0) {
+      PlayController.show(CommonController.imgURLs.length-1, false);
     } else {
-      PlayController.show(PlayController.current_index-1, false);
+      PlayController.show(CommonController.index-1, false);
     }
   },
 
   previousWithAnimation: function() {
     if (PlayController.current_animation) {
-      PlayController.current_index = PlayController.current_animation.startIndex;
+      CommonController.index = PlayController.current_animation.startIndex;
       PlayController.previous();
     } else {
       PlayController.previous();
@@ -196,16 +196,16 @@ var PlayController = {
   },
 
   next: function() {
-    if (PlayController.current_index == PlayController.current_project.length-1) {
+    if (CommonController.index == CommonController.imgURLs.length-1) {
       PlayController.show(0, true);
     } else {
-      PlayController.show(PlayController.current_index+1, true);
+      PlayController.show(CommonController.index+1, true);
     }
   },
 
   nextWithAnimation: function() {
     if (PlayController.current_animation) {
-      PlayController.current_index = PlayController.current_animation.endIndex;
+      CommonController.index = PlayController.current_animation.endIndex;
       PlayController.next();
     } else {
       PlayController.next();
@@ -216,17 +216,17 @@ var PlayController = {
     $("#arrow").text("");
     clearTimeout(PlayController.timerid);
     $('.annotations').remove();
-    for (var i=0; i<ConfigController.annotations.length;i++){
-      if(index == ConfigController.annotations[i].index){
+    for (var i=0; i<CommonController.annotations.length;i++){
+      if(index == CommonController.annotations[i].index){
         PlayController.setAnnotation(
-            ConfigController.annotations[i].x,
-            ConfigController.annotations[i].y,
-            ConfigController.annotations[i].angle);
+            CommonController.annotations[i].x,
+            CommonController.annotations[i].y,
+            CommonController.annotations[i].angle);
       }
     }
     //if (!animation) {
     PlayController.current_animation = null;
-    PlayController.current_index = index;
+    CommonController.index = index;
     PlayController.setPhoto(index);
     //}
   },
@@ -244,9 +244,9 @@ var PlayController = {
   },
 
   setPhoto: function(index) {
-    ListController.selectByName(PlayController.current_project[index]);
-    $("#photo").attr("src", PlayController.current_project[index]);
-    $("#counter").text((index+1)+"/"+PlayController.current_project.length);
+    ListController.selectByName(CommonController.imgURLs[index]);
+    $("#photo").attr("src", CommonController.imgURLs[index]);
+    $("#counter").text((index+1)+"/"+CommonController.imgURLs.length);
   }
 }
 
