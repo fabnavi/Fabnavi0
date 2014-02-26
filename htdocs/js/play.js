@@ -179,6 +179,7 @@ var PlayController = {
 
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
+    PlayController.project_id = id;
     PlayController.animations = [];
     PlayController.annotations = [];
     CommonController.getContents(url)
@@ -324,6 +325,14 @@ var PlayController = {
      PlayController.timerid = setTimeout(PlayController.animate, nextSpeed, nextIndex, startIndex, endIndex, speed);
      },
      */
+
+  testFile: function(){
+    $.post("/api/postConfig.php",
+          {project:PlayController.project_id,data:"hello world"},
+          function(){console.log("posted");},
+          "json");
+  
+  },
   setPhoto: function(index) {
     ListController.selectByName(PlayController.current_project[index]);
     $("#photo").attr("src", PlayController.current_project[index]);
