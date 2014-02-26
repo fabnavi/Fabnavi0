@@ -1,14 +1,17 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var ConfigController = {
+
   init : function(){
     console.log("config controller initialized");
   },
-
 
   parse: function(xml){ //called once when project loaded
 
     var parser = new DOMParser();
     doc = parser.parseFromString(xml, "application/xml");
-    this.xml = xml;
+      this.xml = xml;
     var animations = this.getObjectsFromXML(doc,this.configList['animation']);
     var annotations = this.getObjectsFromXML(doc,this.configList['annotation']);
     if(animations.length > 0)for(i in animations){
@@ -51,6 +54,11 @@ var ConfigController = {
     }
     return objs;
   },
+
+  setXMLFromObjects: function(){
+
+  },
+
   addAnnotation: function(){
 
 
@@ -62,14 +70,8 @@ var ConfigController = {
 
   postConfig: function(){
     $.post("/api/postConfig.php",
-          {project:this.project_id,data:this.xml},
+          {project:CommonController.projectName,data:this.xml},
           function(){console.log("posted");},
           "json");
   }
-
-
-
-
-
-
 };
