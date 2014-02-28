@@ -21,6 +21,15 @@ body {
 .data {
   user-select:none;
 }
+tbody {
+  user-select:none;
+}
+tr {
+  user-select:none;
+}
+td {
+  user-select:none;
+}
 
 .annotations {
   position:absolute;

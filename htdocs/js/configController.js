@@ -11,7 +11,7 @@ var ConfigController = {
 
     var parser = new DOMParser();
     doc = parser.parseFromString(xml, "application/xml");
-      this.xml = xml;
+    this.xml = xml;
     var animations = this.getObjectsFromXML(doc,this.configList['animation']);
     var annotations = this.getObjectsFromXML(doc,this.configList['annotation']);
     if(animations.length > 0)for(i in animations){
@@ -25,8 +25,8 @@ var ConfigController = {
     }
   },
 
-  getObjectsFromXML: function(doc,conf){
-    var nodes= doc.getElementsByTagName(conf.tag);
+  getObjectsFromXML: function(xml,conf){
+    var nodes= xml.getElementsByTagName(conf.tag);
     if(nodes.length == 0){
       return {};
     }
@@ -55,8 +55,35 @@ var ConfigController = {
     return objs;
   },
 
-  setXMLFromObjects: function(){
+  createAnnotationElem: function(index,image,x,y,angle,w,h){
+    var elem = document.createElement('annotation');
+    elem.setAttribute('index',index);
+    elem.setAttribute('image',image);
+    elem.setAttribute('x',x);
+    elem.setAttribute('y',y);
+    elem.setAttribute('angle',angle);
+    elem.setAttribute('w',w);
+    elem.setAttribute('h',h);
+    return elem;
+  },
 
+  createAnimationElem: function(startIndex,endIndex,duration){
+   var elem = document.createElement('animation');
+    elem.setAttribute('startIndex',startIndex);
+    elem.setAttribute('endIndex',endIndex);
+    elem.setAttribute('duration',duration);
+    return elem;
+  },
+
+  setXMLFromObjects: function(){
+    var serializer = new XMLSerializer();
+    var doc = document.createElement('playSetting');
+    var annotations = document.createElement('annotations');
+    var animations = document.createElement('animations');
+    
+    doc.appendChild(annotations);
+    doc.appendChild(animations);
+    console.log(serializer.serializeToString(doc));
   },
 
   addAnnotation: function(){
