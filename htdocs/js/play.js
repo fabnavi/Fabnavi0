@@ -46,6 +46,7 @@ var PlayController = {
         case 27 : {
           $("#controller").hide();
           ListController.clear();
+          CommonController.projectInit();
           break;
         }
         case 52 : {

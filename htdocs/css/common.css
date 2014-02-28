@@ -18,6 +18,10 @@ body {
   font-weight: 400;
 }
 
+.data {
+  user-select:none;
+}
+
 .annotations {
   position:absolute;
 }
