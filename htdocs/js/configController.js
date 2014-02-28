@@ -55,23 +55,19 @@ var ConfigController = {
     return objs;
   },
 
-  createAnnotationElem: function(index,image,x,y,angle,w,h){
+  createAnnotationElem: function(obj){
     var elem = document.createElement('annotation');
-    elem.setAttribute('index',index);
-    elem.setAttribute('image',image);
-    elem.setAttribute('x',x);
-    elem.setAttribute('y',y);
-    elem.setAttribute('angle',angle);
-    elem.setAttribute('w',w);
-    elem.setAttribute('h',h);
+    for (key in obj){
+      elem.setAttribute(key,obj[key]);
+    }
     return elem;
   },
 
-  createAnimationElem: function(startIndex,endIndex,duration){
+  createAnimationElem: function(obj){
    var elem = document.createElement('animation');
-    elem.setAttribute('startIndex',startIndex);
-    elem.setAttribute('endIndex',endIndex);
-    elem.setAttribute('duration',duration);
+    for (key in obj){
+      elem.setAttribute(key,obj[key]);
+    }
     return elem;
   },
 
@@ -80,7 +76,15 @@ var ConfigController = {
     var doc = document.createElement('playSetting');
     var annotations = document.createElement('annotations');
     var animations = document.createElement('animations');
+
+    for(i in CommonController.annotations){
+      annotations.appendChild(this.createAnnotationElem(CommonController.annotations[i]));
+    }
     
+    for(i in CommonController.animations){
+      animations.appendChild(this.createAnimationElem(CommonController.animations[i]));
+    }
+
     doc.appendChild(annotations);
     doc.appendChild(animations);
     console.log(serializer.serializeToString(doc));
