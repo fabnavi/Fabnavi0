@@ -30,7 +30,6 @@ var ListController　= {
       if(e.buttons > 0){
         var el = this.idToElem(this.selectedLast());
         var h = e.clientY - el[0].offsetTop-10;
-        console.log(h);
         el.css("transform","translate(-20px,"+h+"px)");
       } 
     }.bind(this));
@@ -58,6 +57,7 @@ var ListController　= {
     row.on('mousedown',function(e){
       this.selected.push(e.currentTarget.id);
       this.idToElem(e.currentTarget.id).css("transform","translateX(-20px)");
+      this.select(e.currentTarget.id);
     }.bind(this));
 
     $('#list').append(row);
@@ -68,7 +68,12 @@ var ListController　= {
   },
 
   insert : function (id1,id2){
-    this.idToElem(id1).after(this.idToElem(id2));
+    var a = this.idToElem(id1);
+    var b = this.idToElem(id2);
+    console.log(a.index());
+    console.log(b.index());
+    ConfigController.insertIndex(b.index()-1,a.index()-1);
+    a.after(b);
      
   },
   selectedLast : function(){

@@ -200,7 +200,7 @@ var PlayController = {
     if (CommonController.index == CommonController.imgURLs.length-1) {
       PlayController.show(0, true);
     } else {
-      PlayController.show(CommonController.index+1, true);
+      PlayController.show(Number(CommonController.index)+1, true);
     }
   },
 
@@ -228,6 +228,7 @@ var PlayController = {
     //if (!animation) {
     PlayController.current_animation = null;
     CommonController.index = index;
+    console.log(index);
     PlayController.setPhoto(index);
     //}
   },

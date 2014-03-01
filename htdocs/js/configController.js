@@ -90,6 +90,20 @@ var ConfigController = {
     console.log(serializer.serializeToString(doc));
   },
 
+  insertIndex: function(src,dst){
+    var srcImg = CommonController.imgURLs[src];
+    CommonController.imgURLs.splice(src,1);
+    if (src > dst){
+     dst++;
+    }
+    CommonController.imgURLs.splice(dst,0,srcImg);
+    console.log(CommonController.imgURLs);
+  },
+
+  deleteIndex: function(index){
+    CommonController.imgURLs.splice(index,1);
+  },
+
   addAnnotation: function(){
 
 
