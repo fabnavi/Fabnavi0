@@ -76,12 +76,15 @@ var ListController　= {
     a.after(b);
      
   },
+
   selectedLast : function(){
     return this.selected[this.selected.length-1];
   },
 
   remove: function(id){
-    this.idToElem(id).remove();
+    var elem = this.idToElem(id);
+    elem.remove();
+    ConfigController.removeIndex(elem.index()-1);
   },
 
   selectByIndex: function(index){

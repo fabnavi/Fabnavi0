@@ -100,7 +100,7 @@ var ConfigController = {
     console.log(CommonController.imgURLs);
   },
 
-  deleteIndex: function(index){
+  removeIndex: function(index){
     CommonController.imgURLs.splice(index,1);
   },
 
