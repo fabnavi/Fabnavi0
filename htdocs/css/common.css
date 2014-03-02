@@ -34,3 +34,11 @@ td {
 .annotations {
   position:absolute;
 }
+
+#panel {
+  float:left;
+  position: absolute;
+  left:80%;
+  top:10px;
+}
+

@@ -77,7 +77,7 @@ var PlayController = {
           break;
         }
         case 86 : {
-          CalibrateController.info();
+          PlayController.info();
           break;
         }
       }
@@ -280,6 +280,13 @@ var PlayController = {
       $('#photo').css('display','block');
       $('#cvs').css('display','none');
     }
+  },
+  info : function(){
+    var elem = $('#panel');
+    if(elem.is(":visible"))
+      elem.hide();
+    else 
+      elem.show();
   }
 }
 

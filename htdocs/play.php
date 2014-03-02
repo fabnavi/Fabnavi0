@@ -28,6 +28,9 @@
       <canvas id="cvs"></canvas>
       <div id="counter"></div>
       <div id="arrow">▶</div>
+      <div id="panel">
+        <input type="button" value="save annotations">
+      </div>
     </div>
     <?php include('footer.php.inc'); ?>
   </body>

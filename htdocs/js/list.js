@@ -1,8 +1,7 @@
 var ListController　= {
 
   init : function () {
-    this.elem = $('<div>');
-    this.elem.html(
+    this.elem = $(
         '<table border="5" width="300">\
         <tbody id="list">\
         <tr>\
@@ -12,7 +11,7 @@ var ListController　= {
         </tr>\
         </tbody>\
         </table>');
-    $("#controller").append(this.elem);
+    $("#panel").append(this.elem);
     this.selected = [];
     this.show();
   },

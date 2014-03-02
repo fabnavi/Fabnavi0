@@ -31,6 +31,9 @@
                 </tbody>
         </table>
       </div>
+      <div id="panel">
+        <input type="button" value="save annotations">
+      </div>
     </div>
     <?php include('footer.php.inc'); ?>
   </body>

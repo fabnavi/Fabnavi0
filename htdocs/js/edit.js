@@ -72,9 +72,7 @@ var EditController= {
         a['angle']+"</td>";
       row[0].appendTo(table);
     }
-
   },
-
 }
 
 $(document).ready(function () {

@@ -90,15 +90,8 @@ var CalibrateController = {
       CalibrateController.drawImage();
     };
     $("#counter").text((index+1)+"/"+CalibrateController.current_project.length);
-  },
-
-  info : function(){
-    var elem = $('#panel');
-    if(elem.is(":visible"))
-      elem.hide();
-    else 
-      elem.show();
   }
+
 }
 
 $(document).ready(function() {
