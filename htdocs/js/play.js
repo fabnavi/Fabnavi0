@@ -27,6 +27,14 @@ var PlayController = {
           h:'int',
           angle:'int'
         }    
+      },
+      imgurls:{
+       tag:'imgurls',
+       name:'imgurl',
+       values:{
+        index:'int',
+        url:'string'
+       }
       }
     };
 
@@ -132,9 +140,8 @@ var PlayController = {
 
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
+    CommonController.projectInit();
     CommonController.projectName = id;
-    CommonController.animations = [];
-    CommonController.annotations = [];
     CommonController.getContents(url)
       .then(function(result) {
         ConfigController.parse(result);
@@ -145,7 +152,7 @@ var PlayController = {
           alert(error);
           return;
         }
-        CommonController.imgURLs = result;
+//        CommonController.imgURLs = result;
 
         for(i in CommonController.imgURLs){
           ListController.append(CommonController.imgURLs[i]);

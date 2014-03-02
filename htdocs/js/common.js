@@ -8,8 +8,8 @@ var CommonController = {
   projectInit:function(){
     this.projectName = "";
     this.imgURLs = [];
-    this.annotations = "";
-    this.animations = "";
+    this.annotations = [];
+    this.animations = [];
     this.index = 0;
   },
 

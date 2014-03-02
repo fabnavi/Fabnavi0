@@ -14,6 +14,7 @@ var ConfigController = {
     this.xml = xml;
     var animations = this.getObjectsFromXML(doc,this.configList['animation']);
     var annotations = this.getObjectsFromXML(doc,this.configList['annotation']);
+    var imgurls = this.getObjectsFromXML(doc,this.configList['imgurls']);
     if(animations.length > 0)for(i in animations){
       animations[i].index--;
       CommonController.animations.push(animations[i]);
@@ -22,6 +23,9 @@ var ConfigController = {
     if(annotations.length > 0)for(i in annotations){
       annotations[i].index--;
       CommonController.annotations.push(annotations[i]);
+    }
+    for(i in imgurls){
+      CommonController.imgURLs.push(imgurls[i].url);
     }
   },
 
