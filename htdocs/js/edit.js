@@ -9,7 +9,10 @@ var EditController= {
 
     $('#photo').click(function (e) {
       this.makeAnnotation(e)
-    });
+    }.bind(this));
+    $('#cvs').click(function (e) {
+      this.makeAnnotation(e)
+    }.bind(this));;
     this.updateAnnotationsTable();
   },
 
@@ -33,9 +36,8 @@ var EditController= {
         angle: angle,
         w: 500,
         h: 500,
-        id: this.id
       };
-      this.newAnnotations.push(a);
+      ConfigController.annotations.push(a);
       this.pointX = -1;
       this.pointY = -1;
     }
@@ -54,7 +56,7 @@ var EditController= {
     });
     a.click(function (e) {
       this.makeAnnotation(e)
-    });
+    }.bind(this));
     a.appendTo($('#controller'));
   },
 
@@ -73,10 +75,6 @@ var EditController= {
 
   },
 
-  setPhoto: function (index) {
-    $("#photo").attr("src", this.current_project[index]);
-    $("#counter").text((index + 1) + "/" + this.current_project.length);
-  }
 }
 
 $(document).ready(function () {
