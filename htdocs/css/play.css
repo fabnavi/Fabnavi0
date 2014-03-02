@@ -56,6 +56,12 @@ table {
 #photo {
   width: 100%;
   height: 100%;
+  display:none;
+}
+
+#cvs {
+  width: 100%;
+  height: 100%;
 }
 
 #counter {

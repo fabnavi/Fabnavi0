@@ -16,14 +16,9 @@ var CalibrateController = {
     CalibrateController.image = new Image();
     CalibrateController.cvs.height = $(document).height();
     CalibrateController.cvs.width = $(document).width();
-    $("#close").click(function() {
-      $("#controller").hide();
-    });
-    $("#previous").click(CalibrateController.previous);
-    $("#next").click(CalibrateController.next);
+
     $("#save").click(CalibrateController.saveConfig);
 
-    CalibrateController.load();
     if(ID != ""){
       $('#contents').hide();
       $('#controller').hide();
@@ -77,7 +72,6 @@ var CalibrateController = {
 
   play: function(id) {
     CalibrateController.id = id;
-    CommonController.getLocalConfig(id);
 
     if(CommonController.localConfig != ""){
       $('#x').val(CommonController.localConfig.x);
@@ -85,33 +79,6 @@ var CalibrateController = {
       $('#w').val(CommonController.localConfig.w);
       $('#h').val(CommonController.localConfig.h);
     }
-    document.title = "Calibration : " +id;
-    var url = "data/"+id+"/fabnavi.play.config";
-    CalibrateController.animations = [];
-    CalibrateController.annotations = [];
-    console.log(url);
-    CommonController.getContents(url)
-      .then(function(result) {
-        CalibrateController.configParser(result);
-      })
-    .done(function() {
-      CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
-        if (error) {
-          alert(error);
-          return;
-        }
-        CalibrateController.current_project = result;
-        var parameters = CalibrateController.getParametersFromQuery();
-        var startIndex = 0;
-        if (parameters["s"]) {
-          startIndex = parseInt(parameters["s"])-1;
-        }
-        CalibrateController.show(startIndex, true);
-        $("#controller").show();
-        $('img').hide();
-
-      });
-    });
   },
 
   setPhoto: function(index) {

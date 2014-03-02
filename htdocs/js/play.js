@@ -55,7 +55,8 @@ var PlayController = {
           $("#controller").hide();
           ListController.clear();
           ConfigController.projectInit();
-          document.title = "Calibration : FabNavi";
+          CommonController.localConfig = "";
+          document.title = "Play: FabNavi";
           break;
         }
         case 52 : {
@@ -81,6 +82,9 @@ var PlayController = {
         }
       }
     });
+
+    this.cvs = document.getElementById('cvs');
+    this.ctx = this.cvs.getContext('2d');
 
     $("#close").click(function() {
       $("#controller").hide();
@@ -144,9 +148,23 @@ var PlayController = {
     });
   },
 
+  drawImage:function(){
+    this.ctx.drawImage(
+        this.image,
+        CommonController.localConfig.x,
+        CommonController.localConfig.y,
+        CommonController.localConfig.w,
+        CommonController.localConfig.h,
+        0,0,
+        this.cvs.width,
+        this.cvs.height);
+  },
+
+
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
     ConfigController.projectInit(id);
+    CommonController.getLocalConfig(id);
     CommonController.getContents(url)
       .then(function(result) {
         ConfigController.parse(result);
@@ -162,6 +180,7 @@ var PlayController = {
         for(i in ConfigController.imgURLs){
           ListController.append(ConfigController.imgURLs[i]);
         }
+        document.title = "Calibration : " +id;
 
         var parameters = PlayController.getParametersFromQuery();
         var startIndex = 0;
@@ -228,6 +247,7 @@ var PlayController = {
   show: function(index, toNEXT) {
     $("#arrow").text("");
     clearTimeout(PlayController.timerid);
+    //---------Annotations
     $('.annotations').remove();
     for (var i=0; i<ConfigController.annotations.length;i++){
       if(index == ConfigController.annotations[i].index){
@@ -237,12 +257,10 @@ var PlayController = {
             ConfigController.annotations[i].angle);
       }
     }
-    //if (!animation) {
     PlayController.current_animation = null;
     ConfigController.index = index;
     console.log(index);
     PlayController.setPhoto(index);
-    //}
   },
 
   setAnnotation: function(x,y,angle){

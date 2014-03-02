@@ -77,7 +77,7 @@ var CommonController = {
   },
 
   setLocalConfig: function(id){
-    if(CommonController.localConfig == null){
+    if(CommonController.localConfig == ""){
       alert("there is no config");
       return false;
     }

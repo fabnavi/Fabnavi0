@@ -25,6 +25,7 @@
     </div>
     <div id="controller">
       <img id="photo">
+      <canvas id="cvs"></canvas>
       <div id="counter"></div>
       <div id="arrow">▶</div>
     </div>
