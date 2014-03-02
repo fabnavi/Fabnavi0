@@ -98,7 +98,8 @@ var PlayController = {
       $('#contents').hide();
       $('#controller').hide();
       $('img').hide();
-      PlayController.play(ID)
+      console.log(ID);
+      PlayController.play(ID);
         $('img').hide();
       window.setTimeout(function(){
         PlayController.previous
@@ -170,19 +171,34 @@ var PlayController = {
         ConfigController.parse(result);
       })
     .done(function() {
-      for(i in ConfigController.imgURLs){
-        if(typeof(ListController) != "undefined")ListController.append(ConfigController.imgURLs[i]);
+      if(ConfigController.imgURLs.length == 0){
+        CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
+          if (error) {
+            alert(error);
+            return;
+          }
+          ConfigController.imgURLs = result;
+          this.playSlide(id);
+        }.bind(this)); 
+      } else {
+        this.playSlide(id);
       }
-      document.title = "Play: " +id;
+    }.bind(this));
+  },
 
-      var parameters = PlayController.getParametersFromQuery();
-      var startIndex = 0;
-      if (parameters["s"]) {
-        startIndex = parseInt(parameters["s"])-1;
-      }
-      PlayController.show(startIndex, true);
-      $("#controller").show();
-    });
+  playSlide : function(id){
+    for(i in ConfigController.imgURLs){
+      if(typeof(ListController) != "undefined")ListController.append(ConfigController.imgURLs[i]);
+    }
+    document.title = "Play: " +id;
+
+    var parameters = PlayController.getParametersFromQuery();
+    var startIndex = 0;
+    if (parameters["s"]) {
+      startIndex = parseInt(parameters["s"])-1;
+    }
+    PlayController.show(startIndex, true);
+    $("#controller").show();
   },
 
   getParametersFromQuery: function () {
