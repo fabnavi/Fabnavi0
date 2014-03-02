@@ -29,12 +29,12 @@ var PlayController = {
         }    
       },
       imgurls:{
-       tag:'imgurls',
-       name:'imgurl',
-       values:{
-        index:'int',
-        url:'string'
-       }
+        tag:'imgurls',
+        name:'imgurl',
+        values:{
+          index:'int',
+          url:'string'
+        }
       }
     };
 
@@ -170,18 +170,18 @@ var PlayController = {
         ConfigController.parse(result);
       })
     .done(function() {
-        for(i in ConfigController.imgURLs){
-          ListController.append(ConfigController.imgURLs[i]);
-        }
-        document.title = "Play: " +id;
+      for(i in ConfigController.imgURLs){
+        ListController.append(ConfigController.imgURLs[i]);
+      }
+      document.title = "Play: " +id;
 
-        var parameters = PlayController.getParametersFromQuery();
-        var startIndex = 0;
-        if (parameters["s"]) {
-          startIndex = parseInt(parameters["s"])-1;
-        }
-        PlayController.show(startIndex, true);
-        $("#controller").show();
+      var parameters = PlayController.getParametersFromQuery();
+      var startIndex = 0;
+      if (parameters["s"]) {
+        startIndex = parseInt(parameters["s"])-1;
+      }
+      PlayController.show(startIndex, true);
+      $("#controller").show();
     });
   },
 
@@ -273,8 +273,11 @@ var PlayController = {
     $("#counter").text((index+1)+"/"+ConfigController.imgURLs.length);
     if(CommonController.localConfig != ""){
       this.drawImage();
+      $('#cvs').css('display','block');
+      $('#photo').css('display','none');
     } else {
       $('#photo').css('display','block');
+      $('#cvs').css('display','none');
     }
   }
 }
