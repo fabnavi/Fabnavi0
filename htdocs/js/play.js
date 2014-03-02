@@ -3,7 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var PlayController = {
   init: function() {
-    CommonController.index = -1;
+    ConfigController.index = -1;
     ConfigController.init();
     ConfigController.configList={
       animation:{
@@ -101,7 +101,7 @@ var PlayController = {
       for(i in ConfigController.imgURLs){
         if(ConfigController.imgURLs[i].indexOf(e.currentTarget.id) != -1){
           PlayController.setPhoto(i);
-          CommonController.index = i;
+          ConfigController.index = i;
           break;
         }
       }
@@ -140,8 +140,7 @@ var PlayController = {
 
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
-    CommonController.projectInit();
-    CommonController.projectName = id;
+    ConfigController.projectInit(id);
     CommonController.getContents(url)
       .then(function(result) {
         ConfigController.parse(result);
@@ -187,16 +186,16 @@ var PlayController = {
   },
 
   previous: function() {
-    if (CommonController.index == 0) {
+    if (ConfigController.index == 0) {
       PlayController.show(ConfigController.imgURLs.length-1, false);
     } else {
-      PlayController.show(CommonController.index-1, false);
+      PlayController.show(ConfigController.index-1, false);
     }
   },
 
   previousWithAnimation: function() {
     if (PlayController.current_animation) {
-      CommonController.index = PlayController.current_animation.startIndex;
+      ConfigController.index = PlayController.current_animation.startIndex;
       PlayController.previous();
     } else {
       PlayController.previous();
@@ -204,16 +203,16 @@ var PlayController = {
   },
 
   next: function() {
-    if (CommonController.index == ConfigController.imgURLs.length-1) {
+    if (ConfigController.index == ConfigController.imgURLs.length-1) {
       PlayController.show(0, true);
     } else {
-      PlayController.show(Number(CommonController.index)+1, true);
+      PlayController.show(Number(ConfigController.index)+1, true);
     }
   },
 
   nextWithAnimation: function() {
     if (PlayController.current_animation) {
-      CommonController.index = PlayController.current_animation.endIndex;
+      ConfigController.index = PlayController.current_animation.endIndex;
       PlayController.next();
     } else {
       PlayController.next();
@@ -234,7 +233,7 @@ var PlayController = {
     }
     //if (!animation) {
     PlayController.current_animation = null;
-    CommonController.index = index;
+    ConfigController.index = index;
     console.log(index);
     PlayController.setPhoto(index);
     //}

@@ -6,10 +6,12 @@ var ConfigController = {
   init : function(){
     console.log("config controller initialized");
   },
-  projectInit: function(){
+  projectInit: function(id){
     this.imgURLs = [];
     this.annotations = [];
     this.animations = [];
+    this.index = 0;
+    this.projectName = id;
   },
 
   parse: function(xml){ //called once when project loaded

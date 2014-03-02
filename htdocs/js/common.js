@@ -5,13 +5,6 @@
 var CommonController = {
   localConfig:"",
 
-  projectInit:function(){
-    this.projectName = "";
-    this.imgURLs = [];
-    this.annotations = [];
-    this.animations = [];
-    this.index = 0;
-  },
 
   getParametersFromQuery: function() {
     var parameters = {};
