@@ -5,12 +5,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title data-l10n-id="title">PlayController : FabNavi</title>
+    <title data-l10n-id="title">Annotations Editor: FabNavi</title>
     <link rel="stylesheet" href="/css/common.css" type="text/css">
     <link rel="stylesheet" href="/css/play.css" type="text/css">
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/edit.js"></script>
+    <script type="text/javascript" src="/js/ConfigController.js"></script>
+    <script type="text/javascript" src="/js/play.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no">
   </head>
   <body>
@@ -20,6 +22,7 @@
     </div>
     <div id="controller">
       <img id="photo">
+      <canvas id="cvs"></canvas>
       <div id="counter"></div>
       <div id="arrow">▶</div>
       <div class="listView" style="border:4px solid red;float:left; position:absolute;top:500px;left:100px;">
