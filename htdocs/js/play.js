@@ -170,17 +170,10 @@ var PlayController = {
         ConfigController.parse(result);
       })
     .done(function() {
-      CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
-        if (error) {
-          alert(error);
-          return;
-        }
-//        ConfigController.imgURLs = result;
-
         for(i in ConfigController.imgURLs){
           ListController.append(ConfigController.imgURLs[i]);
         }
-        document.title = "Calibration : " +id;
+        document.title = "Play: " +id;
 
         var parameters = PlayController.getParametersFromQuery();
         var startIndex = 0;
@@ -189,7 +182,6 @@ var PlayController = {
         }
         PlayController.show(startIndex, true);
         $("#controller").show();
-      });
     });
   },
 
