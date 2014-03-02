@@ -53,7 +53,7 @@ var PlayController = {
         case 81 :
         case 27 : {
           $("#controller").hide();
-          ListController.clear();
+          if(typeof(ListController) != "undefined")ListController.clear();
           ConfigController.projectInit();
           CommonController.localConfig = "";
           document.title = "Play: FabNavi";
@@ -105,9 +105,9 @@ var PlayController = {
         $('img').show();
       },300);
     }
-    ListController.init();
+    if(typeof(ListController) != "undefined")ListController.init();
 
-    ListController.rowClicked = function(e){
+    if(typeof(ListController) != "undefined")ListController.rowClicked = function(e){
       for(i in ConfigController.imgURLs){
         if(ConfigController.imgURLs[i].indexOf(e.currentTarget.id) != -1){
           PlayController.setPhoto(i);
@@ -171,7 +171,7 @@ var PlayController = {
       })
     .done(function() {
       for(i in ConfigController.imgURLs){
-        ListController.append(ConfigController.imgURLs[i]);
+        if(typeof(ListController) != "undefined")ListController.append(ConfigController.imgURLs[i]);
       }
       document.title = "Play: " +id;
 
@@ -268,7 +268,8 @@ var PlayController = {
   },
 
   setPhoto: function(index) {
-    ListController.selectByName(ConfigController.imgURLs[index]);
+    if(typeof(ListController) != "undefined")
+      ListController.selectByName(ConfigController.imgURLs[index]);
     $("#photo").attr("src", ConfigController.imgURLs[index]);
     $("#counter").text((index+1)+"/"+ConfigController.imgURLs.length);
     if(CommonController.localConfig != ""){
