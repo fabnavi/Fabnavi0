@@ -12,13 +12,23 @@ var CalibrateController = {
     CalibrateController.valueListener($('#w'),$('#pw'));
     CalibrateController.valueListener($('#h'),$('#ph'));
     CalibrateController.cvs = document.getElementById('cvs');
-    PlayController.ctx = CalibrateController.cvs.getContext('2d');
-    CalibrateController.image = document.getElementById('photo');
+    CalibrateController.ctx = CalibrateController.cvs.getContext('2d');
+    CalibrateController.image = new Image();
     CalibrateController.cvs.height = $(document).height();
     CalibrateController.cvs.width = $(document).width();
 
     $("#save").click(CalibrateController.saveConfig);
 
+    if(ID != ""){
+      $('#contents').hide();
+      $('#controller').hide();
+      $('img').hide();
+      CalibrateController.play(ID)
+        $('img').hide();
+      window.setTimeout(function(){
+        CalibrateController.previous
+      },300);
+    }
   },
 
   drawImage:function(){
@@ -36,8 +46,8 @@ var CalibrateController = {
     }
     var x = $('#x').val();
     var y = $('#y').val();
-    PlayController.ctx.drawImage(
-        document.getElementById('photo'),
+    CalibrateController.ctx.drawImage(
+        CalibrateController.image,
         x,y,
         w,h,
         0,0,
@@ -49,7 +59,7 @@ var CalibrateController = {
   },
 
   saveConfig : function(){
-    if(CommonController.localConfig != "")CommonController.setLocalConfig(ConfigController.projectName);
+    if(CommonController.localConfig != "")CommonController.setLocalConfig(CalibrateController.id);
   },
 
   valueListener: function(obj,target){
