@@ -24,7 +24,7 @@
       <ul id="project-list"></ul>
     </div>
     <div id="controller">
-      <img id="photo">
+      <img id="photo" width="4928" height="3715">
       <canvas id="cvs"></canvas>
       <div id="counter"></div>
       <div id="arrow">▶</div>

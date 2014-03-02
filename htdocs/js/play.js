@@ -85,6 +85,8 @@ var PlayController = {
 
     this.cvs = document.getElementById('cvs');
     this.ctx = this.cvs.getContext('2d');
+    this.cvs.width = screen.width;
+    this.cvs.height = screen.height;
 
     $("#close").click(function() {
       $("#controller").hide();
@@ -150,15 +152,21 @@ var PlayController = {
   },
 
   drawImage:function(){
+    this.cvs.style.width = screen.width + "px";
+    this.cvs.style.height= screen.height + "px";
+    this.cvs.width = CommonController.localConfig.w;
+    this.cvs.height= CommonController.localConfig.h;
     this.ctx.drawImage(
         document.getElementById('photo'),
         CommonController.localConfig.x,
         CommonController.localConfig.y,
         CommonController.localConfig.w,
         CommonController.localConfig.h,
-        0,0,
-        this.cvs.width,
-        this.cvs.height);
+         0,0,
+        CommonController.localConfig.w,
+        CommonController.localConfig.h);
+         //this.cvs.width,
+        //this.cvs.height);
   },
 
 
@@ -288,14 +296,14 @@ var PlayController = {
       ListController.selectByName(ConfigController.imgURLs[index]);
     $("#photo").attr("src", ConfigController.imgURLs[index]);
     $("#counter").text((index+1)+"/"+ConfigController.imgURLs.length);
-    if(CommonController.localConfig != ""){
+    /*if(CommonController.localConfig != ""){
       this.drawImage();
       $('#cvs').css('display','block');
       $('#photo').css('display','none');
-    } else {
+    } else {*/
       $('#photo').css('display','block');
       $('#cvs').css('display','none');
-    }
+//    }
   },
   info : function(){
     var elem = $('#panel');

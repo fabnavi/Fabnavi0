@@ -71,13 +71,15 @@ var CommonController = {
   getLocalConfig: function(id){
     console.log("getLocalConfig");
     var res = CommonController.getLocalData(id);
-    if(!res){
+  /*  if(!res){
       CommonController.localConfig = "";
       console.log("can't load localConfig");
     } else {
       CommonController.localConfig = res;
       console.log("Loaded localConfig");
     }
+    */
+    CommonController.localConfig ={x:"1669", y:"2151", w:"2190", h:"1122"};
   },
 
   setLocalConfig: function(id){

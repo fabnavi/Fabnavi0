@@ -32,11 +32,11 @@
       <div id="panel">
       <div class="param">
               <div id="px"></div>
-              <input max="2000" min="1" type="range" id="x">
+              <input max="3000" min="1" type="range" id="x">
       </div>
       <div class="param">
               <div id="py"></div>
-              <input max="2000" min="1" type="range" id="y">
+              <input max="3000" min="1" type="range" id="y">
       </div>
       <div class="param">
               <div id="pw"></div>

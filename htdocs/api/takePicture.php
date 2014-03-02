@@ -32,8 +32,9 @@
     $y = intval(getenv("PHOTO_CROP_Y"));
     $source = imagecreatefromjpeg($originalFilePath);
     $rotated = imagerotate($source, $degree, 1);
-    $image = imagecreatetruecolor($width, $height);
-    imagecopyresized($image, $rotated, 0, 0, $x, $y, $width, $height, $width, $height);
+    $image = imagerotate($source, $degree, 1);
+    //$image = imagecreatetruecolor($width, $height);
+    //imagecopyresized($image, $rotated, 0, 0, $x, $y, $width, $height, $width, $height);
     //imagecopyresized($image,$rotated, 0, 0, 539, 558, $width, $height, 670, 435);
     imagejpeg($image, $localPath);
 
