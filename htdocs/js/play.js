@@ -54,7 +54,7 @@ var PlayController = {
         case 27 : {
           $("#controller").hide();
           ListController.clear();
-          CommonController.projectInit();
+          ConfigController.projectInit();
           break;
         }
         case 52 : {
@@ -98,8 +98,8 @@ var PlayController = {
     ListController.init();
 
     ListController.rowClicked = function(e){
-      for(i in CommonController.imgURLs){
-        if(CommonController.imgURLs[i].indexOf(e.currentTarget.id) != -1){
+      for(i in ConfigController.imgURLs){
+        if(ConfigController.imgURLs[i].indexOf(e.currentTarget.id) != -1){
           PlayController.setPhoto(i);
           CommonController.index = i;
           break;
@@ -152,10 +152,10 @@ var PlayController = {
           alert(error);
           return;
         }
-//        CommonController.imgURLs = result;
+//        ConfigController.imgURLs = result;
 
-        for(i in CommonController.imgURLs){
-          ListController.append(CommonController.imgURLs[i]);
+        for(i in ConfigController.imgURLs){
+          ListController.append(ConfigController.imgURLs[i]);
         }
 
         var parameters = PlayController.getParametersFromQuery();
@@ -188,7 +188,7 @@ var PlayController = {
 
   previous: function() {
     if (CommonController.index == 0) {
-      PlayController.show(CommonController.imgURLs.length-1, false);
+      PlayController.show(ConfigController.imgURLs.length-1, false);
     } else {
       PlayController.show(CommonController.index-1, false);
     }
@@ -204,7 +204,7 @@ var PlayController = {
   },
 
   next: function() {
-    if (CommonController.index == CommonController.imgURLs.length-1) {
+    if (CommonController.index == ConfigController.imgURLs.length-1) {
       PlayController.show(0, true);
     } else {
       PlayController.show(Number(CommonController.index)+1, true);
@@ -224,12 +224,12 @@ var PlayController = {
     $("#arrow").text("");
     clearTimeout(PlayController.timerid);
     $('.annotations').remove();
-    for (var i=0; i<CommonController.annotations.length;i++){
-      if(index == CommonController.annotations[i].index){
+    for (var i=0; i<ConfigController.annotations.length;i++){
+      if(index == ConfigController.annotations[i].index){
         PlayController.setAnnotation(
-            CommonController.annotations[i].x,
-            CommonController.annotations[i].y,
-            CommonController.annotations[i].angle);
+            ConfigController.annotations[i].x,
+            ConfigController.annotations[i].y,
+            ConfigController.annotations[i].angle);
       }
     }
     //if (!animation) {
@@ -253,9 +253,9 @@ var PlayController = {
   },
 
   setPhoto: function(index) {
-    ListController.selectByName(CommonController.imgURLs[index]);
-    $("#photo").attr("src", CommonController.imgURLs[index]);
-    $("#counter").text((index+1)+"/"+CommonController.imgURLs.length);
+    ListController.selectByName(ConfigController.imgURLs[index]);
+    $("#photo").attr("src", ConfigController.imgURLs[index]);
+    $("#counter").text((index+1)+"/"+ConfigController.imgURLs.length);
   }
 }
 

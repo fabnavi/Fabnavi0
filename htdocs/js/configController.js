@@ -6,6 +6,11 @@ var ConfigController = {
   init : function(){
     console.log("config controller initialized");
   },
+  projectInit: function(){
+    this.imgURLs = [];
+    this.annotations = [];
+    this.animations = [];
+  },
 
   parse: function(xml){ //called once when project loaded
 
@@ -17,15 +22,15 @@ var ConfigController = {
     var imgurls = this.getObjectsFromXML(doc,this.configList['imgurls']);
     if(animations.length > 0)for(i in animations){
       animations[i].index--;
-      CommonController.animations.push(animations[i]);
+      this.animations.push(animations[i]);
     }
 
     if(annotations.length > 0)for(i in annotations){
       annotations[i].index--;
-      CommonController.annotations.push(annotations[i]);
+      this.annotations.push(annotations[i]);
     }
     for(i in imgurls){
-      CommonController.imgURLs.push(imgurls[i].url);
+      this.imgURLs.push(imgurls[i].url);
     }
   },
 
@@ -89,15 +94,15 @@ var ConfigController = {
     var animations = document.createElement('animations');
     var imgURLs = document.createElement('imgurls');
 
-    for(i in CommonController.annotations){
-      annotations.appendChild(this.createAnnotationElem(CommonController.annotations[i]));
+    for(i in this.annotations){
+      annotations.appendChild(this.createAnnotationElem(this.annotations[i]));
     }
 
-    for(i in CommonController.animations){
-      animations.appendChild(this.createAnimationElem(CommonController.animations[i]));
+    for(i in this.animations){
+      animations.appendChild(this.createAnimationElem(this.animations[i]));
     }
-    for(i in CommonController.imgURLs){ 
-      imgURLs.appendChild(this.createImgURLElem(i,CommonController.imgURLs[i]));
+    for(i in this.imgURLs){ 
+      imgURLs.appendChild(this.createImgURLElem(i,this.imgURLs[i]));
     } 
     doc.appendChild(annotations);
     doc.appendChild(animations);
@@ -107,17 +112,17 @@ var ConfigController = {
   },
 
   insertIndex: function(src,dst){
-    var srcImg = CommonController.imgURLs[src];
-    CommonController.imgURLs.splice(src,1);
+    var srcImg = this.imgURLs[src];
+    this.imgURLs.splice(src,1);
     if (src > dst){
       dst++;
     }
-    CommonController.imgURLs.splice(dst,0,srcImg);
-    console.log(CommonController.imgURLs);
+    this.imgURLs.splice(dst,0,srcImg);
+    console.log(this.imgURLs);
   },
 
   removeIndex: function(index){
-    CommonController.imgURLs.splice(index,1);
+    this.imgURLs.splice(index,1);
   },
 
   addAnnotation: function(){
@@ -132,7 +137,7 @@ var ConfigController = {
   postConfig: function(){
     this.setXMLFromObjects();
     $.post("/api/postConfig.php",
-        {project:CommonController.projectName,data:this.xml},
+        {project:this.projectName,data:this.xml},
         function(){console.log("posted");},
         "json");
   }
