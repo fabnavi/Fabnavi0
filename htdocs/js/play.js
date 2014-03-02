@@ -150,7 +150,7 @@ var PlayController = {
 
   drawImage:function(){
     this.ctx.drawImage(
-        this.image,
+        document.getElementById('photo'),
         CommonController.localConfig.x,
         CommonController.localConfig.y,
         CommonController.localConfig.w,
@@ -279,6 +279,11 @@ var PlayController = {
     ListController.selectByName(ConfigController.imgURLs[index]);
     $("#photo").attr("src", ConfigController.imgURLs[index]);
     $("#counter").text((index+1)+"/"+ConfigController.imgURLs.length);
+    if(CommonController.localConfig != ""){
+      this.drawImage();
+    } else {
+      $('#photo').css('display','block');
+    }
   }
 }
 
