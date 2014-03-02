@@ -55,6 +55,7 @@ var PlayController = {
           $("#controller").hide();
           ListController.clear();
           ConfigController.projectInit();
+          document.title = "Calibration : FabNavi";
           break;
         }
         case 52 : {
@@ -72,6 +73,11 @@ var PlayController = {
         }
         case 104 : {
           location.reload();
+          break;
+        }
+        case 86 : {
+          CalibrateController.info();
+          break;
         }
       }
     });
