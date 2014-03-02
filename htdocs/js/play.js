@@ -10,8 +10,8 @@ var PlayController = {
         tag:'animations', 
         name:'animation',
         values:{
-          startIndex:'int',
-          endIndex:'int',
+          startindex:'int',
+          endindex:'int',
           duration:'int'
         }
       },

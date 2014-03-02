@@ -64,10 +64,17 @@ var ConfigController = {
   },
 
   createAnimationElem: function(obj){
-   var elem = document.createElement('animation');
+    var elem = document.createElement('animation');
     for (key in obj){
       elem.setAttribute(key,obj[key]);
     }
+    return elem;
+  },
+
+  createImgURLElem: function(i,url){
+    var elem = document.createElement('imgurl');
+    elem.setAttribute('index',i);
+    elem.setAttribute('url',url);
     return elem;
   },
 
@@ -76,25 +83,30 @@ var ConfigController = {
     var doc = document.createElement('playSetting');
     var annotations = document.createElement('annotations');
     var animations = document.createElement('animations');
+    var imgURLs = document.createElement('imgurls');
 
     for(i in CommonController.annotations){
       annotations.appendChild(this.createAnnotationElem(CommonController.annotations[i]));
     }
-    
+
     for(i in CommonController.animations){
       animations.appendChild(this.createAnimationElem(CommonController.animations[i]));
     }
-
+    for(i in CommonController.imgURLs){ 
+      imgURLs.appendChild(this.createImgURLElem(i,CommonController.imgURLs[i]));
+    } 
     doc.appendChild(annotations);
     doc.appendChild(animations);
-    console.log(serializer.serializeToString(doc));
+    doc.appendChild(imgURLs);
+    this.xml = serializer.serializeToString(doc);
+    console.log(this.xml);
   },
 
   insertIndex: function(src,dst){
     var srcImg = CommonController.imgURLs[src];
     CommonController.imgURLs.splice(src,1);
     if (src > dst){
-     dst++;
+      dst++;
     }
     CommonController.imgURLs.splice(dst,0,srcImg);
     console.log(CommonController.imgURLs);
@@ -114,9 +126,10 @@ var ConfigController = {
   },
 
   postConfig: function(){
+    this.setXMLFromObjects();
     $.post("/api/postConfig.php",
-          {project:CommonController.projectName,data:this.xml},
-          function(){console.log("posted");},
-          "json");
+        {project:CommonController.projectName,data:this.xml},
+        function(){console.log("posted");},
+        "json");
   }
 };
