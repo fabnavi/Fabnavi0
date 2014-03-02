@@ -62,10 +62,6 @@ var ListController　= {
     $('#list').append(row);
   },
 
-  exchange : function (id1, id2){
-
-  },
-
   insert : function (id1,id2){
     var a = this.idToElem(id1);
     var b = this.idToElem(id2);
@@ -73,7 +69,6 @@ var ListController　= {
     console.log(b.index());
     ConfigController.insertIndex(b.index()-1,a.index()-1);
     a.after(b);
-     
   },
 
   selectedLast : function(){
