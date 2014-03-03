@@ -1,6 +1,6 @@
 *.DS_Store
 *.swp
-htdocs/data/1*
-htdocs/data/iqlight/fabnavi.play.config.*
+htdocs/data/*
 samples/nex/jpeg*
 *.config
+
