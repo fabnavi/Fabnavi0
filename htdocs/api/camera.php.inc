@@ -17,11 +17,11 @@ function dbg($data){
 
 function execute($method, $params, $id) {
  //NEX 5R
-  $host = "192.168.122.1";
-  $port = 8080;
+ // $host = "192.168.122.1";
+ // $port = 8080;
   //qx-10
-// $host = "10.0.0.1";
-//  $port = 10000;
+ $host = "10.0.0.1";
+  $port = 10000;
   $command = array();
   $command["method"] = $method;
   $command["params"] = $params;
