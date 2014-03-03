@@ -1,10 +1,42 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-var ConfigController = {
-
+var PlayConfig = {
+  configList:{
+    animation:{
+      tag:'animations', 
+      name:'animation',
+      values:{
+        startindex:'int',
+        endindex:'int',
+        duration:'int'
+      }
+    },
+    annotation:{
+      tag:'annotations',
+      name:'annotation',
+      values:{
+        index:'int',
+        image:'string',
+        x:'int',
+        y:'int',
+        w:'int',
+        h:'int',
+        angle:'int'
+      }    
+    },
+    imgurls:{
+      tag:'imgurls',
+      name:'imgurl',
+      values:{
+        index:'int',
+        url:'string'
+      }
+    }
+  },
   init : function(){
     console.log("config controller initialized");
+    PlayConfig.index = -1;
   },
   projectInit: function(id){
     this.imgURLs = [];

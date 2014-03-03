@@ -3,40 +3,7 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var PlayController = {
   init: function() {
-    ConfigController.index = -1;
-    ConfigController.init();
-    ConfigController.configList={
-      animation:{
-        tag:'animations', 
-        name:'animation',
-        values:{
-          startindex:'int',
-          endindex:'int',
-          duration:'int'
-        }
-      },
-      annotation:{
-        tag:'annotations',
-        name:'annotation',
-        values:{
-          index:'int',
-          image:'string',
-          x:'int',
-          y:'int',
-          w:'int',
-          h:'int',
-          angle:'int'
-        }    
-      },
-      imgurls:{
-        tag:'imgurls',
-        name:'imgurl',
-        values:{
-          index:'int',
-          url:'string'
-        }
-      }
-    };
+    PlayConfig.init();
 
     $(window).keydown(function(e) {
       switch (e.keyCode) {
@@ -54,7 +21,7 @@ var PlayController = {
         case 27 : {
           $("#controller").hide();
           if(typeof(ListController) != "undefined")ListController.clear();
-          ConfigController.projectInit();
+          PlayConfig.projectInit();
           CommonController.localConfig = "";
           document.title = "Play: FabNavi";
           break;
@@ -111,10 +78,10 @@ var PlayController = {
     if(typeof(ListController) != "undefined")ListController.init();
 
     if(typeof(ListController) != "undefined")ListController.rowClicked = function(e){
-      for(i in ConfigController.imgURLs){
-        if(ConfigController.imgURLs[i].indexOf(e.currentTarget.id) != -1){
+      for(i in PlayConfig.imgURLs){
+        if(PlayConfig.imgURLs[i].indexOf(e.currentTarget.id) != -1){
           PlayController.setPhoto(i);
-          ConfigController.index = i;
+          PlayConfig.index = i;
           break;
         }
       }
@@ -172,20 +139,20 @@ var PlayController = {
 
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
-    ConfigController.projectInit(id);
+    PlayConfig.projectInit(id);
     CommonController.getLocalConfig(id);
     CommonController.getContents(url)
       .then(function(result) {
-        ConfigController.parse(result);
+        PlayConfig.parse(result);
       })
     .done(function() {
-      if(ConfigController.imgURLs.length == 0){
+      if(PlayConfig.imgURLs.length == 0){
         CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
           if (error) {
             alert(error);
             return;
           }
-          ConfigController.imgURLs = result;
+          PlayConfig.imgURLs = result;
           this.playSlide(id);
         }.bind(this)); 
       } else {
@@ -195,8 +162,8 @@ var PlayController = {
   },
 
   playSlide : function(id){
-    for(i in ConfigController.imgURLs){
-      if(typeof(ListController) != "undefined")ListController.append(ConfigController.imgURLs[i]);
+    for(i in PlayConfig.imgURLs){
+      if(typeof(ListController) != "undefined")ListController.append(PlayConfig.imgURLs[i]);
     }
     document.title = "Play: " +id;
 
@@ -227,16 +194,16 @@ var PlayController = {
   },
 
   previous: function() {
-    if (ConfigController.index == 0) {
-      PlayController.show(ConfigController.imgURLs.length-1, false);
+    if (PlayConfig.index == 0) {
+      PlayController.show(PlayConfig.imgURLs.length-1, false);
     } else {
-      PlayController.show(ConfigController.index-1, false);
+      PlayController.show(PlayConfig.index-1, false);
     }
   },
 
   previousWithAnimation: function() {
     if (PlayController.current_animation) {
-      ConfigController.index = PlayController.current_animation.startIndex;
+      PlayConfig.index = PlayController.current_animation.startIndex;
       PlayController.previous();
     } else {
       PlayController.previous();
@@ -244,16 +211,16 @@ var PlayController = {
   },
 
   next: function() {
-    if (ConfigController.index == ConfigController.imgURLs.length-1) {
+    if (PlayConfig.index == PlayConfig.imgURLs.length-1) {
       PlayController.show(0, true);
     } else {
-      PlayController.show(Number(ConfigController.index)+1, true);
+      PlayController.show(Number(PlayConfig.index)+1, true);
     }
   },
 
   nextWithAnimation: function() {
     if (PlayController.current_animation) {
-      ConfigController.index = PlayController.current_animation.endIndex;
+      PlayConfig.index = PlayController.current_animation.endIndex;
       PlayController.next();
     } else {
       PlayController.next();
@@ -265,16 +232,16 @@ var PlayController = {
     clearTimeout(PlayController.timerid);
     //---------Annotations
     $('.annotations').remove();
-    for (var i=0; i<ConfigController.annotations.length;i++){
-      if(index == ConfigController.annotations[i].index){
+    for (var i=0; i<PlayConfig.annotations.length;i++){
+      if(index == PlayConfig.annotations[i].index){
         PlayController.setAnnotation(
-            ConfigController.annotations[i].x,
-            ConfigController.annotations[i].y,
-            ConfigController.annotations[i].angle);
+            PlayConfig.annotations[i].x,
+            PlayConfig.annotations[i].y,
+            PlayConfig.annotations[i].angle);
       }
     }
     PlayController.current_animation = null;
-    ConfigController.index = index;
+    PlayConfig.index = index;
     console.log(index);
     PlayController.setPhoto(index);
   },
@@ -293,9 +260,9 @@ var PlayController = {
 
   setPhoto: function(index) {
     if(typeof(ListController) != "undefined")
-      ListController.selectByName(ConfigController.imgURLs[index]);
-    $("#photo").attr("src", ConfigController.imgURLs[index]);
-    $("#counter").text((index+1)+"/"+ConfigController.imgURLs.length);
+      ListController.selectByName(PlayConfig.imgURLs[index]);
+    $("#photo").attr("src", PlayConfig.imgURLs[index]);
+    $("#counter").text((index+1)+"/"+PlayConfig.imgURLs.length);
     if(CommonController.localConfig != ""){
       this.drawImage();
       $('#cvs').css('display','block');
@@ -305,6 +272,7 @@ var PlayController = {
       $('#cvs').css('display','none');
     }
   },
+
   info : function(){
     var elem = $('#panel');
     if(elem.is(":visible"))

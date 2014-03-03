@@ -13,7 +13,7 @@
     </script>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/configController.js"></script>
+    <script type="text/javascript" src="/js/PlayConfig.js"></script>
     <script type="text/javascript" src="/js/play.js"></script>
     <script type="text/javascript" src="/js/list.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no">

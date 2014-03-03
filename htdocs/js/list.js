@@ -67,7 +67,7 @@ var ListController　= {
     var b = this.idToElem(id2);
     console.log(a.index());
     console.log(b.index());
-    ConfigController.insertIndex(b.index()-1,a.index()-1);
+    PlayConfig.insertIndex(b.index()-1,a.index()-1);
     a.after(b);
   },
 
@@ -78,7 +78,7 @@ var ListController　= {
   remove: function(id){
     var elem = this.idToElem(id);
     elem.remove();
-    ConfigController.removeIndex(elem.index()-1);
+    PlayConfig.removeIndex(elem.index()-1);
   },
 
   selectByIndex: function(index){

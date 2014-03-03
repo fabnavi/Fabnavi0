@@ -37,7 +37,7 @@ var EditController= {
         w: 500,
         h: 500,
       };
-      ConfigController.annotations.push(a);
+      PlayConfig.annotations.push(a);
       this.pointX = -1;
       this.pointY = -1;
     }
