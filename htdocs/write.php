@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="/css/record.css" type="text/css">
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/board.js"></script>
-    <script type="text/javascript" src="/js/analyzer.js"></script>
+    <script type="text/javascript" src="/js/Note.js"></script>
+    <script type="text/javascript" src="/js/Analyzer.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no">
   </head>
   <body>

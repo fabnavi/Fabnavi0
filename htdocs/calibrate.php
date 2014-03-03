@@ -14,7 +14,7 @@
     </script>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
-    <script type="text/javascript" src="/js/calibrate.js"></script>
+    <script type="text/javascript" src="/js/Calibrator.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no">
   </head>
   <body>
