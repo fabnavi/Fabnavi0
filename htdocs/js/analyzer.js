@@ -1,10 +1,9 @@
 var Analyzer = {
   init : function () {
-    this.analyze(this.loadImg('data/lego/board/photo1.jpg'));
-);
     
   },
-  analyze: function (imgData) {
+  analyze: function (url) {
+    var imageData = this.loadImg(url);
     console.time("apple");
     for(var i=0;i<imageData.data.length;i+=4){
       var t = imageData.data[i];
