@@ -26,7 +26,7 @@ var ProjectList = {
         li.click(function(e){
           var target = $(e.currentTarget);
           var id = target.attr("id");
-          PlayConfig.selected(id);
+          ProjectList.selected(id);
         });
 
         projectList.append(li);

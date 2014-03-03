@@ -3,6 +3,8 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var RecordController = {
   init: function() {
+    ProjectList.init();
+    ProjectList.load();
     $("#start").click(function(){
       RecordController.start();
       $('#take').hide();
@@ -26,8 +28,13 @@ var RecordController = {
           break;
       }
     });
+    ProjectList.selected = RecordController.load;
   },
 
+  load: function (id) {
+    RecordController.project_id = id;
+    $('#project-list').hide();
+  },
 
   take: function() {
     $('#take').hide();
@@ -46,6 +53,7 @@ var RecordController = {
           li.append(img);
           li.hide();
           $("#processes").append(li);
+          Analyzer.analyze(result["url"]);
         });
     }, 10);
   }

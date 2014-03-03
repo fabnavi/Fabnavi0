@@ -4,7 +4,6 @@
 var PlayController = {
   init: function() {
     PlayConfig.init();
-      PlayConfig.selected = PlayController.play;
 
     $(window).keydown(function(e) {
       switch (e.keyCode) {
@@ -63,8 +62,9 @@ var PlayController = {
     $("#next").click(PlayController.next);
 
 
+    ProjectList.selected = PlayController.play;
     PlayController.load();
-    
+
     if(ID != ""){
       $('#contents').hide();
       $('#controller').hide();
