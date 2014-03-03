@@ -4,6 +4,7 @@
 var PlayController = {
   init: function() {
     PlayConfig.init();
+      PlayConfig.selected = PlayController.play;
 
     $(window).keydown(function(e) {
       switch (e.keyCode) {
@@ -63,6 +64,7 @@ var PlayController = {
 
 
     PlayController.load();
+    
     if(ID != ""){
       $('#contents').hide();
       $('#controller').hide();
@@ -89,33 +91,7 @@ var PlayController = {
   },
 
   load: function() {
-    CommonController.getJSON("api/getProjectList.php", function(result, error) {
-      if (error) {
-        alert(error);
-        return;
-      }
-      var projectList = $("#project-list");
-      for (var i = 0, n = result.length; i < n; i++) {
-        var project = result[i];
-        var id = project.id;
-        var thumbnail = project.thumbnail;
-
-        var image = $(document.createElement("img"));
-        image.attr("src", thumbnail);
-        image.addClass("thumbnail");
-
-        var li = $(document.createElement("li"));
-        li.append(image);
-        li.attr("id", id);
-        li.click(function(e){
-          var target = $(e.currentTarget);
-          var id = target.attr("id");
-          PlayController.play(id);       
-        });
-
-        projectList.append(li);
-      }
-    });
+    ProjectList.load();
   },
 
   drawImage:function(){
@@ -130,10 +106,10 @@ var PlayController = {
         CommonController.localConfig.w,
         CommonController.localConfig.h,
          0,0,
-        //CommonController.localConfig.w,
-        //CommonController.localConfig.h);
-         this.cvs.width,
-        this.cvs.height);
+        CommonController.localConfig.w,
+        CommonController.localConfig.h);
+//640,480);//         this.cvs.width,
+//        this.cvs.height);
   },
 
 
@@ -153,12 +129,12 @@ var PlayController = {
             return;
           }
           PlayConfig.imgURLs = result;
-          this.playSlide(id);
-        }.bind(this)); 
+          PlayController.playSlide(id);
+        }); 
       } else {
-        this.playSlide(id);
+        PlayController.playSlide(id);
       }
-    }.bind(this));
+    });
   },
 
   playSlide : function(id){
@@ -259,12 +235,13 @@ var PlayController = {
   },
 
   setPhoto: function(index) {
-    if(typeof(ListController) != "undefined")
+    if(typeof(ListController) != "undefined"){
       ListController.selectByName(PlayConfig.imgURLs[index]);
+    }
     $("#photo").attr("src", PlayConfig.imgURLs[index]);
     $("#counter").text((index+1)+"/"+PlayConfig.imgURLs.length);
     if(CommonController.localConfig != ""){
-      this.drawImage();
+      PlayController.drawImage();
       $('#cvs').css('display','block');
       $('#photo').css('display','none');
     } else {
