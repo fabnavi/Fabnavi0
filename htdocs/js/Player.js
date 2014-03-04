@@ -63,7 +63,6 @@ var PlayController = {
     $("#next").click(PlayController.next);
 
 
-
     ProjectList.selected = PlayController.play;
     if(ID != ""){
       $('#contents').hide();
@@ -95,10 +94,6 @@ var PlayController = {
   },
 
   drawImage:function(){
-/*    this.cvs.style.width = screen.width + "px";
-    this.cvs.style.height= screen.height + "px";
-    this.cvs.width = CommonController.localConfig.w;
-    this.cvs.height= CommonController.localConfig.h;*/
     this.ctx.drawImage(
         document.getElementById('photo'),
         CommonController.localConfig.x,
@@ -108,8 +103,6 @@ var PlayController = {
          0,0,
         CommonController.localConfig.w,
         CommonController.localConfig.h);
-//640,480);//         this.cvs.width,
-//        this.cvs.height);
   },
 
 
@@ -117,6 +110,7 @@ var PlayController = {
     var url = "data/"+id+"/fabnavi.play.config";
     console.log(id);
     PlayConfig.projectInit(id);
+    $('#project-list').hide();
     CommonController.getLocalConfig(id);
     CommonController.getContents(url)
       .then(function(result) {
@@ -262,6 +256,3 @@ var PlayController = {
   }
 }
 
-$(document).ready(function() {
-  PlayController.init();
-});

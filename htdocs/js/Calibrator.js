@@ -19,16 +19,6 @@ var CalibrateController = {
 
     $("#save").click(CalibrateController.saveConfig);
 
-    if(ID != ""){
-      $('#contents').hide();
-      $('#controller').hide();
-      $('img').hide();
-      CalibrateController.play(ID)
-        $('img').hide();
-      window.setTimeout(function(){
-        CalibrateController.previous
-      },300);
-    }
   },
 
   drawImage:function(){

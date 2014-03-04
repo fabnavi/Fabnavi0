@@ -15,6 +15,7 @@
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/PlayConfig.js"></script>
     <script type="text/javascript" src="/js/ProjectList.js"></script>
+    <script type="text/javascript" src="/js/Calibrator.js"></script>
     <script type="text/javascript" src="/js/Player.js"></script>
     <script type="text/javascript" src="/js/list.js"></script>
 

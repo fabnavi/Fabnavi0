@@ -15,6 +15,9 @@
         <li>
           <a href="http://fabnavi.local/record.php">Record Making</a>
         </li>
+        <li>
+          <a href="http://fabnavi.local/write.php">coment</a>
+        </li>
     </ul>
 
   </div>

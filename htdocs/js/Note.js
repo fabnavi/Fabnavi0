@@ -28,12 +28,14 @@ var RecordController = {
           break;
       }
     });
+    PlayController.init();
     ProjectList.selected = RecordController.load;
   },
 
   load: function (id) {
     RecordController.project_id = id;
     $('#project-list').hide();
+    PlayController.play(id);
   },
 
   take: function() {
