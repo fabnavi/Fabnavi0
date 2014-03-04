@@ -15,12 +15,6 @@
         <li>
           <a href="http://fabnavi.local/record.php"> Record Making</a>
         </li>
-        <li>
-          <a href="http://fabnavi.local/edit.php">Edit Annotation</a>
-        </li>
-        <li>
-          <a href="http://fabnavi.local/calibrate.php">Calibrate Projector</a>
-        </li>
     </ul>
 
   </div>
