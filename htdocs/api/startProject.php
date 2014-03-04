@@ -20,6 +20,12 @@
     } else {
       throw new Exception("Could not make a directory[".$directory."]");
     }
+    $directory = "../".$dataDirectory."/".$id."/note";
+    if (mkdir($directory)) {
+      $result["id"] = $id;
+    } else {
+      throw new Exception("Could not make a directory[".$directory."]");
+    }
   } catch (Exception $e) {
     $result["error"] = $e->getMessage();
   }

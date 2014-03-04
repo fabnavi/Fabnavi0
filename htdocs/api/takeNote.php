@@ -16,7 +16,7 @@
     preg_match("/pict(.*).JPG/i", $photoURL, $fileMatches);
     $localPath = $directory."/".$fileMatches[0].".jpg";
     $result["url"] = $localPath;
-    $originalFilePath = $directory."/note/".$fileMatches[0].".jpg";
+    $originalFilePath = $directory."/original/".$fileMatches[0].".jpg";
 
     $photoContents = file_get_contents($photoURL);
     file_put_contents($originalFilePath, $photoContents);

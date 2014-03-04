@@ -235,10 +235,11 @@ var PlayController = {
   },
 
   setPhoto: function(index) {
+   var url = PlayConfig.imgURLs[index];
     if(typeof(ListController) != "undefined"){
-      ListController.selectByName(PlayConfig.imgURLs[index]);
+      ListController.selectByName(url);
     }
-    $("#photo").attr("src", PlayConfig.imgURLs[index]);
+    $("#photo").attr("src",url); 
     $("#counter").text((index+1)+"/"+PlayConfig.imgURLs.length);
     if(CommonController.localConfig != ""){
       PlayController.drawImage();
