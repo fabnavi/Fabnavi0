@@ -56,6 +56,16 @@ var RecordController = {
           Analyzer.analyze(result["url"]);
         });
     }, 10);
+  },
+  postNote: function (src) {
+    var note = Analyzer.analyze(src).substring(23);
+    console.log(note);
+    $.post("/api/postNote.php",
+      {name:"hogehoge.jpg",note:note},
+      function (res) {
+       console.log("posted");
+       console.log(res);
+      },"json");
   }
 };
 

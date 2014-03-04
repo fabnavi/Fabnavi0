@@ -12,7 +12,6 @@ var Analyzer = {
       if(imageData.data[i+2] > 140 && 
           imageData.data[i+1] <130 && 
           imageData.data[i] < 130){
-            //if(i>500&&i<1000)console.log(imageData.data[i],imageData.data[i+1],imageData.data[i+2]);
             imageData.data[i+3] = 255;
             imageData.data[i+0] = 255;
           }
@@ -23,7 +22,7 @@ var Analyzer = {
     }
     console.timeEnd('apple');
     this.ctx.putImageData(imageData,0,0);
-    return this.ctx.toDataURL("image/jpeg");
+    return this.cvs.toDataURL("image/jpeg");
   },
 
   loadImg: function (url) {
@@ -43,5 +42,5 @@ var Analyzer = {
         this.cvs.width,this.cvs.height);
     return this.ctx.getImageData(0,0,this.cvs.width,this.cvs.height);
   },
-
+  
 };
