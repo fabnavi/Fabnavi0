@@ -9,8 +9,8 @@ function takePicture() {
 }
 
 function dbg($data){
-  #date_default_timezone_set("Asia/Tokeyo");
-  #error_log(date("[Y/m/d H:i:s]").rtrim(print_r($data, true))."\n",3,'/var/tmp/app.log');
+  date_default_timezone_set("Asia/Tokeyo");
+  error_log(date("[Y/m/d H:i:s]").rtrim(print_r($data, true))."\n",3,'/var/tmp/app.log');
 
  return $data; 
 }

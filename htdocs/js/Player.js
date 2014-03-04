@@ -3,9 +3,50 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var PlayController = {
   init: function() {
-    PlayConfig.init();
-    PlayController.load();
+    PlayController.defaultInit();
+    PlayController.initKeyBind();
 
+    $("#close").click(function() {
+      $("#controller").hide();
+    });
+    $("#previous").click(PlayController.previous);
+    $("#next").click(PlayController.next);
+
+    ProjectList.load();
+    ProjectList.selected = PlayController.play;
+      $('#contents').show();
+    if(ID != ""){
+      $('#contents').hide();
+      $('#controller').hide();
+      $('img').hide();
+      console.log(ID);
+      PlayController.play(ID);
+        $('img').hide();
+      window.setTimeout(function(){
+        PlayController.previous
+        $('img').show();
+      },300);
+    }
+    if(typeof(ListController) != "undefined")ListController.init();
+
+    if(typeof(ListController) != "undefined")ListController.rowClicked = function(e){
+      for(i in PlayConfig.imgURLs){
+        if(PlayConfig.imgURLs[i].indexOf(e.currentTarget.id) != -1){
+          PlayController.setPhoto(i);
+          PlayConfig.index = i;
+          break;
+        }
+      }
+    };
+  },
+
+  defaultInit : function () {
+    this.cvs = document.getElementById('cvs');
+    this.ctx = this.cvs.getContext('2d');
+    this.cvs.width = screen.width;
+    this.cvs.height = screen.height;
+  },
+  initKeyBind: function () {
     $(window).keydown(function(e) {
       switch (e.keyCode) {
         case 97 : 
@@ -20,10 +61,11 @@ var PlayController = {
         }
         case 81 :
         case 27 : {
-          $("#controller").hide();
           if(typeof(ListController) != "undefined")ListController.clear();
           PlayConfig.projectInit();
           CommonController.localConfig = "";
+          $('#contents').show();
+          $('#controller').hide();
           document.title = "Play: FabNavi";
           break;
         }
@@ -51,42 +93,6 @@ var PlayController = {
       }
     });
 
-    this.cvs = document.getElementById('cvs');
-    this.ctx = this.cvs.getContext('2d');
-    this.cvs.width = screen.width;
-    this.cvs.height = screen.height;
-
-    $("#close").click(function() {
-      $("#controller").hide();
-    });
-    $("#previous").click(PlayController.previous);
-    $("#next").click(PlayController.next);
-
-
-    ProjectList.selected = PlayController.play;
-    if(ID != ""){
-      $('#contents').hide();
-      $('#controller').hide();
-      $('img').hide();
-      console.log(ID);
-      PlayController.play(ID);
-        $('img').hide();
-      window.setTimeout(function(){
-        PlayController.previous
-        $('img').show();
-      },300);
-    }
-    if(typeof(ListController) != "undefined")ListController.init();
-
-    if(typeof(ListController) != "undefined")ListController.rowClicked = function(e){
-      for(i in PlayConfig.imgURLs){
-        if(PlayConfig.imgURLs[i].indexOf(e.currentTarget.id) != -1){
-          PlayController.setPhoto(i);
-          PlayConfig.index = i;
-          break;
-        }
-      }
-    };
   },
 
   load: function() {
@@ -105,12 +111,11 @@ var PlayController = {
         CommonController.localConfig.h);
   },
 
-
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
     console.log(id);
     PlayConfig.projectInit(id);
-    $('#project-list').hide();
+    $('#controller').hide();
     CommonController.getLocalConfig(id);
     CommonController.getContents(url)
       .then(function(result) {

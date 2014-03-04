@@ -8,7 +8,6 @@
     <title data-l10n-id="title">RecordController : FabNavi</title>
     <link rel="stylesheet" href="/css/common.css" type="text/css">
     <link rel="stylesheet" href="/css/play.css" type="text/css">
-    <link rel="stylesheet" href="/css/record.css" type="text/css">
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/ProjectList.js"></script>
@@ -22,10 +21,9 @@
     <?php include('header.php.inc'); ?>
     <div id="project-list"></div>
     <div id="contents">
+      <button id="take">take a picture</button>
       <img id="photo" alt="">
       <canvas id="cvs"></canvas>
-      <button id="start">start to record</button>
-      <button id="take">take a picture</button>
       <ul id="processes"></ul>
     </div>
     <?php include('footer.php.inc'); ?>

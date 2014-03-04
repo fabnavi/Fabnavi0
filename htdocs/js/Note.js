@@ -1,14 +1,21 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
+function delayHello()
+{
+  var d = new $.Deferred;
+  setTimeout(function(){
+    console.log('Hello!');
+    d.resolve();
+  }, 1000);
+  return d.promise();
+}
 var RecordController = {
   init: function() {
     ProjectList.init();
+    PlayController.defaultInit();
+    PlayController.initKeyBind();
     ProjectList.load();
-    $("#start").click(function(){
-      RecordController.start();
-      $('#take').hide();
-    });
     $(window).keydown(function(e){
       switch(e.keyCode){
         case 101:
@@ -28,11 +35,12 @@ var RecordController = {
           break;
       }
     });
-    PlayController.init();
+    document.getElementById('take').onclick = RecordController.take;
     ProjectList.selected = RecordController.load;
   },
 
   load: function (id) {
+    console.log("project selected");
     RecordController.project_id = id;
     $('#project-list').hide();
     PlayController.play(id);
@@ -41,6 +49,8 @@ var RecordController = {
   take: function() {
     $('#take').hide();
     $('li').hide();
+    $('#contents').hide();
+    document.body.style.backgroundColor = "#777777";
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {
       CommonController.getJSON("/api/takeNote.php?project_id="+RecordController.project_id, 
@@ -49,25 +59,31 @@ var RecordController = {
             alert(error);
             return;
           }
-          var li = $(document.createElement("li"));
-          var img = $(document.createElement("img"));
-          img.attr("src", result["url"]);
-          li.append(img);
-          li.hide();
-          $("#processes").append(li);
-          Analyzer.analyze(result["url"]);
+          window.setTimeout(function(){
+            var li = $(document.createElement("li"));
+            var img = $(document.createElement("img"));
+            img.attr("src", result["url"]);
+            li.append(img);
+            li.hide();
+            $("#processes").append(li);
+            console.log(result["url"].split('/'));
+            RecordController.postNote(result["url"].substring(3));
+          },1000);
         });
     }, 10);
   },
   postNote: function (src) {
-    var note = Analyzer.analyze(src).substring(23);
-    console.log(note);
-    $.post("/api/postNote.php",
-      {name:"hogehoge.jpg",note:note},
-      function (res) {
-       console.log("posted");
-       console.log(res);
-      },"json");
+    Analyzer.analyze(src).then(function (note) {
+      console.log(note);
+      console.log("analyzed");
+      note = note.substring(23);
+      $.post("/api/postNote.php",
+        {name:src,note:note},
+        function (res) {
+          console.log(res);
+        },"json");
+    });
+    console.log("promise");
   }
 };
 
