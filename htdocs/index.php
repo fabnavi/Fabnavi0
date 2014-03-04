@@ -13,7 +13,7 @@
         </li>    
     
         <li>
-          <a href="http://fabnavi.local/record.php"> Record Making</a>
+          <a href="http://fabnavi.local/record.php">Record Making</a>
         </li>
     </ul>
 

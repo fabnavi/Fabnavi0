@@ -66,6 +66,7 @@ var PlayConfig = {
     for(i in imgurls){
       this.imgURLs.push(imgurls[i].url);
     }
+    console.log("load and parsed");
   },
 
   getObjectsFromXML: function(xml,conf){

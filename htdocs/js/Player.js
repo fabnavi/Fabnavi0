@@ -4,6 +4,7 @@
 var PlayController = {
   init: function() {
     PlayConfig.init();
+    PlayController.load();
 
     $(window).keydown(function(e) {
       switch (e.keyCode) {
@@ -62,9 +63,8 @@ var PlayController = {
     $("#next").click(PlayController.next);
 
 
-    ProjectList.selected = PlayController.play;
-    PlayController.load();
 
+    ProjectList.selected = PlayController.play;
     if(ID != ""){
       $('#contents').hide();
       $('#controller').hide();
@@ -115,6 +115,7 @@ var PlayController = {
 
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
+    console.log(id);
     PlayConfig.projectInit(id);
     CommonController.getLocalConfig(id);
     CommonController.getContents(url)
@@ -134,6 +135,7 @@ var PlayController = {
       } else {
         PlayController.playSlide(id);
       }
+      PlayController.show(0,true);
     });
   },
 
