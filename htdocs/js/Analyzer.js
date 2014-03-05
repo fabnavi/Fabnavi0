@@ -10,7 +10,8 @@ var Analyzer = {
     Analyzer.init();
     var dfd = new $.Deferred();
     this.loadImg(url).then(function(res){
-      var res = Analyzer.gen(res,180,180,170);
+//      var res = Analyzer.gen(res,180,180,170);
+      var res = Analyzer.gen(res,170,170,200);
       dfd.resolve(res);
 
     });
@@ -20,6 +21,7 @@ var Analyzer = {
    Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b);
 
   },
+  
   gen: function (imageData,red,green,blue) {
     console.time("apple");
     for(var i=0;i<imageData.data.length;i+=4){

@@ -116,9 +116,9 @@ var PlayController = {
     var url = "data/"+id+"/fabnavi.play.config";
     console.log(id);
     PlayConfig.projectInit(id);
-    CalibrateController.play(id);
     $('#controller').hide();
     CommonController.getLocalConfig(id);
+    CalibrateController.play(id);
     CommonController.getContents(url)
       .then(function(result) {
         PlayConfig.parse(result);

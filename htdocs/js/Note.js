@@ -57,9 +57,8 @@ var RecordController = {
           li.hide();
           $("#processes").append(li);
           RecordController.postNote(result["url"].substring(3));
-          $('li').show();
-          $('#contents').show();
           $('#take').show();
+          $('#controller').show();
         });
     }, 10);
   },

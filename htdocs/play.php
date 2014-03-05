@@ -35,13 +35,13 @@
         <input type="button" value="save annotations">
       <div class="param">
               <div id="px"></div>
-              <input max="3000" min="1" type="range" id="x">
+              <input max="3000" min="1" type="range" id="x" step="1">
               <div id="py"></div>
-              <input max="3000" min="1" type="range" id="y">
+              <input max="3000" min="1" type="range" id="y" step="1">
               <div id="pw"></div>
-              <input max="4000" min="1" type="range" id="w">
+              <input max="4000" min="1" type="range" id="w" step="1">
               <div id="ph"></div>
-              <input max="4000" min="1" type="range" id="h">
+              <input max="4000" min="1" type="range" id="h" step="1">
       </div>
       <div id="info">
       </div>
