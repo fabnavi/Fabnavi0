@@ -21,10 +21,11 @@
   <body>
     <?php include('header.php.inc'); ?>
     <div id="project-list"></div>
-    <div id="contents">
+    <div id="controller">
       <button id="take">take a picture</button>
       <img id="photo" alt="">
       <canvas id="cvs"></canvas>
+      <canvas id="note"></canvas>
       <ul id="processes"></ul>
     </div>
     <?php include('footer.php.inc'); ?>

@@ -40,7 +40,7 @@ var RecordController = {
   take: function() {
     $('#take').hide();
     $('li').hide();
-    $('#contents').hide();
+    $('#controller').hide();
     document.body.style.backgroundColor = "#bfbfbf";
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {

@@ -2,8 +2,10 @@ var Analyzer = {
   init : function () {
     Analyzer.cvs = document.getElementById('cvs');
     Analyzer.ctx = Analyzer.cvs.getContext('2d');
+    Analyzer.cvs.style.display = "block";
     Analyzer.cvs.style.transform = "rotateZ(180deg)translateY(400px)scale(2)";
   },
+
   analyze : function (url) {
     Analyzer.init();
     var dfd = new $.Deferred();
