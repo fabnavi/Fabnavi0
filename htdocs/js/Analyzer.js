@@ -9,7 +9,6 @@ var Analyzer = {
     Analyzer.ctx = Analyzer.cvs.getContext('2d');
     var dfd = new $.Deferred();
     this.loadImg(url).then(function(res){
-      console.log("start analyze");
       var res = Analyzer.gen(res,200,200,200);
       dfd.resolve(res);
 
@@ -50,7 +49,6 @@ var Analyzer = {
     this.img.src = url;
     //    Analyzer.cvs = $('<canvas>')[0];
     this.img.onload = function(){
-      console.log("loaded");
       var cvs = $('<canvas>')[0];
       cvs.style.position = "absolute";
       cvs.style.top = "0px";

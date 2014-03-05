@@ -66,7 +66,6 @@ var RecordController = {
             li.append(img);
             li.hide();
             $("#processes").append(li);
-            console.log(result["url"].split('/'));
             RecordController.postNote(result["url"].substring(3));
           },1000);
         });
@@ -74,9 +73,8 @@ var RecordController = {
   },
   postNote: function (src) {
     Analyzer.analyze(src).then(function (note) {
-      console.log(note);
-      console.log("analyzed");
       note = note.substring(23);
+      console.log(src);
       $.post("/api/postNote.php",
         {name:src,note:note},
         function (res) {
