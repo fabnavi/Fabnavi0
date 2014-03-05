@@ -2,14 +2,13 @@ var Analyzer = {
   init : function () {
     Analyzer.cvs = document.getElementById('cvs');
     Analyzer.ctx = Analyzer.cvs.getContext('2d');
-
+    Analyzer.cvs.style.transform = "rotateZ(180deg)translateY(400px)scale(2)";
   },
   analyze : function (url) {
-    Analyzer.cvs = document.getElementById('cvs');
-    Analyzer.ctx = Analyzer.cvs.getContext('2d');
+    Analyzer.init();
     var dfd = new $.Deferred();
     this.loadImg(url).then(function(res){
-      var res = Analyzer.gen(res,200,200,200);
+      var res = Analyzer.gen(res,180,180,170);
       dfd.resolve(res);
 
     });

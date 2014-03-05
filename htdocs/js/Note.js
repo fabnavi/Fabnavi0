@@ -41,7 +41,7 @@ var RecordController = {
     $('#take').hide();
     $('li').hide();
     $('#contents').hide();
-    document.body.style.backgroundColor = "#dfdfdf";
+    document.body.style.backgroundColor = "#bfbfbf";
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {
       CommonController.getJSON("/api/takeNote.php?project_id="+RecordController.project_id, 
@@ -50,15 +50,16 @@ var RecordController = {
             alert(error);
             return;
           }
-          window.setTimeout(function(){
-            var li = $(document.createElement("li"));
-            var img = $(document.createElement("img"));
-            img.attr("src", result["url"]);
-            li.append(img);
-            li.hide();
-            $("#processes").append(li);
-            RecordController.postNote(result["url"].substring(3));
-          },1000);
+          var li = $(document.createElement("li"));
+          var img = $(document.createElement("img"));
+          img.attr("src", result["url"]);
+          li.append(img);
+          li.hide();
+          $("#processes").append(li);
+          RecordController.postNote(result["url"].substring(3));
+          $('li').show();
+          $('#contents').show();
+          $('#take').show();
         });
     }, 10);
   },
