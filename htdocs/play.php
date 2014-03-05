@@ -33,6 +33,19 @@
       <div id="arrow">▶</div>
       <div id="panel">
         <input type="button" value="save annotations">
+      <div class="param">
+              <div id="px"></div>
+              <input max="3000" min="1" type="range" id="x">
+              <div id="py"></div>
+              <input max="3000" min="1" type="range" id="y">
+              <div id="pw"></div>
+              <input max="4000" min="1" type="range" id="w">
+              <div id="ph"></div>
+              <input max="4000" min="1" type="range" id="h">
+      </div>
+      <div id="info">
+      </div>
+      <input type="button" value="save config" id="save">
       </div>
     </div>
     <?php include('footer.php.inc'); ?>

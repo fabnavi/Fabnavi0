@@ -5,6 +5,7 @@ var PlayController = {
   init: function() {
     PlayController.defaultInit();
     PlayController.initKeyBind();
+    CalibrateController.init();
 
     $("#close").click(function() {
       $("#controller").hide();
@@ -107,14 +108,15 @@ var PlayController = {
         CommonController.localConfig.w,
         CommonController.localConfig.h,
          0,0,
-        CommonController.localConfig.w,
-        CommonController.localConfig.h);
+         this.cvs.width,
+         this.cvs.height);
   },
 
   play: function(id) {
     var url = "data/"+id+"/fabnavi.play.config";
     console.log(id);
     PlayConfig.projectInit(id);
+    CalibrateController.play(id);
     $('#controller').hide();
     CommonController.getLocalConfig(id);
     CommonController.getContents(url)
@@ -242,14 +244,12 @@ var PlayController = {
     }
     $("#photo").attr("src",url); 
     $("#counter").text((index+1)+"/"+PlayConfig.imgURLs.length);
-    if(CommonController.localConfig != ""){
+    if(CommonController.localConfig == ""){
+      CommonController.localConfig = {x:0,y:0,w:$('#photo').width(),h:$('#photo').height()};
+    }
       PlayController.drawImage();
       $('#cvs').css('display','block');
       $('#photo').css('display','none');
-    } else {
-      $('#photo').css('display','block');
-      $('#cvs').css('display','none');
-    }
   },
 
   info : function(){

@@ -12,6 +12,10 @@ li {
 .thumbnail {
   width: 200px;
 }
+.param{
+ position:fixed;
+ left:20px;
+}
 
 #controller {
   display: none;

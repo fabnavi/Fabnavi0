@@ -13,7 +13,7 @@ var CalibrateController = {
     CalibrateController.valueListener($('#h'),$('#ph'));
     CalibrateController.cvs = document.getElementById('cvs');
     CalibrateController.ctx = CalibrateController.cvs.getContext('2d');
-    CalibrateController.image = new Image();
+    CalibrateController.image = document.getElementById('photo');
     CalibrateController.cvs.height = $(document).height();
     CalibrateController.cvs.width = $(document).width();
 
@@ -21,7 +21,7 @@ var CalibrateController = {
 
   },
 
-  drawImage:function(){
+  updateConfig:function(){
     var w = $('#w').val();
     var h = $('#h').val();
     $('#w').attr('max',CalibrateController.image.naturalWidth - $('#x').val());
@@ -36,12 +36,6 @@ var CalibrateController = {
     }
     var x = $('#x').val();
     var y = $('#y').val();
-    CalibrateController.ctx.drawImage(
-        CalibrateController.image,
-        x,y,
-        w,h,
-        0,0,
-        CalibrateController.cvs.width,CalibrateController.cvs.height);
     CommonController.localConfig = {
       x:x,y:y,w:w,h:h
     };
@@ -55,14 +49,14 @@ var CalibrateController = {
   valueListener: function(obj,target){
     obj.mousemove(function(e){
       target.text(obj.val());
-      CalibrateController.drawImage();
+      CalibrateController.updateConfig();
+      PlayController.drawImage();
     }); 
   },
 
 
   play: function(id) {
     CalibrateController.id = id;
-
     if(CommonController.localConfig != ""){
       $('#x').val(CommonController.localConfig.x);
       $('#y').val(CommonController.localConfig.y);
