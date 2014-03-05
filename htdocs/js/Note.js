@@ -50,7 +50,7 @@ var RecordController = {
     $('#take').hide();
     $('li').hide();
     $('#contents').hide();
-    document.body.style.backgroundColor = "#777777";
+    document.body.style.backgroundColor = "#dfdfdf";
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {
       CommonController.getJSON("/api/takeNote.php?project_id="+RecordController.project_id, 
