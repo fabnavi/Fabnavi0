@@ -16,7 +16,13 @@ li {
  position:fixed;
  left:20px;
 }
-
+#take{
+ position:absolute;
+ left:0px;
+ display:block;
+  font-size : 32px;
+  width: 100%;
+}
 #controller {
   display: none;
   position: fixed;
@@ -52,10 +58,6 @@ li {
   text-align: center;
 }
 */
-
-table {
-
-}
 
 #photo {
   width: 100%;

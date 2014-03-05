@@ -16,7 +16,6 @@ var CalibrateController = {
     CalibrateController.image = document.getElementById('photo');
     CalibrateController.cvs.height = $(document).height();
     CalibrateController.cvs.width = $(document).width();
-
     $("#save").click(CalibrateController.saveConfig);
 
   },
@@ -39,11 +38,10 @@ var CalibrateController = {
     CommonController.localConfig = {
       x:x,y:y,w:w,h:h
     };
-
   },
 
   saveConfig : function(){
-    if(CommonController.localConfig != "")CommonController.setLocalConfig(CalibrateController.id);
+    if(CommonController.localConfig != "")CommonController.setLocalConfig(PlayConfig.projectName);
   },
 
   valueListener: function(obj,target){
@@ -54,30 +52,13 @@ var CalibrateController = {
     }); 
   },
 
-
   play: function(id) {
-    CalibrateController.id = id;
     if(CommonController.localConfig != ""){
       $('#x').val(CommonController.localConfig.x);
       $('#y').val(CommonController.localConfig.y);
       $('#w').val(CommonController.localConfig.w);
       $('#h').val(CommonController.localConfig.h);
     }
-  },
-
-  setPhoto: function(index) {
-    $("#photo").attr("src", CalibrateController.current_project[index]);
-    CalibrateController.image.src = CalibrateController.current_project[index];
-    CalibrateController.image.onload = function(){
-      $('#x').attr('max',CalibrateController.image.naturalWidth);
-      $('#y').attr('max',CalibrateController.image.naturalHeight);
-      CalibrateController.drawImage();
-    };
-    $("#counter").text((index+1)+"/"+CalibrateController.current_project.length);
   }
-
 }
 
-$(document).ready(function() {
-  CalibrateController.init();
-});
