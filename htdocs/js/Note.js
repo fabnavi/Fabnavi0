@@ -1,15 +1,6 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
-function delayHello()
-{
-  var d = new $.Deferred;
-  setTimeout(function(){
-    console.log('Hello!');
-    d.resolve();
-  }, 1000);
-  return d.promise();
-}
 var RecordController = {
   init: function() {
     ProjectList.init();
@@ -74,9 +65,12 @@ var RecordController = {
   postNote: function (src) {
     Analyzer.analyze(src).then(function (note) {
       note = note.substring(23);
-      console.log(src);
+      var s = src.split('.');
+      var t = s[0].split('/');
+      var path = t[0]+"/"+t[1]+"/note-"+t[2]+".jpg";
+      console.log(path);
       $.post("/api/postNote.php",
-        {name:src,note:note},
+        {name:path,note:note},
         function (res) {
           console.log(res);
         },"json");

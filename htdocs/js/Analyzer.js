@@ -16,7 +16,7 @@ var Analyzer = {
     return dfd.promise();
   },
   test : function (r,g,b) {
-   Analyzer.gen( Analyzer.ctx.getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b);
+   Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b);
 
   },
   gen: function (imageData,red,green,blue) {
@@ -64,6 +64,7 @@ var Analyzer = {
       $('#contents').show();
       $('#cvs').show();
       var res = ctx.getImageData(0,0,cvs.width,cvs.height);
+      Analyzer.pCvs = cvs;
       dfd.resolve(res);
     }.bind(this);
     return dfd.promise();
