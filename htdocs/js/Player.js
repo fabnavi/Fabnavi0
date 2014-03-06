@@ -128,8 +128,7 @@ var PlayController = {
     $('#contents').show();
     CommonController.getLocalConfig(id);
     CalibrateController.play(id);
-    PlayConfig.projectInit(id).done(function(){
-      console.log(PlayConfig.imgURLs.length);
+    PlayConfig.projectInit(id).then(function(){
       PlayController.playSlide(id);
       PlayController.show(0,true);
     });
@@ -234,7 +233,6 @@ var PlayController = {
   setPhoto: function(index) {
     PlayController.ctx.clearRect(0,0,PlayController.cvs.width,PlayController.cvs.height);
     var url = PlayConfig.imgURLs[index];
-    console.log(PlayConfig.imgURLs);
     if(typeof(ListController) != "undefined"){
       ListController.selectByName(url);
     }

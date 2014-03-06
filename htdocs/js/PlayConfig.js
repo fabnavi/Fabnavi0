@@ -63,7 +63,6 @@ var PlayConfig = {
       })
     .then(function() {
       if(PlayConfig.imgURLs.length == 0){
-        console.log("getContents");
         CommonController.getJSON("api/getProject.php?project_id="+id,
           function(result, error) {
             if (error) {
@@ -72,9 +71,11 @@ var PlayConfig = {
             }
             PlayConfig.imgURLs = result;
             d.resolve();
+            PlayConfig.postConfig();
           }); 
+      }else{
+        d.resolve();
       }
-      d.resolve();
 
     });
     return d.promise();
