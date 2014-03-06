@@ -48,7 +48,7 @@ var CalibrateController = {
     obj.mousemove(function(e){
       target.text(obj.val());
       CalibrateController.updateConfig();
-      PlayController.drawImage();
+      PlayController.draw();
     }); 
   },
 

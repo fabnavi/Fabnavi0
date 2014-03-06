@@ -50,25 +50,25 @@ var RecordController = {
             alert(error);
             return;
           }
-          var li = $(document.createElement("li"));
-          var img = $(document.createElement("img"));
-          img.attr("src", result["url"]);
-          li.append(img);
-          li.hide();
-          $("#processes").append(li);
           RecordController.postNote(result["url"].substring(3));
           $('#take').show();
           $('#controller').show();
         });
     }, 10);
   },
+
   postNote: function (src) {
     Analyzer.analyze(src).then(function (note) {
+      var img = new Image();
+      img.src = note;
+      img.onload = function(){
+       console.log("note loaded");
+        PlayController.drawImage(img);
+      }
       note = note.substring(23);
       var s = src.split('.');
       var t = s[0].split('/');
       var path = t[0]+"/"+t[1]+"/note-"+t[2]+".jpg";
-      console.log(path);
       $.post("/api/postNote.php",
         {name:path,note:note},
         function (res) {

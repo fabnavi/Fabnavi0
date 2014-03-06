@@ -100,16 +100,19 @@ var PlayController = {
     ProjectList.load();
   },
 
-  drawImage:function(){
-    this.ctx.drawImage(
-        document.getElementById('photo'),
+  draw: function(){
+        PlayController.drawImage(document.getElementById('photo'));
+  },
+  drawImage:function(image){
+    PlayController.ctx.drawImage(
+        image,
         CommonController.localConfig.x,
         CommonController.localConfig.y,
         CommonController.localConfig.w,
         CommonController.localConfig.h,
          0,0,
-         this.cvs.width,
-         this.cvs.height);
+         PlayController.cvs.width,
+         PlayController.cvs.height);
   },
 
   play: function(id) {
@@ -247,7 +250,7 @@ var PlayController = {
     if(CommonController.localConfig == ""){
       CommonController.localConfig = {x:0,y:0,w:$('#photo').width(),h:$('#photo').height()};
     }
-      PlayController.drawImage();
+      PlayController.draw();
       $('#cvs').css('display','block');
       $('#photo').css('display','none');
   },

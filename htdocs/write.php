@@ -25,7 +25,7 @@
       <button id="take">take a picture</button>
       <img id="photo" alt="">
       <canvas id="cvs"></canvas>
-      <canvas id="note"></canvas>
+      <img id="note"  alt="">
       <ul id="processes"></ul>
     </div>
     <?php include('footer.php.inc'); ?>

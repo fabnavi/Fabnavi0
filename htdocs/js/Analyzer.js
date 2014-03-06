@@ -1,6 +1,6 @@
 var Analyzer = {
   init : function () {
-    Analyzer.cvs = document.getElementById('cvs');
+    Analyzer.cvs = $('<canvas>')[0];
     Analyzer.ctx = Analyzer.cvs.getContext('2d');
     Analyzer.cvs.style.display = "block";
     Analyzer.cvs.style.transform = "rotateZ(180deg)translateY(400px)scale(2)";
@@ -10,29 +10,29 @@ var Analyzer = {
     Analyzer.init();
     var dfd = new $.Deferred();
     this.loadImg(url).then(function(res){
-//      var res = Analyzer.gen(res,180,180,170);
-      var res = Analyzer.gen(res,170,170,200);
+      //      var res = Analyzer.gen(res,180,180,170);
+     var res = Analyzer.gen(res,170,170,100);
+//      var res = Analyzer.gen(res,200,250,200);
       dfd.resolve(res);
 
     });
     return dfd.promise();
   },
   test : function (r,g,b) {
-   Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b);
+    Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b);
 
   },
-  
+
   gen: function (imageData,red,green,blue) {
     console.time("apple");
     for(var i=0;i<imageData.data.length;i+=4){
-      var t = imageData.data[i];
       if(imageData.data[i+2] > blue&&
           imageData.data[i+1] <green && 
           imageData.data[i] < red){
+            imageData.data[i] = 255;
             imageData.data[i+3] = 255;
-            imageData.data[i+0] = 255;
-            imageData.data[i+1] = 0;
             imageData.data[i+2] = 0;
+            imageData.data[i+1] = 0;
           }
       else {
         imageData.data[i+3] = 0;
@@ -56,12 +56,17 @@ var Analyzer = {
       cvs.style.position = "absolute";
       cvs.style.top = "0px";
       cvs.style.left = "0px";
-      cvs.width = screen.width;
-      cvs.height = screen.height;
-        var ctx = cvs.getContext('2d');
+      console.log("img loaded");
+      console.log(this.img);
+      IMG = this.img;
+      cvs.width = this.img.width//screen.width;
+      cvs.height = this.img.height//screen.height;
+    Analyzer.cvs.width = this.img.width;
+    Analyzer.cvs.height = this.img.height;
+      var ctx = cvs.getContext('2d');
       ctx.drawImage(this.img,
           0,0,
-          this.img.naturalWidth,this.img.naturalHeight,
+          this.img.width,this.img.height,
           0,0,
           cvs.width,cvs.height);
       $('#contents').show();
