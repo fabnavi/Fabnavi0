@@ -73,8 +73,8 @@ var EditController= {
       row[0].appendTo(table);
     }
   },
-}
+  }
 
-$(document).ready(function () {
-  EditController.init();
-});
+        $(document).ready(function () {
+          EditController.init();
+        });

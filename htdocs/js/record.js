@@ -3,38 +3,38 @@
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var RecordController = {
   init: function() {
-      $("#start").click(function(){
-        RecordController.start();
-        $('#take').hide();
-      });
-      $(window).keydown(function(e){
-        switch(e.keyCode){
-          case 101:
-          case 13:
-            if($('#start').is(':visible')){
-              RecordController.start();
-              $('#take').hide();
-            } else {
-              RecordController.take();
-            }
-            break;
-          case 104:
-            if($('li').is(':visible')){
-              $('li').hide();
-              $('#take').hide();      
-            } else { 
-              $('li').show();
-              $('#take').show();      
-            }
-            break;
-          case 105:
-          case 32:
-            if(RecordController.project_id != "undefined")window.open('/play.php?id='+RecordController.project_id,'new tab');
-            break;
-          default:
-            break;
-        }
-      });
+    $("#start").click(function(){
+      RecordController.start();
+      $('#take').hide();
+    });
+    $(window).keydown(function(e){
+      switch(e.keyCode){
+        case 101:
+        case 13:
+          if($('#start').is(':visible')){
+            RecordController.start();
+            $('#take').hide();
+          } else {
+            RecordController.take();
+          }
+          break;
+        case 104:
+          if($('li').is(':visible')){
+            $('li').hide();
+            $('#take').hide();      
+          } else { 
+            $('li').show();
+            $('#take').show();      
+          }
+          break;
+        case 105:
+        case 32:
+          if(RecordController.project_id != "undefined")window.open('/play.php?id='+RecordController.project_id,'new tab');
+          break;
+        default:
+          break;
+      }
+    });
   },
 
   start: function() {
@@ -67,7 +67,7 @@ var RecordController = {
         li.append(img);
         li.hide();
         $("#processes").append(li);
-    PlayConfig.index++;
+        PlayConfig.index++;
       });
     }, 10);
     PlayConfig.postConfig();

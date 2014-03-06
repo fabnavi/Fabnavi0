@@ -74,7 +74,7 @@ var PlayConfig = {
             d.resolve();
           }); 
       }
-      
+
     });
     return d.promise();
   },

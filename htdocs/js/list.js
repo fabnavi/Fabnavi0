@@ -24,7 +24,7 @@ var ListController　= {
     var str = a[a.length-1];
     var row = $('<tr draggable="true" class="data" id="'+str.split('.')[0]+'"><td draggable="true" class="tableIndex"></td><td draggable="true">'+str+'</td><td></td></tr>'); 
 
-    
+
     row.on('mousemove',function(e){
       if(e.buttons > 0){
         var el = this.idToElem(this.selectedLast());
@@ -34,15 +34,15 @@ var ListController　= {
     }.bind(this));
 
     row.on('mouseup',function(e){
-     if(this.selectedLast() == e.currentTarget.id){ // clicked
-      this.select(e.currentTarget.id);
-      this.rowClicked(e);
-      this.selected = [e.currentTarget.id];
-     } else { //dragged
-      this.insert(e.currentTarget.id,this.selectedLast());
-      e.currentTarget.style.transform = "";
-      document.getElementById(this.selectedLast()).style.transform = "";
-     }
+      if(this.selectedLast() == e.currentTarget.id){ // clicked
+        this.select(e.currentTarget.id);
+        this.rowClicked(e);
+        this.selected = [e.currentTarget.id];
+      } else { //dragged
+        this.insert(e.currentTarget.id,this.selectedLast());
+        e.currentTarget.style.transform = "";
+        document.getElementById(this.selectedLast()).style.transform = "";
+      }
     }.bind(this));
 
     row.on('mouseenter',function(e){

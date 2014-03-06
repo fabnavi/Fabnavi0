@@ -11,15 +11,15 @@ var Analyzer = {
     var dfd = new $.Deferred();
     this.loadImg(url).then(function(res){
       //      var res = Analyzer.gen(res,180,180,170);
-     var res = Analyzer.gen(res,100,100,100);
-//      var res = Analyzer.gen(res,200,250,200);
+      var res = Analyzer.gen(res,100,100,100);
+      //      var res = Analyzer.gen(res,200,250,200);
       dfd.resolve(res);
 
     });
     return dfd.promise();
   },
   test : function (r,g,b) {
-      PlayController.drawImage(
+    PlayController.drawImage(
         Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b));
   },
 
@@ -61,8 +61,8 @@ var Analyzer = {
       IMG = this.img;
       cvs.width = this.img.width//screen.width;
       cvs.height = this.img.height//screen.height;
-    Analyzer.cvs.width = this.img.width;
-    Analyzer.cvs.height = this.img.height;
+      Analyzer.cvs.width = this.img.width;
+      Analyzer.cvs.height = this.img.height;
       var ctx = cvs.getContext('2d');
       ctx.drawImage(this.img,
           0,0,
