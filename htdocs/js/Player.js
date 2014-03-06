@@ -15,14 +15,14 @@ var PlayController = {
 
     ProjectList.load();
     ProjectList.selected = PlayController.play;
-      $('#contents').show();
+    $('#contents').show();
     if(ID != ""){
       $('#contents').hide();
       $('#controller').hide();
       $('img').hide();
       console.log(ID);
       PlayController.play(ID);
-        $('img').hide();
+      $('img').hide();
       window.setTimeout(function(){
         PlayController.previous
         $('img').show();
@@ -101,9 +101,9 @@ var PlayController = {
   },
 
   draw: function(){
-        PlayController.drawImage(document.getElementById('photo'));
+    PlayController.drawImage(document.getElementById('photo'));
   },
-  
+
   drawNote:function (noteURL){
     var img = new Image();
     img.src = noteURL;
@@ -119,9 +119,9 @@ var PlayController = {
         CommonController.localConfig.y,
         CommonController.localConfig.w,
         CommonController.localConfig.h,
-         0,0,
-         PlayController.cvs.width,
-         PlayController.cvs.height);
+        0,0,
+        PlayController.cvs.width,
+        PlayController.cvs.height);
   },
 
   play: function(id) {
@@ -250,7 +250,8 @@ var PlayController = {
   },
 
   setPhoto: function(index) {
-   var url = PlayConfig.imgURLs[index];
+    PlayController.ctx.clearRect(0,0,PlayController.cvs.width,PlayController.cvs.height);
+    var url = PlayConfig.imgURLs[index];
     if(typeof(ListController) != "undefined"){
       ListController.selectByName(url);
     }
@@ -259,12 +260,12 @@ var PlayController = {
     if(CommonController.localConfig == ""){
       CommonController.localConfig = {x:0,y:0,w:$('#photo').width(),h:$('#photo').height()};
     }
-      PlayController.draw();
-      for(i in PlayConfig.notes){
-        if(PlayConfig.notes[i].index == PlayConfig.index)PlayController.drawNote(PlayConfig.notes[i].url);
-      }
-      $('#cvs').css('display','block');
-      $('#photo').css('display','none');
+    PlayController.draw();
+    for(i in PlayConfig.notes){
+      if(PlayConfig.notes[i].index == PlayConfig.index)PlayController.drawNote(PlayConfig.notes[i].url);
+    }
+    $('#cvs').css('display','block');
+    $('#photo').css('display','none');
   },
 
   info : function(){
