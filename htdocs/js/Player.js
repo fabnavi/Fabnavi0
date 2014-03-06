@@ -90,7 +90,7 @@ var PlayController = {
     });
 
   },
-  
+
   exitProject : function(){
 
   },
@@ -129,6 +129,7 @@ var PlayController = {
     CommonController.getLocalConfig(id);
     CalibrateController.play(id);
     PlayConfig.projectInit(id).done(function(){
+      console.log(PlayConfig.imgURLs.length);
       PlayController.playSlide(id);
       PlayController.show(0,true);
     });

@@ -44,7 +44,6 @@ var PlayConfig = {
   },
 
   init : function(id){
-    console.log("config controller initialized");
     PlayConfig.index = -1;
     PlayConfig.imgURLs = [];
     PlayConfig.annotations = [];
@@ -64,6 +63,7 @@ var PlayConfig = {
       })
     .then(function() {
       if(PlayConfig.imgURLs.length == 0){
+        console.log("getContents");
         CommonController.getJSON("api/getProject.php?project_id="+id,
           function(result, error) {
             if (error) {
@@ -74,6 +74,7 @@ var PlayConfig = {
             d.resolve();
           }); 
       }
+      d.resolve();
 
     });
     return d.promise();
@@ -106,7 +107,6 @@ var PlayConfig = {
     for(i in imgurls){
       PlayConfig.imgURLs.push(imgurls[i].url);
     }
-    console.log("load and parsed");
   },
 
   getObjectsFromXML: function(xml,conf){
@@ -197,7 +197,6 @@ var PlayConfig = {
     doc.appendChild(animations);
     doc.appendChild(imgURLs);
     PlayConfig.xml = serializer.serializeToString(doc);
-    console.log(PlayConfig.xml);
   },
 
   insertIndex: function(src,dst){
@@ -207,7 +206,6 @@ var PlayConfig = {
       dst++;
     }
     PlayConfig.imgURLs.splice(dst,0,srcImg);
-    console.log(PlayConfig.imgURLs);
   },
 
   removeIndex: function(index){
@@ -218,7 +216,7 @@ var PlayConfig = {
     PlayConfig.setXMLFromObjects();
     $.post("/api/postConfig.php",
         {project:PlayConfig.projectName,data:PlayConfig.xml},
-        function(){console.log("posted");},
+        function(){},
         "json");
   }
 };

@@ -64,19 +64,15 @@ var CommonController = {
   getLocalData: function(key){
     var data = localStorage.getItem(key);
     if(data == null)return false;
-    //    console.log(data);
     return eval(data);
   },
 
   getLocalConfig: function(id){
-    console.log("getLocalConfig");
     var res = CommonController.getLocalData(id);
     if(!res){
       CommonController.localConfig = "";
-      console.log("can't load localConfig");
     } else {
       CommonController.localConfig = res;
-      console.log("Loaded localConfig");
     }
 
     //CommonController.localConfig ={x:"1669", y:"2151", w:"2190", h:"1122"};
