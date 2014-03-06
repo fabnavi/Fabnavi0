@@ -41,7 +41,7 @@ var RecordController = {
     $('#take').hide();
     $('li').hide();
     $('#controller').hide();
-    document.body.style.backgroundColor = "#bfbfbf";
+    document.body.style.backgroundColor = "#000000";
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {
       CommonController.getJSON("/api/takeNote.php?project_id="+RecordController.project_id, 
@@ -62,9 +62,7 @@ var RecordController = {
       var img = new Image();
       img.src = note;
       img.onload = function(){
-       console.log("note loaded");
-//        PlayController.ctx.globalAlpha = 0.6;
-//        PlayController.ctx.globalCompositeOperatio = "lighter";
+        console.log("note loaded");
         PlayController.drawImage(img);
       }
       note = note.substring(22);

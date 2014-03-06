@@ -11,7 +11,7 @@ var Analyzer = {
     var dfd = new $.Deferred();
     this.loadImg(url).then(function(res){
       //      var res = Analyzer.gen(res,180,180,170);
-     var res = Analyzer.gen(res,170,170,100);
+     var res = Analyzer.gen(res,130,130,100);
 //      var res = Analyzer.gen(res,200,250,200);
       dfd.resolve(res);
 
@@ -19,7 +19,8 @@ var Analyzer = {
     return dfd.promise();
   },
   test : function (r,g,b) {
-    Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b);
+      PlayController.drawImage(
+        Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b));
   },
 
   gen: function (imageData,red,green,blue) {
