@@ -11,7 +11,7 @@ var Analyzer = {
     var dfd = new $.Deferred();
     this.loadImg(url).then(function(res){
       //      var res = Analyzer.gen(res,180,180,170);
-     var res = Analyzer.gen(res,130,130,100);
+     var res = Analyzer.gen(res,100,100,100);
 //      var res = Analyzer.gen(res,200,250,200);
       dfd.resolve(res);
 

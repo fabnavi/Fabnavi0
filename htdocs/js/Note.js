@@ -69,11 +69,13 @@ var RecordController = {
       var s = src.split('.');
       var t = s[0].split('/');
       var path = t[0]+"/"+t[1]+"/note-"+t[2]+".png";
+      PlayConfig.notes.push({url:path,index:PlayConfig.index});
       $.post("/api/postNote.php",
         {name:path,note:note},
         function (res) {
           console.log(res);
         },"json");
+      PlayConfig.postConfig();
     });
     console.log("promise");
   }

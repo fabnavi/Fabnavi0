@@ -32,8 +32,17 @@ var PlayConfig = {
         index:'int',
         url:'string'
       }
+    },
+    notes:{
+      tag:'notes',
+      name:'note',
+      values:{
+        index:'int',
+        url:'string'
+      }
     }
   },
+
   init : function(){
     console.log("config controller initialized");
     PlayConfig.index = -1;
@@ -44,6 +53,7 @@ var PlayConfig = {
     this.animations = [];
     this.index = 0;
     this.projectName = id;
+    this.notes = [];
   },
 
   parse: function(xml){ //called once when project loaded
@@ -54,6 +64,7 @@ var PlayConfig = {
     var animations = this.getObjectsFromXML(doc,this.configList['animation']);
     var annotations = this.getObjectsFromXML(doc,this.configList['annotation']);
     var imgurls = this.getObjectsFromXML(doc,this.configList['imgurls']);
+    var notes = this.getObjectsFromXML(doc,this.configList['notes']);
     if(animations.length > 0)for(i in animations){
       animations[i].index--;
       this.animations.push(animations[i]);
@@ -63,6 +74,12 @@ var PlayConfig = {
       annotations[i].index--;
       this.annotations.push(annotations[i]);
     }
+
+    if(notes.length > 0)for(i in notes){
+      notes[i].index--;
+      this.notes.push(notes[i]);
+    }
+
     for(i in imgurls){
       this.imgURLs.push(imgurls[i].url);
     }
@@ -107,6 +124,14 @@ var PlayConfig = {
     return elem;
   },
 
+  createNoteElem: function(obj){
+    var elem = document.createElement('note');
+    for (key in obj){
+      elem.setAttribute(key,obj[key]);
+    }
+    return elem;
+  },
+
   createAnimationElem: function(obj){
     var elem = document.createElement('animation');
     for (key in obj){
@@ -128,9 +153,13 @@ var PlayConfig = {
     var annotations = document.createElement('annotations');
     var animations = document.createElement('animations');
     var imgURLs = document.createElement('imgurls');
+    var notes = document.createElement('notes');
 
     for(i in this.annotations){
       annotations.appendChild(this.createAnnotationElem(this.annotations[i]));
+    }
+    for(i in this.notes){
+      notes.appendChild(this.createNoteElem(this.notes[i]));
     }
 
     for(i in this.animations){
@@ -139,6 +168,7 @@ var PlayConfig = {
     for(i in this.imgURLs){ 
       imgURLs.appendChild(this.createImgURLElem(i,this.imgURLs[i]));
     } 
+    doc.appendChild(notes);
     doc.appendChild(annotations);
     doc.appendChild(animations);
     doc.appendChild(imgURLs);
@@ -160,10 +190,6 @@ var PlayConfig = {
     this.imgURLs.splice(index,1);
   },
 
-  addAnnotation: function(){
-
-
-  },
 
   addAnimation : function(){
 
