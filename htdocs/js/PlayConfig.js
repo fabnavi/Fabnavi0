@@ -158,6 +158,7 @@ var PlayConfig = {
     for(i in this.annotations){
       annotations.appendChild(this.createAnnotationElem(this.annotations[i]));
     }
+
     for(i in this.notes){
       notes.appendChild(this.createNoteElem(this.notes[i]));
     }

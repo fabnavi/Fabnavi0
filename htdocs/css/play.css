@@ -16,7 +16,6 @@ li {
  position:fixed;
  left:20px;
  width:600px;
- z-index:2;
 }
 input[type="range"]{
   width:400px;
@@ -45,6 +44,9 @@ input[type="range"]{
 
 #photo-container {
   text-align: center;
+}
+#panel{
+  z-index:2;
 }
 
 /*

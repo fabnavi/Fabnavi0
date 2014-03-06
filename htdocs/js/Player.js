@@ -103,6 +103,15 @@ var PlayController = {
   draw: function(){
         PlayController.drawImage(document.getElementById('photo'));
   },
+  
+  drawNote:function (noteURL){
+    var img = new Image();
+    img.src = noteURL;
+    img.onload = function(){
+      PlayController.drawImage(img);
+    };
+  },
+
   drawImage:function(image){
     PlayController.ctx.drawImage(
         image,
@@ -251,6 +260,9 @@ var PlayController = {
       CommonController.localConfig = {x:0,y:0,w:$('#photo').width(),h:$('#photo').height()};
     }
       PlayController.draw();
+      for(i in PlayConfig.notes){
+        if(PlayConfig.notes[i].index == PlayConfig.index)PlayController.drawNote(PlayConfig.notes[i].url);
+      }
       $('#cvs').css('display','block');
       $('#photo').css('display','none');
   },
