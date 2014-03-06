@@ -16,7 +16,7 @@
   </head>
   <body>
     <?php include('header.php.inc'); ?>
-    <div id="contents">
+    <div id="projectList">
       <button id="start">start to record</button>
       <button id="take">take a picture</button>
       <ul id="processes"></ul>

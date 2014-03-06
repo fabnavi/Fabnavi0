@@ -57,7 +57,7 @@ var EditController= {
     a.click(function (e) {
       this.makeAnnotation(e)
     }.bind(this));
-    a.appendTo($('#controller'));
+    a.appendTo($('#contents'));
   },
 
   updateAnnotationsTable: function(){

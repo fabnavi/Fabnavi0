@@ -33,14 +33,14 @@ var RecordController = {
   load: function (id) {
     console.log("project selected");
     RecordController.project_id = id;
-    $('#project-list').hide();
+    $('#projectList').hide();
     PlayController.play(id);
   },
 
   take: function() {
     $('#take').hide();
     $('li').hide();
-    $('#controller').hide();
+    $('#contents').hide();
     document.body.style.backgroundColor = "#000000";
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {
@@ -52,7 +52,7 @@ var RecordController = {
           }
           RecordController.postNote(result["url"].substring(3));
           $('#take').show();
-          $('#controller').show();
+          $('#contents').show();
         });
     }, 10);
   },

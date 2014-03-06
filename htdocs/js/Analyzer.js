@@ -69,7 +69,7 @@ var Analyzer = {
           this.img.width,this.img.height,
           0,0,
           cvs.width,cvs.height);
-      $('#contents').show();
+      $('#projectList').show();
       $('#cvs').show();
       var res = ctx.getImageData(0,0,cvs.width,cvs.height);
       Analyzer.pCvs = cvs;

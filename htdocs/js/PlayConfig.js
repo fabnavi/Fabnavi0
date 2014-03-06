@@ -214,11 +214,6 @@ var PlayConfig = {
     PlayConfig.imgURLs.splice(index,1);
   },
 
-
-  addAnimation : function(){
-
-  },
-
   postConfig: function(){
     PlayConfig.setXMLFromObjects();
     $.post("/api/postConfig.php",

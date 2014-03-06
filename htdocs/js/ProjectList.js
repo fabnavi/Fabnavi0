@@ -10,7 +10,7 @@ var ProjectList = {
         alert(error);
         return;
       }
-      var projectList = $("#project-list");
+      var projectList = $("#projectList");
       for (var i = 0, n = result.length; i < n; i++) {
         var project = result[i];
         var id = project.id;

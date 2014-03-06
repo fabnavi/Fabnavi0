@@ -23,10 +23,10 @@
   </head>
   <body onload="PlayController.init()">
     <?php include('header.php.inc'); ?>
-    <div id="contents">
+    <div id="projectList">
       <ul id="project-list"></ul>
     </div>
-    <div id="controller">
+    <div id="contents">
       <img id="photo" width="4928" height="3715">
       <canvas id="cvs"></canvas>
       <div id="counter"></div>

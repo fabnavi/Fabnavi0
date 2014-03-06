@@ -7,18 +7,13 @@ var PlayController = {
     PlayController.initKeyBind();
     CalibrateController.init();
 
-    $("#close").click(function() {
-      $("#controller").hide();
-    });
-    $("#previous").click(PlayController.previous);
-    $("#next").click(PlayController.next);
-
     ProjectList.load();
     ProjectList.selected = PlayController.play;
-    $('#contents').show();
+    $('#projectList').show();
+    $('#contents').hide();
     if(ID != ""){
+      $('#projectList').hide();
       $('#contents').hide();
-      $('#controller').hide();
       $('img').hide();
       console.log(ID);
       PlayController.play(ID);
@@ -65,8 +60,8 @@ var PlayController = {
           if(typeof(ListController) != "undefined")ListController.clear();
           PlayConfig.projectInit();
           CommonController.localConfig = "";
-          $('#contents').show();
-          $('#controller').hide();
+          $('#projectList').show();
+          $('#contents').hide();
           document.title = "Play: FabNavi";
           break;
         }
@@ -93,6 +88,10 @@ var PlayController = {
         }
       }
     });
+
+  },
+  
+  exitProject : function(){
 
   },
 
@@ -125,7 +124,8 @@ var PlayController = {
   },
 
   play: function(id) {
-    $('#controller').hide();
+    $('#projectList').hide();
+    $('#contents').show();
     CommonController.getLocalConfig(id);
     CalibrateController.play(id);
     PlayConfig.projectInit(id).done(function(){
@@ -146,7 +146,7 @@ var PlayController = {
       startIndex = parseInt(parameters["s"])-1;
     }
     PlayController.show(startIndex, true);
-    $("#controller").show();
+    $("#contents").show();
   },
 
   getParametersFromQuery: function () {
@@ -227,7 +227,7 @@ var PlayController = {
       "transform-origin":"200px 50px", //pointed coordinate
       "transform":"rotate("+angle+"deg)"
     });
-    a.appendTo($('#controller'));
+    a.appendTo($('#contents'));
   },
 
   setPhoto: function(index) {

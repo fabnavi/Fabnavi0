@@ -29,7 +29,7 @@ var RecordController = {
           break;
         case 105:
         case 32:
-          if(RecordController.project_id != "undefined")window.open('/play.php?id='+RecordController.project_id,'new tab');
+          if(PlayConfig.projectName != "undefined")window.open('/play.php?id='+RecordController.project_id,'new tab');
           break;
         default:
           break;
@@ -45,7 +45,7 @@ var RecordController = {
         alert(error);
         return;
       }
-      RecordController.project_id = result["id"];
+      PlayConfig.projectName = result["id"];
       $("#take").click(RecordController.take);
     });
   },
@@ -55,7 +55,7 @@ var RecordController = {
     $('li').hide();
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {
-      CommonController.getJSON("/api/takePicture.php?project_id="+RecordController.project_id, function(result, error) {
+      CommonController.getJSON("/api/takePicture.php?project_id="+PlayConfig.projectName, function(result, error) {
         if (error) {
           alert(error);
           return;
