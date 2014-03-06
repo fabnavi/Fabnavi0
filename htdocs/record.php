@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/record.css" type="text/css">
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/PlayConfig.js"></script>
     <script type="text/javascript" src="/js/record.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no">
   </head>

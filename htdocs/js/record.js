@@ -39,13 +39,13 @@ var RecordController = {
 
   start: function() {
     $("#start").hide();
+    PlayConfig.init();
     CommonController.getJSON("/api/startProject.php", function(result, error) {
       if (error) {
         alert(error);
         return;
       }
       RecordController.project_id = result["id"];
-//      $("#take").show();
       $("#take").click(RecordController.take);
     });
   },
@@ -63,11 +63,14 @@ var RecordController = {
         var li = $(document.createElement("li"));
         var img = $(document.createElement("img"));
         img.attr("src", result["url"]);
+        PlayConfig.imgURLs[PlayConfig.index] = result["url"];
         li.append(img);
         li.hide();
         $("#processes").append(li);
+    PlayConfig.index++;
       });
     }, 10);
+    PlayConfig.postConfig();
   }
 };
 

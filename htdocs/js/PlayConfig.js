@@ -1,5 +1,5 @@
 /* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * License, v. 2.0. If a copy of the MPL was not distributed with PlayConfig file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var PlayConfig = {
   configList:{
@@ -43,45 +43,68 @@ var PlayConfig = {
     }
   },
 
-  init : function(){
+  init : function(id){
     console.log("config controller initialized");
     PlayConfig.index = -1;
+    PlayConfig.imgURLs = [];
+    PlayConfig.annotations = [];
+    PlayConfig.animations = [];
+    PlayConfig.index = 0;
+    PlayConfig.projectName = id;
+    PlayConfig.notes = [];
   },
+
   projectInit: function(id){
-    this.imgURLs = [];
-    this.annotations = [];
-    this.animations = [];
-    this.index = 0;
-    this.projectName = id;
-    this.notes = [];
+    PlayConfig.init(id);
+    var d = new $.Deferred();
+    var url = "data/"+id+"/fabnavi.play.config";
+    CommonController.getContents(url)
+      .then(function(result) {
+        PlayConfig.parse(result);
+      })
+    .then(function() {
+      if(PlayConfig.imgURLs.length == 0){
+        CommonController.getJSON("api/getProject.php?project_id="+id,
+          function(result, error) {
+            if (error) {
+              alert(error);
+              return;
+            }
+            PlayConfig.imgURLs = result;
+            d.resolve();
+          }); 
+      }
+      
+    });
+    return d.promise();
   },
 
   parse: function(xml){ //called once when project loaded
 
     var parser = new DOMParser();
     doc = parser.parseFromString(xml, "application/xml");
-    this.xml = xml;
-    var animations = this.getObjectsFromXML(doc,this.configList['animation']);
-    var annotations = this.getObjectsFromXML(doc,this.configList['annotation']);
-    var imgurls = this.getObjectsFromXML(doc,this.configList['imgurls']);
-    var notes = this.getObjectsFromXML(doc,this.configList['notes']);
+    PlayConfig.xml = xml;
+    var animations = PlayConfig.getObjectsFromXML(doc,PlayConfig.configList['animation']);
+    var annotations = PlayConfig.getObjectsFromXML(doc,PlayConfig.configList['annotation']);
+    var imgurls = PlayConfig.getObjectsFromXML(doc,PlayConfig.configList['imgurls']);
+    var notes = PlayConfig.getObjectsFromXML(doc,PlayConfig.configList['notes']);
     if(animations.length > 0)for(i in animations){
       animations[i].index--;
-      this.animations.push(animations[i]);
+      PlayConfig.animations.push(animations[i]);
     }
 
     if(annotations.length > 0)for(i in annotations){
       annotations[i].index--;
-      this.annotations.push(annotations[i]);
+      PlayConfig.annotations.push(annotations[i]);
     }
 
     if(notes.length > 0)for(i in notes){
       notes[i].index--;
-      this.notes.push(notes[i]);
+      PlayConfig.notes.push(notes[i]);
     }
 
     for(i in imgurls){
-      this.imgURLs.push(imgurls[i].url);
+      PlayConfig.imgURLs.push(imgurls[i].url);
     }
     console.log("load and parsed");
   },
@@ -155,40 +178,40 @@ var PlayConfig = {
     var imgURLs = document.createElement('imgurls');
     var notes = document.createElement('notes');
 
-    for(i in this.annotations){
-      annotations.appendChild(this.createAnnotationElem(this.annotations[i]));
+    for(i in PlayConfig.annotations){
+      annotations.appendChild(PlayConfig.createAnnotationElem(PlayConfig.annotations[i]));
     }
 
-    for(i in this.notes){
-      notes.appendChild(this.createNoteElem(this.notes[i]));
+    for(i in PlayConfig.notes){
+      notes.appendChild(PlayConfig.createNoteElem(PlayConfig.notes[i]));
     }
 
-    for(i in this.animations){
-      animations.appendChild(this.createAnimationElem(this.animations[i]));
+    for(i in PlayConfig.animations){
+      animations.appendChild(PlayConfig.createAnimationElem(PlayConfig.animations[i]));
     }
-    for(i in this.imgURLs){ 
-      imgURLs.appendChild(this.createImgURLElem(i,this.imgURLs[i]));
+    for(i in PlayConfig.imgURLs){ 
+      imgURLs.appendChild(PlayConfig.createImgURLElem(i,PlayConfig.imgURLs[i]));
     } 
     doc.appendChild(notes);
     doc.appendChild(annotations);
     doc.appendChild(animations);
     doc.appendChild(imgURLs);
-    this.xml = serializer.serializeToString(doc);
-    console.log(this.xml);
+    PlayConfig.xml = serializer.serializeToString(doc);
+    console.log(PlayConfig.xml);
   },
 
   insertIndex: function(src,dst){
-    var srcImg = this.imgURLs[src];
-    this.imgURLs.splice(src,1);
+    var srcImg = PlayConfig.imgURLs[src];
+    PlayConfig.imgURLs.splice(src,1);
     if (src > dst){
       dst++;
     }
-    this.imgURLs.splice(dst,0,srcImg);
-    console.log(this.imgURLs);
+    PlayConfig.imgURLs.splice(dst,0,srcImg);
+    console.log(PlayConfig.imgURLs);
   },
 
   removeIndex: function(index){
-    this.imgURLs.splice(index,1);
+    PlayConfig.imgURLs.splice(index,1);
   },
 
 
@@ -197,9 +220,9 @@ var PlayConfig = {
   },
 
   postConfig: function(){
-    this.setXMLFromObjects();
+    PlayConfig.setXMLFromObjects();
     $.post("/api/postConfig.php",
-        {project:this.projectName,data:this.xml},
+        {project:PlayConfig.projectName,data:PlayConfig.xml},
         function(){console.log("posted");},
         "json");
   }

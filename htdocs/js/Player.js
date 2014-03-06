@@ -125,29 +125,11 @@ var PlayController = {
   },
 
   play: function(id) {
-    var url = "data/"+id+"/fabnavi.play.config";
-    console.log(id);
-    PlayConfig.projectInit(id);
     $('#controller').hide();
     CommonController.getLocalConfig(id);
     CalibrateController.play(id);
-    CommonController.getContents(url)
-      .then(function(result) {
-        PlayConfig.parse(result);
-      })
-    .done(function() {
-      if(PlayConfig.imgURLs.length == 0){
-        CommonController.getJSON("api/getProject.php?project_id="+id, function(result, error) {
-          if (error) {
-            alert(error);
-            return;
-          }
-          PlayConfig.imgURLs = result;
-          PlayController.playSlide(id);
-        }); 
-      } else {
-        PlayController.playSlide(id);
-      }
+    PlayConfig.projectInit(id).done(function(){
+      PlayController.playSlide(id);
       PlayController.show(0,true);
     });
   },
@@ -233,7 +215,6 @@ var PlayController = {
     }
     PlayController.current_animation = null;
     PlayConfig.index = index;
-    console.log(index);
     PlayController.setPhoto(index);
   },
 
@@ -252,6 +233,7 @@ var PlayController = {
   setPhoto: function(index) {
     PlayController.ctx.clearRect(0,0,PlayController.cvs.width,PlayController.cvs.height);
     var url = PlayConfig.imgURLs[index];
+    console.log(PlayConfig.imgURLs);
     if(typeof(ListController) != "undefined"){
       ListController.selectByName(url);
     }
