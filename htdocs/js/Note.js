@@ -63,12 +63,14 @@ var RecordController = {
       img.src = note;
       img.onload = function(){
        console.log("note loaded");
+//        PlayController.ctx.globalAlpha = 0.6;
+//        PlayController.ctx.globalCompositeOperatio = "lighter";
         PlayController.drawImage(img);
       }
-      note = note.substring(23);
+      note = note.substring(22);
       var s = src.split('.');
       var t = s[0].split('/');
-      var path = t[0]+"/"+t[1]+"/note-"+t[2]+".jpg";
+      var path = t[0]+"/"+t[1]+"/note-"+t[2]+".png";
       $.post("/api/postNote.php",
         {name:path,note:note},
         function (res) {

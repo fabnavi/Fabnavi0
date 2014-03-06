@@ -20,11 +20,10 @@ var Analyzer = {
   },
   test : function (r,g,b) {
     Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b);
-
   },
 
   gen: function (imageData,red,green,blue) {
-    console.time("apple");
+    console.time("apfel");
     for(var i=0;i<imageData.data.length;i+=4){
       if(imageData.data[i+2] > blue&&
           imageData.data[i+1] <green && 
@@ -41,9 +40,9 @@ var Analyzer = {
         imageData.data[i] = 0;
       }
     }
-    console.timeEnd('apple');
+    console.timeEnd('apfel');
     Analyzer.ctx.putImageData(imageData,0,0);
-    return Analyzer.cvs.toDataURL("image/jpeg");
+    return Analyzer.cvs.toDataURL("image/png");
   },
 
   loadImg: function (url) {
