@@ -29,7 +29,7 @@ var RecordController = {
         var li = $(document.createElement("li"));
         var img = $(document.createElement("img"));
         img.attr("src", result["url"]);
-        PlayConfig.imgURLs[PlayConfig.index] = result["url"];
+        PlayConfig.imgURLs.splice(PlayConfig.index,0,result["url"]);
         li.append(img);
         li.hide();
         $("#processes").append(li);
