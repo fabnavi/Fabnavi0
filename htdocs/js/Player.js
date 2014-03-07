@@ -132,7 +132,6 @@ var PlayController = {
     }
     CalibrateController.play(id);
     PlayConfig.projectInit(id).then(function(){
-//      CalibrateController.updateConfig();
       PlayController.playSlide(id);
     });
   },
