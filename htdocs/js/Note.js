@@ -31,6 +31,7 @@ var RecordController = {
   },
 
   load: function (id) {
+   console.log("loading");
     console.log("project selected");
     RecordController.project_id = id;
     $('#projectList').hide();

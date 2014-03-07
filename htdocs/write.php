@@ -20,8 +20,8 @@
   </head>
   <body>
     <?php include('header.php.inc'); ?>
-    <div id="project-list"></div>
-    <div id="controller">
+    <div id="projectList"></div>
+    <div id="contents">
       <button id="take">take a picture</button>
       <img id="photo" alt="">
       <canvas id="cvs"></canvas>

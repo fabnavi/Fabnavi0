@@ -101,7 +101,7 @@ var PlayConfig = {
     }
 
     if(notes.length > 0)for(i in notes){
-      notes[i].index--;
+//      notes[i].index--;
       PlayConfig.notes.push(notes[i]);
     }
 
@@ -215,6 +215,7 @@ var PlayConfig = {
 
   postConfig: function(){
     PlayConfig.setXMLFromObjects();
+    console.log(PlayConfig.xml);
     $.post("/api/postConfig.php",
         {project:PlayConfig.projectName,data:PlayConfig.xml},
         function(){},
