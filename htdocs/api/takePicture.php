@@ -8,6 +8,7 @@
   try {
     include_once("camera.php.inc");
     $resultString = takePicture();
+    dbg('take picture result string');
     dbg($resultString);
     preg_match('/http:(.*)%21/', $resultString, $photoMatches);
     $photoURL = $photoMatches[0];
@@ -19,11 +20,9 @@
     $originalFilePath = $directory."/original/".$fileMatches[0].".jpg";
 
     $photoContents = file_get_contents($photoURL);
-    file_put_contents($originalFilePath, $photoContents);
+    dbg('file put seccess?');
+    dbg(file_put_contents($originalFilePath, $photoContents));
     //file_put_contents($localPath,$photoContents);
-    dbg('original: '.$originalFilePath);
-    dbg('local: '.($localPath));
-    dbg('photo: '.$photoURL);
     //rotate and crop
     $degree = floatval(getenv("PHOTO_ROTATE"));
     $width = intval(getenv("PHOTO_CROP_W"));

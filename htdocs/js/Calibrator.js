@@ -48,11 +48,19 @@ var CalibrateController = {
     obj.mousemove(function(e){
       target.text(obj.val());
       CalibrateController.updateConfig();
-      //PlayController.draw();
       PlayController.show(PlayConfig.index,true);
     }); 
   },
+  update : function(){
+    $('#px').text = $('#x').val();
+    $('#py').text = $('#y').val();
 
+    $('#pw').text = $('#w').val();
+    $('#ph').text = $('#h').val();
+      CalibrateController.updateConfig();
+      PlayController.show(PlayConfig.index,true);
+
+  },
   initProject: function(id) {
     if(CommonController.localConfig != ""){
       $('#x').val(CommonController.localConfig.x);
