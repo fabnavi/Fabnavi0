@@ -2,20 +2,20 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this file,
  * You can obtain one at http://mozilla.org/MPL/2.0/. */
 var Note = {
-  take: function() {
-    $('#take').hide();
+  shoot: function() {
+    $('#shoot').hide();
     $('li').hide();
     $('#contents').hide();
     document.body.style.backgroundColor = "#000000";
     setTimeout(function() {
-      CommonController.getJSON("/api/takeNote.php?project_id="+PlayConfig.projectName, 
+      CommonController.getJSON("/api/shootNote.php?project_id="+PlayConfig.projectName, 
         function(result, error) {
           if (error) {
             alert(error);
             return;
           }
           Note.postNote(result["url"].substring(3));
-          $('#take').show();
+          $('#shoot').show();
           $('#contents').show();
         });
     }, 10);

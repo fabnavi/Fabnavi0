@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="/css/record.css" type="text/css">
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/ProjectList.js"></script>
+    <script type="text/javascript" src="/js/Calibrator.js"></script>
+    <script type="text/javascript" src="/js/Analyzer.js"></script>
+    <script type="text/javascript" src="/js/Note.js"></script>
+    <script type="text/javascript" src="/js/Player.js"></script>
     <script type="text/javascript" src="/js/PlayConfig.js"></script>
     <script type="text/javascript" src="/js/record.js"></script>
     <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -17,7 +22,6 @@
   <body>
     <?php include('header.php.inc'); ?>
     <div id="projectList">
-      <button id="start">start to record</button>
       <button id="take">take a picture</button>
       <ul id="processes"></ul>
     </div>
