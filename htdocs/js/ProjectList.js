@@ -13,6 +13,7 @@ var ProjectList = {
       }
       var projectList = $("#projectList");
       document.getElementById('newProject').onclick = function(){
+        PlayController.recorderKeyBind();
         RecordController.newProject();
         console.log("start");
       };
@@ -34,6 +35,7 @@ var ProjectList = {
           ProjectList.selectedId = e.currentTarget.id;
         });
         li.dblclick(function(e){
+          PlayController.playerKeyBind();
           PlayController.play(e.currentTarget.id);
         });
         projectList.append(li);
@@ -41,6 +43,7 @@ var ProjectList = {
       }
       document.getElementById('makeButton').onclick = function(){ 
         if(ProjectList.selectedId){
+          PlayController.playerKeyBind();
           PlayController.play(ProjectList.selectedId);
         }
       }

@@ -8,12 +8,13 @@ var Note = {
     $('#contents').hide();
     document.body.style.backgroundColor = "#000000";
     setTimeout(function() {
-      CommonController.getJSON("/api/shootNote.php?project_id="+PlayConfig.projectName, 
+      CommonController.getJSON("/api/takeNote.php?project_id="+PlayConfig.projectName, 
         function(result, error) {
           if (error) {
             alert(error);
             return;
           }
+          console.log("shot note");
           Note.postNote(result["url"].substring(3));
           $('#shoot').show();
           $('#contents').show();

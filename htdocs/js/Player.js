@@ -4,7 +4,6 @@
 var PlayController = {
   init: function() {
     PlayController.defaultInit();
-    PlayController.initKeyBind();
     CalibrateController.init();
 
     ProjectList.load();
@@ -43,8 +42,8 @@ var PlayController = {
     this.cvs.height = screen.height;
   },
 
-  initKeyBind: function () {
-    $(window).keydown(function(e) {
+  playerKeyBind: function () {
+    window.onkeydown = function(e) {
       switch (e.keyCode) {
         case 97 : 
         case 37 : {
@@ -84,7 +83,8 @@ var PlayController = {
           break;
         }
         case 13: {
-          Note.take();
+          //Note.take();
+          Note.shoot();
           break;
         }
         case 86 : {
@@ -92,10 +92,62 @@ var PlayController = {
           break;
         }
       }
-    });
+    };
 
   },
 
+  recorderKeyBind: function () {
+    window.onkeydown = function(e) {
+      switch (e.keyCode) {
+        case 97 : 
+        case 37 : {
+          PlayController.previousWithAnimation();
+          break;
+        }
+        case 99 : 
+        case 39 : {
+          PlayController.nextWithAnimation();
+          break;
+        }
+        case 81 :
+        case 27 : {
+          if(typeof(ListController) != "undefined")ListController.clear();
+          PlayConfig.initProject();
+          CommonController.localConfig = "";
+          $('#projectList').show();
+          $('#contents').hide();
+          document.title = "Play: FabNavi";
+          break;
+        }
+        case 52 : {
+          PlayController.previous();
+          break;
+        }
+        case 54 : {
+          PlayController.next();
+          break;
+        }
+        case 32 :
+        case 105 : {
+          window.close();
+          break;
+        }
+        case 104 : {
+          location.reload();
+          break;
+        }
+        case 13: {
+          RecordController.shoot();
+          break;
+        }
+        case 86 : {
+          PlayController.info();
+          break;
+        }
+      }
+    };
+
+  },
   exitProject : function(){
 
   },

@@ -16,7 +16,6 @@
     $localPath = $directory."/".$fileMatches[0].".jpg";
     $result["url"] = $localPath;
     $originalFilePath = $directory."/original/".$fileMatches[0].".jpg";
-
     $photoContents = file_get_contents($photoURL);
     file_put_contents("$originalFilePath", $photoContents);
     file_put_contents("$localPath", $photoContents);
