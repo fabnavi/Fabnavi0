@@ -28,6 +28,11 @@
     <?php include('header.php.inc'); ?>
     <div id="projectList">
       <ul id="project-list"></ul>
+      <div id="buttons">
+        <input type="button" id="editButton" value="Edit">
+        <input type="button" id="makeButton" value="Make!">
+      </div>
+      <li id="newProject">New Project</li>
     </div>
     <div id="contents">
       <button id="start">start to record</button>

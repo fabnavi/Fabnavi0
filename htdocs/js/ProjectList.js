@@ -1,10 +1,11 @@
 var ProjectList = {
   init : function () {
-    
+
   },
 
   load :function () {
-   console.log("project list loader initializer");
+    ProjectList.selectedId = "";
+    console.log("project list loader initializer");
     CommonController.getJSON("api/getProjectList.php", function(result, error) {
       if (error) {
         alert(error);
@@ -24,15 +25,30 @@ var ProjectList = {
         li.append(image);
         li.attr("id", id);
         li.click(function(e){
-          var target = $(e.currentTarget);
-          var id = target.attr("id");
-          ProjectList.selected(id);
+          $('li').removeClass('selectedItem');
+          e.currentTarget.className = 'selectedItem';
+          ProjectList.selectedId = e.currentTarget.id;
         });
-
+        li.dblclick(function(e){
+          PlayController.play(e.currentTarget.id);
+        });
         projectList.append(li);
+
+      }
+      document.getElementById('makeButton').onclick = function(){ 
+        if(ProjectList.selectedId){
+          PlayController.play(ProjectList.selectedId);
+        }
+      }
+
+      document.getElementById('editButton').onclick = function(){ 
+        if(ProjectList.selectedId){
+         console.log("clicked edit");
+        }
       }
     });
   },
+
   selected: function(id){
     console.log("Not implemented yet. "+id + " was selected."); 
   }

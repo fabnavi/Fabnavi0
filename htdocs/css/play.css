@@ -7,6 +7,19 @@ ul {
 li {
   float: left;
   margin: 1em;
+  border : 2px white solid;
+  list-style:none;
+}
+
+#newProject{
+  width:200px;
+  height : 150px;
+  text-align: center;
+  font-size:30px;
+}
+
+.selectedItem{
+  border : 2px red solid;
 }
 
 .thumbnail {
@@ -20,6 +33,12 @@ li {
 input[type="range"]{
   width:400px;
 }
+#buttons{
+ position:fixed;
+ top:80%;
+ left:50%;
+}
+
 #take{
  position:absolute;
  left:0px;
