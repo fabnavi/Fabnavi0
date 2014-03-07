@@ -18,7 +18,7 @@ var ListController　= {
 
   show : function (){
   },
-
+  
   append : function (data){
     var a = data.split('/');
     var str = a[a.length-1];

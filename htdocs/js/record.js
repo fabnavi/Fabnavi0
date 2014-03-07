@@ -19,7 +19,8 @@ var RecordController = {
 
   shoot: function() {
     $('#shoot').hide();
-    $('li').hide();
+    $('#projectList').hide();
+    $('#contents').hide();
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {
       CommonController.getJSON("/api/takePicture.php?project_id="+PlayConfig.projectName, function(result, error) {
@@ -31,13 +32,20 @@ var RecordController = {
         var img = $(document.createElement("img"));
         img.attr("src", result["url"]);
         PlayConfig.imgURLs.splice(PlayConfig.index+1,0,result["url"]);
-        li.append(img);
-        li.hide();
-        $("#processes").append(li);
+        RecordController.updateList();
         PlayConfig.index++;
+        PlayController.next();
+        PlayConfig.postConfig();
+        $('#shoot').show();
+        $('#contents').show();
       });
     }, 10);
-    PlayConfig.postConfig();
+  },
+  updateList: function () {
+     ListController.clear();
+     for(key in PlayConfig.imgURLs){
+        ListController.append(PlayConfig.imgURLs[i]);
+     }
   }
 };
 

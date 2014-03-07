@@ -50,6 +50,8 @@ var ProjectList = {
 
       document.getElementById('editButton').onclick = function(){ 
         if(ProjectList.selectedId){
+          PlayController.recorderKeyBind();
+          PlayController.play(ProjectList.selectedId);
          console.log("clicked edit");
         }
       }
