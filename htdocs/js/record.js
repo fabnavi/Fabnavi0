@@ -5,6 +5,7 @@ var RecordController = {
 
   newProject : function() {
     $("#start").hide();
+    $('#projectList').hide();
     PlayConfig.init();
     CommonController.getJSON("/api/startProject.php", function(result, error) {
       if (error) {
