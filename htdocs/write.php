@@ -11,7 +11,6 @@
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
     <script type="text/javascript" src="/js/ProjectList.js"></script>
-    <script type="text/javascript" src="/js/Analyzer.js"></script>
     <script type="text/javascript" src="/js/Calibrator.js"></script>
     <script type="text/javascript" src="/js/PlayConfig.js"></script>
     <script type="text/javascript" src="/js/Player.js"></script>
@@ -25,8 +24,6 @@
       <button id="take">take a picture</button>
       <img id="photo" alt="">
       <canvas id="cvs"></canvas>
-      <img id="note"  alt="">
-      <ul id="processes"></ul>
     </div>
     <?php include('footer.php.inc'); ?>
   </body>

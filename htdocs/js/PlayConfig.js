@@ -53,7 +53,7 @@ var PlayConfig = {
     PlayConfig.notes = [];
   },
 
-  projectInit: function(id){
+  initProject: function(id){
     PlayConfig.init(id);
     var d = new $.Deferred();
     var url = "data/"+id+"/fabnavi.play.config";

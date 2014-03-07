@@ -29,9 +29,9 @@ var Analyzer = {
       if(imageData.data[i+2] > blue&&
           imageData.data[i+1] <green && 
           imageData.data[i] < red){
-            imageData.data[i] = 255;
+            imageData.data[i+2] = 255;
             imageData.data[i+3] = 255;
-            imageData.data[i+2] = 0;
+            imageData.data[i] = 0;
             imageData.data[i+1] = 0;
           }
       else {

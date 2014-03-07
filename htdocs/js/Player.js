@@ -42,6 +42,7 @@ var PlayController = {
     this.cvs.width = screen.width;
     this.cvs.height = screen.height;
   },
+
   initKeyBind: function () {
     $(window).keydown(function(e) {
       switch (e.keyCode) {
@@ -58,7 +59,7 @@ var PlayController = {
         case 81 :
         case 27 : {
           if(typeof(ListController) != "undefined")ListController.clear();
-          PlayConfig.projectInit();
+          PlayConfig.initProject();
           CommonController.localConfig = "";
           $('#projectList').show();
           $('#contents').hide();
@@ -80,6 +81,10 @@ var PlayController = {
         }
         case 104 : {
           location.reload();
+          break;
+        }
+        case 13: {
+          Note.take();
           break;
         }
         case 86 : {
@@ -130,8 +135,8 @@ var PlayController = {
     if(CommonController.localConfig == ""){
       CommonController.localConfig = {x:0,y:0,w:$('#photo').width(),h:$('#photo').height()};
     }
-    CalibrateController.play(id);
-    PlayConfig.projectInit(id).then(function(){
+    CalibrateController.initProject(id);
+    PlayConfig.initProject(id).then(function(){
       PlayController.playSlide(id);
     });
   },

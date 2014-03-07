@@ -53,7 +53,7 @@ var CalibrateController = {
     }); 
   },
 
-  play: function(id) {
+  initProject: function(id) {
     if(CommonController.localConfig != ""){
       $('#x').val(CommonController.localConfig.x);
       $('#y').val(CommonController.localConfig.y);

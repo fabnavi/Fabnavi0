@@ -16,6 +16,8 @@
     <script type="text/javascript" src="/js/PlayConfig.js"></script>
     <script type="text/javascript" src="/js/ProjectList.js"></script>
     <script type="text/javascript" src="/js/Calibrator.js"></script>
+    <script type="text/javascript" src="/js/Analyzer.js"></script>
+    <script type="text/javascript" src="/js/Note.js"></script>
     <script type="text/javascript" src="/js/Player.js"></script>
     <script type="text/javascript" src="/js/list.js"></script>
 
@@ -27,12 +29,12 @@
       <ul id="project-list"></ul>
     </div>
     <div id="contents">
+      <button id="take">take a picture</button>
       <img id="photo" width="4928" height="3715">
       <canvas id="cvs"></canvas>
       <div id="counter"></div>
       <div id="arrow">▶</div>
       <div id="panel">
-        <input type="button" value="save annotations">
       <div class="param">
               <div id="px"></div>
               <input max="3000" min="1" type="range" id="x" step="1">
@@ -46,6 +48,8 @@
       <div id="info">
       </div>
       <input type="button" value="save config" id="save">
+      <img id="note"  alt="">
+      <ul id="processes"></ul>
       </div>
     </div>
     <?php include('footer.php.inc'); ?>
