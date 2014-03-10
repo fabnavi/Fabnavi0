@@ -14,7 +14,6 @@ var Note = {
             alert(error);
             return;
           }
-          console.log("shot note");
           Note.postNote(result["url"].substring(3));
           $('#shoot').show();
           $('#contents').show();
@@ -27,7 +26,6 @@ var Note = {
       var img = new Image();
       img.src = note;
       img.onload = function(){
-        console.log("note loaded");
         PlayController.drawImage(img);
         setTimeout(function() { img = null; }, 100);
       }

@@ -5,7 +5,6 @@ var ProjectList = {
 
   load :function () {
     ProjectList.selectedId = "";
-    console.log("project list loader initializer");
     CommonController.getJSON("api/getProjectList.php", function(result, error) {
       if (error) {
         alert(error);
@@ -52,7 +51,6 @@ var ProjectList = {
         if(ProjectList.selectedId){
           PlayController.recorderKeyBind();
           PlayController.play(ProjectList.selectedId);
-         console.log("clicked edit");
         }
       }
     });

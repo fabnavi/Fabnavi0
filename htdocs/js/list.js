@@ -62,8 +62,6 @@ var ListController　= {
   insert : function (id1,id2){
     var a = this.idToElem(id1);
     var b = this.idToElem(id2);
-    console.log(a.index());
-    console.log(b.index());
     PlayConfig.insertIndex(b.index()-1,a.index()-1);
     a.after(b);
   },

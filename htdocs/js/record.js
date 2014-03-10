@@ -13,7 +13,6 @@ var RecordController = {
         return;
       }
       PlayConfig.projectName = result["id"];
-      $("#shoot").click(RecordController.shoot);
     });
   },
 
