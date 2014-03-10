@@ -14,8 +14,8 @@ var CalibrateController = {
     CalibrateController.cvs = document.getElementById('cvs');
     CalibrateController.ctx = CalibrateController.cvs.getContext('2d');
     CalibrateController.image = document.getElementById('photo');
-    CalibrateController.cvs.height = $(document).height();
-    CalibrateController.cvs.width = $(document).width();
+    CalibrateController.cvs.height = screen.height;
+    CalibrateController.cvs.width = screen.width;
     $("#save").click(CalibrateController.saveConfig);
 
   },
