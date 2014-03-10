@@ -2,15 +2,13 @@ var ListController　= {
 
   init : function () {
     this.elem = $(
-        '<table border="5" width="300">\
-        <tbody id="list">\
+        '<tbody id="list">\
         <tr>\
         <td>#</td>\
         <td>file name</td>\
         <td>col3</td>\
         </tr>\
-        </tbody>\
-        </table>');
+        </tbody>');
     $("#panel").append(this.elem);
     this.selected = [];
     this.show();
