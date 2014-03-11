@@ -35,8 +35,6 @@
       <li id="newProject">New Project</li>
     </div>
     <div id="contents">
-      <button id="start">start to record</button>
-      <button id="shoot">take a picture</button>
       <img id="photo" width="4928" height="3715">
       <canvas id="cvs"></canvas>
       <div id="counter"></div>
