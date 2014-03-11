@@ -48,7 +48,7 @@ var CalibrateController = {
     obj.mousemove(function(e){
       target.text(obj.val());
       CalibrateController.updateConfig();
-      PlayController.show(PlayConfig.index,true);
+      PlayController.show(PlayConfig.index);
     }); 
   },
   update : function(){
@@ -58,7 +58,7 @@ var CalibrateController = {
     $('#pw').text = $('#w').val();
     $('#ph').text = $('#h').val();
       CalibrateController.updateConfig();
-      PlayController.show(PlayConfig.index,true);
+      PlayController.show(PlayConfig.index);
 
   },
   initProject: function(id) {

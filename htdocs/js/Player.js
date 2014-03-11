@@ -26,9 +26,11 @@ var PlayController = {
 
     if(typeof(ListController) != "undefined")ListController.rowClicked = function(e){
       for(i in PlayConfig.imgURLs){
+        console.log(PlayConfig.imgURLs[i].indexOf(e.currentTarget.id));
+          console.log(i);
         if(PlayConfig.imgURLs[i].indexOf(e.currentTarget.id) != -1){
-          PlayController.setPhoto(i);
           PlayConfig.index = i;
+          PlayController.show(i);
           break;
         }
       }
@@ -44,17 +46,8 @@ var PlayController = {
 
   playerKeyBind: function () {
     window.onkeydown = function(e) {
+      console.log(e.keyCode);
       switch (e.keyCode) {
-        case 97 : 
-        case 37 : {
-          PlayController.previousWithAnimation();
-          break;
-        }
-        case 99 : 
-        case 39 : {
-          PlayController.nextWithAnimation();
-          break;
-        }
         case 81 :
         case 27 : {
           if(typeof(ListController) != "undefined")ListController.clear();
@@ -65,11 +58,13 @@ var PlayController = {
           document.title = "Play: FabNavi";
           break;
         }
-        case 52 : {
+        case 37 :
+        case 97 : {
           PlayController.previous();
           break;
         }
-        case 54 : {
+        case 39 :
+        case 99 : {
           PlayController.next();
           break;
         }
@@ -83,7 +78,6 @@ var PlayController = {
           break;
         }
         case 13: {
-          //Note.take();
           Note.shoot();
           break;
         }
@@ -99,16 +93,6 @@ var PlayController = {
   recorderKeyBind: function () {
     window.onkeydown = function(e) {
       switch (e.keyCode) {
-        case 97 : 
-        case 37 : {
-          PlayController.previousWithAnimation();
-          break;
-        }
-        case 99 : 
-        case 39 : {
-          PlayController.nextWithAnimation();
-          break;
-        }
         case 81 :
         case 27 : {
           if(typeof(ListController) != "undefined")ListController.clear();
@@ -157,7 +141,9 @@ var PlayController = {
   },
 
   draw: function(){
+   window.setTimeout(function(){
     PlayController.drawImage(document.getElementById('photo'));
+   },150);
   },
 
   drawNote:function (noteURL){
@@ -189,6 +175,7 @@ var PlayController = {
     }
     CalibrateController.initProject(id);
     PlayConfig.initProject(id).then(function(){
+      console.log("show");
       PlayController.playSlide(id);
     });
   },
@@ -204,7 +191,7 @@ var PlayController = {
     if (parameters["s"]) {
       startIndex = parseInt(parameters["s"])-1;
     }
-    PlayController.show(startIndex, true);
+    PlayController.show(startIndex);
     $("#contents").show();
   },
 
@@ -227,39 +214,23 @@ var PlayController = {
 
   previous: function() {
     if (PlayConfig.index == 0) {
-      PlayController.show(PlayConfig.imgURLs.length-1, false);
+      PlayController.show(PlayConfig.imgURLs.length-1);
     } else {
-      PlayController.show(PlayConfig.index-1, false);
+      PlayController.show(PlayConfig.index-1);
     }
   },
 
-  previousWithAnimation: function() {
-    if (PlayController.current_animation) {
-      PlayConfig.index = PlayController.current_animation.startIndex;
-      PlayController.previous();
-    } else {
-      PlayController.previous();
-    }
-  },
 
   next: function() {
     if (PlayConfig.index == PlayConfig.imgURLs.length-1) {
-      PlayController.show(0, true);
+      PlayController.show(0);
     } else {
-      PlayController.show(Number(PlayConfig.index)+1, true);
+      PlayController.show(Number(PlayConfig.index)+1);
     }
   },
 
-  nextWithAnimation: function() {
-    if (PlayController.current_animation) {
-      PlayConfig.index = PlayController.current_animation.endIndex;
-      PlayController.next();
-    } else {
-      PlayController.next();
-    }
-  },
 
-  show: function(index, toNEXT) {
+  show: function(index) {
     $("#arrow").text("");
     clearTimeout(PlayController.timerid);
     //---------Annotations
@@ -275,18 +246,6 @@ var PlayController = {
     PlayController.current_animation = null;
     PlayConfig.index = index;
     PlayController.setPhoto(index);
-  },
-
-  setAnnotation: function(x,y,angle){
-    var a = $('<img>',{class:'annotations'});
-    a.attr('src','annotations/arrow.svg'); 
-    a.css({
-      "left":-200+x+"px", //padding of coordinate image pointed 
-      "top":-50+y+"px", //TODO : get from configXML in htdocs/annotations
-      "transform-origin":"200px 50px", //pointed coordinate
-      "transform":"rotate("+angle+"deg)"
-    });
-    a.appendTo($('#contents'));
   },
 
   setPhoto: function(index) {

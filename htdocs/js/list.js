@@ -76,10 +76,6 @@ var ListController　= {
     PlayConfig.removeIndex(elem.index()-1);
   },
 
-  selectByIndex: function(index){
-
-  },
-
   idToElem: function(id){
     return $('#'+id);
   },
@@ -99,6 +95,7 @@ var ListController　= {
     var target = this.idToElem(id);
     $('.data').css('background-color','transparent');
     target.css('background-color','rgba(200,0,0,0.7)');
+    console.log(id);
   },
 
   clear : function(){
