@@ -8,6 +8,7 @@ var PlayController = {
 
     ProjectList.load();
     ProjectList.selected = PlayController.play;
+    $('#panel').hide();
     $('#projectList').show();
     $('#contents').hide();
     if(ID != ""){
@@ -167,6 +168,7 @@ var PlayController = {
   },
 
   play: function(id) {
+    
     $('#projectList').hide();
     $('#contents').show();
     CommonController.getLocalConfig(id);
@@ -255,7 +257,7 @@ var PlayController = {
       ListController.selectByName(url);
     }
     $("#photo").attr("src",url); 
-    $("#counter").text((index+1)+"/"+PlayConfig.imgURLs.length);
+    $("#counter").text((Number(index)+1)+"/"+PlayConfig.imgURLs.length);
     PlayController.draw();
     for(i in PlayConfig.notes){
       if(PlayConfig.notes[i].index == PlayConfig.index)PlayController.drawNote(PlayConfig.notes[i].url);

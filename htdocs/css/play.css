@@ -31,7 +31,7 @@ li {
  width:600px;
 }
 input[type="range"]{
-  width:400px;
+  width:600px;
 }
 #buttons{
  position:fixed;
@@ -109,7 +109,7 @@ input[type="range"]{
 #list {
   position: absolute;
   top: 40px;
-  left: 0%;
+  left: -100px;
   color: white;
  background-color: rgba(0, 0, 0, 0.6);
 }
