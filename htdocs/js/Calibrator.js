@@ -54,7 +54,6 @@ var CalibrateController = {
   update : function(){
     $('#px').text = $('#x').val();
     $('#py').text = $('#y').val();
-
     $('#pw').text = $('#w').val();
     $('#ph').text = $('#h').val();
       CalibrateController.updateConfig();
