@@ -53,6 +53,8 @@
       <div id="info">
       </div>
       <input type="button" value="save config" id="save">
+      <input type="button" value="save PlayList" id="savePlaylist">
+      <input type="button" value="delete slide" id="delete">
       <img id="note"  alt="">
       <ul id="processes"></ul>
       </div>

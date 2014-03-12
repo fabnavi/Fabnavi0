@@ -12,6 +12,9 @@ var ListController　= {
     $("#panel").append(this.elem);
     this.selected = [];
     this.show();
+    $('#delete').click(function(){
+      ListController.remove(PlayConfig.index);
+    });
   },
 
   show : function (){
@@ -70,10 +73,11 @@ var ListController　= {
     return this.selected[this.selected.length-1];
   },
 
-  remove: function(id){
-    var elem = this.idToElem(id);
+  remove: function(index){
+    var elem = this.idToElem(index);
     elem.remove();
-    PlayConfig.removeIndex(elem.index()-1);
+    PlayConfig.removeIndex(index);
+    PlayConfig.postConfig();
   },
 
   idToElem: function(id){
