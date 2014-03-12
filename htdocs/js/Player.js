@@ -22,9 +22,8 @@ var PlayController = {
         $('img').show();
       },300);
     }
-    if(typeof(ListController) != "undefined")ListController.init();
-
-    if(typeof(ListController) != "undefined")ListController.rowClicked = function(e){
+    ListController.init();
+    ListController.rowClicked = function(e){
       for(i in PlayConfig.imgURLs){
         if(PlayConfig.imgURLs[i].indexOf(e.currentTarget.id) != -1){
           PlayConfig.index = i;

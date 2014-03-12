@@ -15,6 +15,7 @@ var ProjectList = {
         PlayConfig.fastDraw = true;
         PlayController.recorderKeyBind();
         RecordController.newProject();
+        PlayController.info();
       };
       for (var i = 0, n = result.length; i < n; i++) {
         var project = result[i];
@@ -54,6 +55,7 @@ var ProjectList = {
           PlayConfig.fastDraw = true;
           PlayController.recorderKeyBind();
           PlayController.play(ProjectList.selectedId);
+          PlayController.info();
         }
       }
     });
