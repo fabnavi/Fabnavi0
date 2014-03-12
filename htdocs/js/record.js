@@ -32,8 +32,6 @@ var RecordController = {
         img.attr("src", result["url"]);
         PlayConfig.imgURLs.splice(PlayConfig.index+1,0,result["url"]);
         RecordController.updateList();
-        //PlayConfig.index++;
-//        CalibrateController.updateConfig();
         PlayConfig.postConfig();
         PlayController.next();
         window.setTimeout(function(){

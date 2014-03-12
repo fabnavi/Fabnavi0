@@ -14,7 +14,6 @@ var ProjectList = {
       document.getElementById('newProject').onclick = function(){
         PlayController.recorderKeyBind();
         RecordController.newProject();
-        console.log("start");
       };
       for (var i = 0, n = result.length; i < n; i++) {
         var project = result[i];

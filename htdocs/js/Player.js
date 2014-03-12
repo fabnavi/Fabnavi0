@@ -15,7 +15,6 @@ var PlayController = {
       $('#projectList').hide();
       $('#contents').hide();
       $('img').hide();
-      console.log(ID);
       PlayController.play(ID);
       $('img').hide();
       window.setTimeout(function(){
@@ -27,8 +26,6 @@ var PlayController = {
 
     if(typeof(ListController) != "undefined")ListController.rowClicked = function(e){
       for(i in PlayConfig.imgURLs){
-        console.log(PlayConfig.imgURLs[i].indexOf(e.currentTarget.id));
-          console.log(i);
         if(PlayConfig.imgURLs[i].indexOf(e.currentTarget.id) != -1){
           PlayConfig.index = i;
           PlayController.show(i);
