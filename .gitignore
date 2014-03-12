@@ -3,4 +3,5 @@
 htdocs/data/*
 samples/nex/jpeg*
 *.config
+*tmp
 
