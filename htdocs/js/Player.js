@@ -139,9 +139,14 @@ var PlayController = {
   },
 
   draw: function(){
-   window.setTimeout(function(){
-    PlayController.drawImage(document.getElementById('photo'));
-   },150);
+   console.log(PlayConfig.fastDraw);
+    if(PlayConfig.fastDraw){
+      PlayController.drawImage(document.getElementById('photo'));
+    } else {
+      window.setTimeout(function(){
+        PlayController.drawImage(document.getElementById('photo'));
+      },150);
+    }
   },
 
   drawNote:function (noteURL){
@@ -165,7 +170,7 @@ var PlayController = {
   },
 
   play: function(id) {
-    
+
     $('#projectList').hide();
     $('#contents').show();
     CommonController.getLocalConfig(id);

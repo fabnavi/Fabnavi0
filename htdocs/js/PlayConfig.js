@@ -43,6 +43,8 @@ var PlayConfig = {
     }
   },
 
+  fastDraw:false,
+
   init : function(id){
     PlayConfig.index = -1;
     PlayConfig.imgURLs = [];
@@ -101,7 +103,7 @@ var PlayConfig = {
     }
 
     if(notes.length > 0)for(i in notes){
-//      notes[i].index--;
+      //      notes[i].index--;
       PlayConfig.notes.push(notes[i]);
     }
 

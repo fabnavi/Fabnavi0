@@ -12,6 +12,7 @@ var ProjectList = {
       }
       var projectList = $("#projectList");
       document.getElementById('newProject').onclick = function(){
+        PlayConfig.fastDraw = true;
         PlayController.recorderKeyBind();
         RecordController.newProject();
       };
@@ -33,6 +34,7 @@ var ProjectList = {
           ProjectList.selectedId = e.currentTarget.id;
         });
         li.dblclick(function(e){
+        PlayConfig.fastDraw = false;
           PlayController.playerKeyBind();
           PlayController.play(e.currentTarget.id);
         });
@@ -41,6 +43,7 @@ var ProjectList = {
       }
       document.getElementById('makeButton').onclick = function(){ 
         if(ProjectList.selectedId){
+          PlayConfig.fastDraw = false;
           PlayController.playerKeyBind();
           PlayController.play(ProjectList.selectedId);
         }
@@ -48,6 +51,7 @@ var ProjectList = {
 
       document.getElementById('editButton').onclick = function(){ 
         if(ProjectList.selectedId){
+          PlayConfig.fastDraw = true;
           PlayController.recorderKeyBind();
           PlayController.play(ProjectList.selectedId);
         }
