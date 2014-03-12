@@ -16,12 +16,13 @@ function dbg($data){
 }
 
 function execute($method, $params, $id) {
- //NEX 5R
- // $host = "192.168.122.1";
- // $port = 8080;
-  //qx-10
- $host = "10.0.0.1";
-  $port = 10000;
+  if(getenv("CAMERA") == 'NEX5R'){
+    $host = "192.168.122.1";
+    $port = 8080;
+  } else if(getenv("CAMERA") == 'QX10'){
+    $host = "10.0.0.1";
+    $port = 10000;
+  }
   $command = array();
   $command["method"] = $method;
   $command["params"] = $params;
@@ -36,6 +37,8 @@ function execute($method, $params, $id) {
   } 
   socket_set_timeout($fp, 2);
   fputs($fp, "POST /sony/camera HTTP/1.1\r\nContent-Length: ".$contentLength."\r\n\r\n".$commandJSON);
+  dbg("url");
+  dbg( "POST /sony/camera HTTP/1.1\r\nContent-Length: ".$contentLength."\r\n\r\n".$commandJSON);
   $resultString = "";
   while (!feof($fp)) {
     $resultString .= fgets($fp, 128);

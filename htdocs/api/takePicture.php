@@ -1,4 +1,6 @@
 <?php
+  
+  $CAMERA = getenv('CAMERA');
   $project_id = $_GET["project_id"];
   error_reporting(E_ERROR);
   $dataDirectory = getenv("DATA_DIRECTORY");
@@ -10,11 +12,18 @@
     $resultString = takePicture();
     dbg('take picture result string');
     dbg($resultString);
-    preg_match('/http:(.*)%21/', $resultString, $photoMatches);
+    if($CAMERA == 'QX10'){
+      preg_match('/http:(.*)%21/', $resultString, $photoMatches);
+    } else if ('NEX5R'){
+      preg_match("/(http:.+[.]JPG)/i", $resultString, $photoMatches);
+    }
     $photoURL = $photoMatches[0];
-//    $photoURL = substr($photoURL,strlen($photoURL)-2);
     $result["photoURL"] = dbg($photoURL);
-    preg_match("/pict(.*).JPG/i", $photoURL, $fileMatches);
+    if($CAMERA == 'QX10'){
+      preg_match("/pict(.*).JPG/i", $photoURL, $fileMatches);
+    }else if ($CAMERA == 'NEX5R'){
+      preg_match("/([^\/]+)$/i", $photoURL, $fileMatches);
+    }
     $localPath = $directory."/".$fileMatches[0].".jpg";
     $result["url"] = $localPath;
     $originalFilePath = $directory."/original/".$fileMatches[0].".jpg";
