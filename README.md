@@ -70,18 +70,8 @@ htdocs の下に data ディレクトリを 777 で作成
 </Directory>
 ```
 
-5. キャリブレーション設定
-撮影された写真の回転および切り抜きの設定は、.htaccess の以下のプロパティを編集することで変更できます。
 
-```
-SetEnv PHOTO_ROTATE 180.5
-SetEnv PHOTO_CROP_X 200
-SetEnv PHOTO_CROP_Y 100
-SetEnv PHOTO_CROP_W 800
-SetEnv PHOTO_CROP_H 600
-```
-
-6. 操作マシンとカメラを接続
+5. 操作マシンとカメラを接続
 カメラのリモートコントローラを起動し、操作マシンをカメラのWIFIに接続する。
 
 
