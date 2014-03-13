@@ -21,6 +21,7 @@ var ProjectList = {
         var project = result[i];
         var id = project.id;
         var thumbnail = project.thumbnail;
+        console.log(id);
 
         var image = $(document.createElement("img"));
         image.attr("src", thumbnail);
@@ -39,6 +40,10 @@ var ProjectList = {
           PlayController.playerKeyBind();
           PlayController.play(e.currentTarget.id);
         });
+        var title = $('<div>');
+        title.text(id);
+        li.append(title);
+        
         projectList.append(li);
 
       }
