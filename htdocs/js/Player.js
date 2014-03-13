@@ -138,12 +138,18 @@ var PlayController = {
   },
 
   draw: function(){
-   console.log(PlayConfig.fastDraw);
+    console.log(PlayConfig.fastDraw);
     if(PlayConfig.fastDraw){
       PlayController.drawImage(document.getElementById('photo'));
+      for(i in PlayConfig.notes){
+        if(PlayConfig.notes[i].index == PlayConfig.index)PlayController.drawNote(PlayConfig.notes[i].url);
+      }
     } else {
       window.setTimeout(function(){
         PlayController.drawImage(document.getElementById('photo'));
+        for(i in PlayConfig.notes){
+          if(PlayConfig.notes[i].index == PlayConfig.index)PlayController.drawNote(PlayConfig.notes[i].url);
+        }
       },150);
     }
   },
@@ -260,9 +266,6 @@ var PlayController = {
     $("#photo").attr("src",url); 
     $("#counter").text((Number(index)+1)+"/"+PlayConfig.imgURLs.length);
     PlayController.draw();
-    for(i in PlayConfig.notes){
-      if(PlayConfig.notes[i].index == PlayConfig.index)PlayController.drawNote(PlayConfig.notes[i].url);
-    }
     $('#cvs').css('display','block');
     $('#photo').css('display','none');
   },
