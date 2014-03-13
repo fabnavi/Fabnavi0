@@ -14,7 +14,7 @@
     dbg($resultString);
     if($CAMERA == 'QX10'){
       preg_match('/http:(.*)%21/', $resultString, $photoMatches);
-    } else if ('NEX5R'){
+    } else if ($CAMERA == 'NEX5R'){
       preg_match("/(http:.+[.]JPG)/i", $resultString, $photoMatches);
     }
     $photoURL = $photoMatches[0];
