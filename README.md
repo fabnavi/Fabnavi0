@@ -2,7 +2,7 @@
 設定は操作説明の下にあります。
 
 ##使い方
-```/play.php```にアクセスする
+```fabnavi.local```にアクセスする
 fabnaviはアクセスするとまずプロジェクト選択画面が表示されます。
 
 ##新しいプロジェクトをつくるとき 
@@ -39,9 +39,12 @@ fabnaviはアクセスするとまずプロジェクト選択画面が表示さ�
 
 ##セットアップ
 
-1. NEX
+1. カメラの設定
+###NEX-5Rの場合
 NEX5本体に PlayMemories Camera App のリモートコントローラをインストール
 ※アカウントが必要: https://www.playmemoriescameraapps.com/portal/
+###QX-10の場合
+特に必要ありません
 
 2. イメージディレクトリの用意
 htdocs の下に data ディレクトリを 777 で作成
@@ -59,10 +62,10 @@ htdocs の下に data ディレクトリを 777 で作成
         ServerName fabnavi.local
         ServerAdmin dadaaism@gmail.com
         ServerAlias fabnavi.local
-        DocumentRoot /Users/dadaa/WORKS/mozilla/projects/fabnavi/repositories/fabnavi/htdocs
+        DocumentRoot /path/to/your/fabnavi/htdocs
         ErrorLog /var/log/apache2/fabnavi.error_log
 </VirtualHost>
-<Directory "/Users/dadaa/WORKS/mozilla/projects/fabnavi/repositories/fabnavi/htdocs">
+<Directory "/path/to/your/fabnavi/htdocs">
   Options Indexes FollowSymLinks
   AllowOverride All
   Order allow,deny
@@ -70,8 +73,10 @@ htdocs の下に data ディレクトリを 777 で作成
 </Directory>
 ```
 
+5. .htaccessの設定
+htdocs/.htaccessを開き、CAMERAを指定する。現段階では、QX10かNEX5Rのどちらかを選んでください
 
-5. 操作マシンとカメラを接続
+6. 操作マシンとカメラを接続
 カメラのリモートコントローラを起動し、操作マシンをカメラのWIFIに接続する。
 
 
