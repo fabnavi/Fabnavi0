@@ -1,3 +1,8 @@
+
+R = 255;
+G = 255;
+B = 0;
+A = 1.0;
 var ProjectList = {
   init : function () {
 

@@ -54,6 +54,7 @@ var PlayConfig = {
     PlayConfig.projectName = id;
     PlayConfig.notes = [];
     $('#savePlaylist').click(PlayConfig.postConfig);
+    Panel.init();
   },
 
   initProject: function(id){

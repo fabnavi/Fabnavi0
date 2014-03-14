@@ -17,6 +17,7 @@
     <script type="text/javascript" src="/js/ProjectList.js"></script>
     <script type="text/javascript" src="/js/Calibrator.js"></script>
     <script type="text/javascript" src="/js/Analyzer.js"></script>
+    <script type="text/javascript" src="/js/Panel.js"></script>
     <script type="text/javascript" src="/js/Note.js"></script>
     <script type="text/javascript" src="/js/record.js"></script>
     <script type="text/javascript" src="/js/Player.js"></script>
@@ -50,6 +51,16 @@
               <div id="ph"></div>
               <input max="4000" min="1" type="range" id="h" step="1">
         </div>
+          <div >
+           <div id="R"></div>
+           <input type="range" id="Rval" min="1" max="255" step="1">
+           <div id="G"></div>
+           <input type="range" id="Gval" min="1" max="255" step="1">
+           <div id="B"></div>
+           <input type="range" id="Bval" min="1" max="255" step="1">
+           <div id="A"></div>
+           <input type="range" id="Aval" min="0" max="1.0" step="0.001">
+          </div>
         <div id="info">
         </div>
         <input type="button" value="save config" id="save">
