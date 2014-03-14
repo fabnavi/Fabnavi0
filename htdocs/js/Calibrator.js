@@ -50,6 +50,11 @@ var CalibrateController = {
       CalibrateController.updateConfig();
       PlayController.show(PlayConfig.index);
     }); 
+    obj.on('keydown',function(e){
+      target.text(obj.val());
+      CalibrateController.updateConfig();
+      PlayController.show(PlayConfig.index);
+    }); 
   },
   update : function(){
     $('#px').text = $('#x').val();
