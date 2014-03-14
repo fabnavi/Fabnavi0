@@ -18,7 +18,7 @@ var ProjectList = {
       var projectList = $("#projectList");
       document.getElementById('newProject').onclick = function(){
         PlayConfig.fastDraw = true;
-        PlayController.recorderKeyBind();
+        Keys.recorderKeyBind();
         RecordController.newProject();
         PlayController.info();
       };
@@ -41,21 +41,21 @@ var ProjectList = {
           ProjectList.selectedId = e.currentTarget.id;
         });
         li.dblclick(function(e){
-        PlayConfig.fastDraw = false;
-          PlayController.playerKeyBind();
+          PlayConfig.fastDraw = false;
+          Keys.playerKeyBind();
           PlayController.play(e.currentTarget.id);
         });
         var title = $('<div>');
         title.text(id);
         li.append(title);
-        
+
         projectList.append(li);
 
       }
       document.getElementById('makeButton').onclick = function(){ 
         if(ProjectList.selectedId){
           PlayConfig.fastDraw = false;
-          PlayController.playerKeyBind();
+          Keys.playerKeyBind();
           PlayController.play(ProjectList.selectedId);
         }
       }
@@ -63,7 +63,7 @@ var ProjectList = {
       document.getElementById('editButton').onclick = function(){ 
         if(ProjectList.selectedId){
           PlayConfig.fastDraw = true;
-          PlayController.recorderKeyBind();
+          Keys.recorderKeyBind();
           PlayController.play(ProjectList.selectedId);
           PlayController.info();
         }
