@@ -19,8 +19,12 @@ var Analyzer = {
     return dfd.promise();
   },
   test : function (r,g,b) {
-    PlayController.drawImage(
-        Analyzer.gen( Analyzer.pCvs.getContext('2d').getImageData(0,0,Analyzer.cvs.width,this.cvs.height),r,g,b));
+        Analyzer.gen( 
+          Analyzer.pCvs.getContext('2d').getImageData(
+            0,0,Analyzer.cvs.width,this.cvs.height),
+          r,g,b)).then(function(res){
+            PlayController.drawImage(res);
+          });;
   },
 
   gen: function (imageData,red,green,blue) {
