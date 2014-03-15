@@ -58,6 +58,10 @@ var Keys = {
           document.getElementById('h').focus();
           break;
         }
+        case 219:{
+          if(e.ctrlKey)document.activeElement.blur();
+          break;
+        }
       }
     };
 
@@ -102,6 +106,10 @@ var Keys = {
         }
         case 72:{
           document.getElementById('h').focus();
+          break;
+        }
+        case 219:{
+          if(e.ctrlKey)document.activeElement.blur();
           break;
         }
       }
