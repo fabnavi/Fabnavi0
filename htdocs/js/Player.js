@@ -50,7 +50,6 @@ var PlayController = {
   },
 
   draw: function(){
-    console.log(PlayConfig.fastDraw);
     if(PlayConfig.fastDraw){
       PlayController.drawImage(document.getElementById('photo'));
       for(i in PlayConfig.notes){
@@ -75,27 +74,38 @@ var PlayController = {
   },
 
   drawImage:function(image){
-    var sx = CommonController.localConfig.x;
-    var sy = CommonController.localConfig.y;
-    var sw = CommonController.localConfig.w;
-    var sh = CommonController.localConfig.h;
+    var sx = Number(CommonController.localConfig.x);
+    var sy = Number(CommonController.localConfig.y);
+    var sw = Number(CommonController.localConfig.w);
+    var sh = Number(CommonController.localConfig.h);
 
     var dx = 0;
     var dy = 0;
     var dw = PlayController.cvs.width;
     var dh = PlayController.cvs.height;
-/*
+
     if(CommonController.localConfig.y < 0){
-      CommonController.localConfig.h -= CommonController.localConfig.y+1;
-      pY = CommonController.cvs.height - CommonController.localConfig.h;
-      CommonController.localConfig.y = 1;
+     var StoDh = dh/sh; 
+     var StoDw = dw/sw;
+      dy = sy*StoDh;
+      dh += dy;
+      sh += sy;
+      sy = 0;
+      dy *=-1;
+
+      dx = sx*StoDw;
+      dw += dx;
+      sw += sx;
+      sx = 0;
+      dx *= -1;
     } 
-    */
-      PlayController._drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
+    console.log("dy: "+dy+", dh: "+dh + ", sy: "+sy+", sh: "+sh);
+    
+    PlayController._drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
   },
 
   _drawImage:function(image,sx,sy,sw,sh,dx,dy,dw,dh){
-      PlayController.ctx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
+    PlayController.ctx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
   },
 
   play: function(id) {
@@ -108,7 +118,6 @@ var PlayController = {
     }
     CalibrateController.initProject(id);
     PlayConfig.initProject(id).then(function(){
-      console.log("show");
       PlayController.playSlide(id);
     });
   },
