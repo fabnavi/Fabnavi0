@@ -44,9 +44,9 @@
       <div id="panel">
         <div class="param">
               <div id="px"></div>
-              <input max="3000" min="-100" type="range" id="x" step="1">
+              <input max="3000" min="-200" type="range" id="x" step="1">
               <div id="py"></div>
-              <input max="3000" min="-100" type="range" id="y" step="1">
+              <input max="3000" min="-200" type="range" id="y" step="1">
               <div id="pw"></div>
               <input max="4000" min="1" type="range" id="w" step="1">
               <div id="ph"></div>

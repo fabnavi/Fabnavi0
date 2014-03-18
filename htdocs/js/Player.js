@@ -101,7 +101,6 @@ var PlayController = {
       PlayController.ctx.fillStyle = "black"; 
       PlayController.ctx.fillRect(0,0,dw,dh);
     } 
-    console.log("dy: "+dy+", dh: "+dh + ", sy: "+sy+", sh: "+sh);
     
     PlayController._drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
   },
