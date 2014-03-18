@@ -75,15 +75,27 @@ var PlayController = {
   },
 
   drawImage:function(image){
-    PlayController.ctx.drawImage(
-        image,
-        CommonController.localConfig.x,
-        CommonController.localConfig.y,
-        CommonController.localConfig.w,
-        CommonController.localConfig.h,
-        0,0,
-        PlayController.cvs.width,
-        PlayController.cvs.height);
+    var sx = CommonController.localConfig.x;
+    var sy = CommonController.localConfig.y;
+    var sw = CommonController.localConfig.w;
+    var sh = CommonController.localConfig.h;
+
+    var dx = 0;
+    var dy = 0;
+    var dw = PlayController.cvs.width;
+    var dh = PlayController.cvs.height;
+/*
+    if(CommonController.localConfig.y < 0){
+      CommonController.localConfig.h -= CommonController.localConfig.y+1;
+      pY = CommonController.cvs.height - CommonController.localConfig.h;
+      CommonController.localConfig.y = 1;
+    } 
+    */
+      PlayController._drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
+  },
+
+  _drawImage:function(image,sx,sy,sw,sh,dx,dy,dw,dh){
+      PlayController.ctx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
   },
 
   play: function(id) {
