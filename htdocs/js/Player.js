@@ -98,6 +98,8 @@ var PlayController = {
       sw += sx;
       sx = 0;
       dx *= -1;
+      PlayController.ctx.fillStyle = "black"; 
+      PlayController.ctx.fillRect(0,0,dw,dh);
     } 
     console.log("dy: "+dy+", dh: "+dh + ", sy: "+sy+", sh: "+sh);
     
