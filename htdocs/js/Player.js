@@ -99,7 +99,8 @@ var PlayController = {
       sx = 0;
       dx *= -1;
       PlayController.ctx.fillStyle = "black"; 
-      PlayController.ctx.fillRect(0,0,dw,dh);
+      PlayController.ctx.fillRect(0,0,dw,dy);
+      PlayController.ctx.fillRect(0,0,dx,dh);
     } 
     
     PlayController._drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
