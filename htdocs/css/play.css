@@ -27,12 +27,11 @@ li {
 }
 
 #param{
- position:fixed;
- left:20px;
   background-color:rgba(0,0,0,0.6);
 }
 input[type="range"]{
   width:600px;
+  clear:left;
 }
 #buttons{
  position:fixed;
@@ -103,8 +102,7 @@ input[type="range"]{
   z-index:4;
 }
 #list {
-  position: fixed;
-  top: 40px;
+  float:right;
   color: white;
  background-color: rgba(0, 0, 0, 0.6);
 }
@@ -116,4 +114,14 @@ input[type="range"]{
   color: white;
   width: 100%;
   text-align: center;
+}
+
+.indicator {
+  color:#eeeeee;
+  float:left;
+}
+
+.param-name {
+  color:#eeeeee;
+  float:left;
 }

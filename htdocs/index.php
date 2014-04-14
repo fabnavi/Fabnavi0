@@ -43,24 +43,44 @@
       <div id="arrow">▶</div>
       <div id="panel">
         <div id="param">
-              <div id="px"></div>
-              <input max="3000" min="1" type="range" id="x" step="1">
-              <div id="py"></div>
-              <input max="3000" min="1" type="range" id="y" step="1">
-              <div id="pw"></div>
-              <input max="4000" min="1" type="range" id="w" step="1">
-              <div id="ph"></div>
-              <input max="4000" min="1" type="range" id="h" step="1">
+          <div>
+            <div class="param-name">X:</div>
+            <div id="px" class="indicator"></div>
+            <input max="3000" min="1" type="range" id="x" step="1">
+          </div>
+          <div>
+            <div class="param-name">Y:</div>
+            <div id="py" class="indicator"></div>
+            <input max="3000" min="1" type="range" id="y" step="1">
+          </div>
+          <div>
+            <div class="param-name">W:</div>
+            <div id="pw" class="indicator"></div>
+            <input max="4000" min="1" type="range" id="w" step="1">
+          </div>
+          <div>
+            <div class="param-name">H:</div>
+            <div id="ph" class="indicator"></div>
+            <input max="4000" min="1" type="range" id="h" step="1">
+          </div>
         </div>
         <div id="rgba-panel">
-           <div id="R"></div>
+          <div>
+           <div id="R" class="indicator"></div>
            <input type="range" id="Rval" min="1" max="255" step="1">
-           <div id="G"></div>
+          </div>
+          <div>
+           <div id="G" class="indicator"></div>
            <input type="range" id="Gval" min="1" max="255" step="1">
-           <div id="B"></div>
+          </div>
+          <div>
+           <div id="B" class="indicator"></div>
            <input type="range" id="Bval" min="1" max="255" step="1">
-           <div id="A"></div>
+          </div>
+          <div>
+           <div id="A" class="indicator"></div>
            <input type="range" id="Aval" min="0" max="1.0" step="0.001">
+          </div>
         </div>
         <div id="info">
           <input type="button" value="save config" id="save">
