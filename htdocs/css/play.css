@@ -75,11 +75,13 @@ input[type="range"]{
   text-align: center;
 }
 
-/*
+
 #counter {
-  text-align: center;
+  position:fixed;
+  left:80%;
+  font-size:30px;
 }
-*/
+
 
 #photo {
   width: 100%;
@@ -95,10 +97,9 @@ input[type="range"]{
 }
 
 #counter {
-  position: absolute;
   top: 35px;
-  left: 35px;
   color: white;
+  float:right;
   z-index:4;
 }
 #list {
