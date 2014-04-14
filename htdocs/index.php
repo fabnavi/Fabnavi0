@@ -13,11 +13,11 @@
     </script>
     <script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript" src="/js/Analyzer.js"></script>
     <script type="text/javascript" src="/js/Keybind.js"></script>
     <script type="text/javascript" src="/js/PlayConfig.js"></script>
     <script type="text/javascript" src="/js/ProjectList.js"></script>
     <script type="text/javascript" src="/js/Calibrator.js"></script>
-    <script type="text/javascript" src="/js/Analyzer.js"></script>
     <script type="text/javascript" src="/js/Panel.js"></script>
     <script type="text/javascript" src="/js/Note.js"></script>
     <script type="text/javascript" src="/js/record.js"></script>
@@ -42,7 +42,7 @@
       <div id="counter"></div>
       <div id="arrow">▶</div>
       <div id="panel">
-        <div class="param">
+        <div id="param">
               <div id="px"></div>
               <input max="3000" min="1" type="range" id="x" step="1">
               <div id="py"></div>
@@ -52,7 +52,7 @@
               <div id="ph"></div>
               <input max="4000" min="1" type="range" id="h" step="1">
         </div>
-          <div >
+        <div id="rgba-panel">
            <div id="R"></div>
            <input type="range" id="Rval" min="1" max="255" step="1">
            <div id="G"></div>
@@ -61,12 +61,12 @@
            <input type="range" id="Bval" min="1" max="255" step="1">
            <div id="A"></div>
            <input type="range" id="Aval" min="0" max="1.0" step="0.001">
-          </div>
-        <div id="info">
         </div>
-        <input type="button" value="save config" id="save">
-        <input type="button" value="save PlayList" id="savePlaylist">
-        <input type="button" value="delete slide" id="delete">
+        <div id="info">
+          <input type="button" value="save config" id="save">
+          <input type="button" value="save PlayList" id="savePlaylist">
+          <input type="button" value="delete slide" id="delete">
+        </div>
         <img id="note"  alt="">
         <ul id="processes"></ul>
       </div>

@@ -25,10 +25,11 @@ li {
 .thumbnail {
   width: 200px;
 }
-.param{
+
+#param{
  position:fixed;
  left:20px;
- width:600px;
+  background-color:rgba(0,0,0,0.6);
 }
 input[type="range"]{
   width:600px;
@@ -65,16 +66,11 @@ input[type="range"]{
   text-align: center;
 }
 #panel{
+ position:fixed;
+ left:20px;
   z-index:2;
+  background-color:rgba(0,0,0,0.6);
 }
-
-/*
-#photo {
-  margin-top: 10%;
-  margin-bottom: 10%;
-  width: 50%;
-}
-*/
 
 #button-container {
   text-align: center;
@@ -107,9 +103,8 @@ input[type="range"]{
   z-index:4;
 }
 #list {
-  position: absolute;
+  position: fixed;
   top: 40px;
-  left: -100px;
   color: white;
  background-color: rgba(0, 0, 0, 0.6);
 }

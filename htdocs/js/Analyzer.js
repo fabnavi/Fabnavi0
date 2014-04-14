@@ -11,21 +11,20 @@ var Analyzer = {
     var dfd = new $.Deferred();
     this.loadImg(url).then(function(res){
       //      var res = Analyzer.gen(res,180,180,170);
-      var res = Analyzer.gen(res,100,100,100);
+      var res = Analyzer.gen(res,56,56,35);
       //      var res = Analyzer.gen(res,200,250,200);
       dfd.resolve(res);
 
     });
     return dfd.promise();
-  },
+  },/*
   test : function (r,g,b) {
         Analyzer.gen( 
           Analyzer.pCvs.getContext('2d').getImageData(
-            0,0,Analyzer.cvs.width,this.cvs.height),
-          r,g,b)).then(function(res){
+            0,0,Analyzer.cvs.width,this.cvs.height)i,r,g,b)).then(function(res){
             PlayController.drawImage(res);
-          });;
-  },
+          });
+  },*/
 
   gen: function (imageData,red,green,blue) {
     console.time("apfel");

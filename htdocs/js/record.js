@@ -42,7 +42,7 @@ var RecordController = {
         $('#shoot').show();
         $('#contents').show();
       });
-    }, 3000);
+    }, 10);
   },
   updateList: function () {
      ListController.clear();
