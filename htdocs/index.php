@@ -43,22 +43,22 @@
       <div id="arrow">▶</div>
       <div id="panel">
         <div id="param">
-          <div>
+          <div class="x-slider">
             <div class="param-name">X:</div>
             <div id="px" class="indicator"></div>
             <input max="3000" min="1" type="range" id="x" step="1">
           </div>
-          <div>
+          <div class="y-slider">
             <div class="param-name">Y:</div>
             <div id="py" class="indicator"></div>
             <input max="3000" min="1" type="range" id="y" step="1">
           </div>
-          <div>
+          <div class="x-slider">
             <div class="param-name">W:</div>
             <div id="pw" class="indicator"></div>
             <input max="4000" min="1" type="range" id="w" step="1">
           </div>
-          <div>
+          <div class="y-slider">
             <div class="param-name">H:</div>
             <div id="ph" class="indicator"></div>
             <input max="4000" min="1" type="range" id="h" step="1">

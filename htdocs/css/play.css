@@ -122,6 +122,11 @@ input[type="range"]{
   float:left;
 }
 
+.y-slider {
+}
+
+.x-slider {
+}
 .param-name {
   color:#eeeeee;
   float:left;
