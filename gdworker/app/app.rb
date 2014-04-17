@@ -15,9 +15,11 @@ module Gdworker
 
     enable :sessions
 
+    Resque.redis = Redis.new
 
     get '/' do
-
+      @info = Resque.info
+      puts @info
     end
 
 
