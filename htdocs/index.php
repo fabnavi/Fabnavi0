@@ -29,11 +29,11 @@
   <body onload="PlayController.init()">
     <?php include('header.php.inc'); ?>
     <div id="projectList">
-      <ul id="project-list"></ul>
       <div id="buttons">
         <input type="button" id="editButton" value="Edit">
         <input type="button" id="makeButton" value="Make!">
       </div>
+      <ul id="project-list"></ul>
       <li id="newProject">New Project</li>
     </div>
     <div id="contents">
@@ -41,6 +41,13 @@
       <canvas id="cvs"></canvas>
       <div id="counter"></div>
       <div id="arrow">▶</div>
+      <div class="help">
+        x,y,w,h : スライダーを選択します<br>
+        ← , → : 選択されているスライダーの値を調整します。<br>スライダーが選択されていなければ、ページを移動します。 <br>
+      q : プロジェクト選択画面に戻ります <br>
+      v : 設定画面を表示/非表示 <br> 
+       
+      </div>
       <div id="panel">
         <div id="param">
           <div class="x-slider">

@@ -7,7 +7,6 @@ var Keys = {
    * Key.isActive() はx,y,w,hの Key が選択されているとき、ページを送らないように
    * するために必要です。
    *
-   *
    */
   playerKeyBind: function () {
     window.onkeydown = function(e) {
@@ -43,7 +42,7 @@ var Keys = {
           break;
         }
         case 13: {
-//          Note.shoot();
+//        Note.shoot();
           break;
         }
         case 86 : {
@@ -65,6 +64,13 @@ var Keys = {
         }
         case 72:{
           document.getElementById('h').focus();
+          break;
+        }
+        case 191 : {
+          $('.help').fadeIn(1000);
+          window.setTimeout(function () {
+            $('.help').fadeOut(3000);
+          },10000);
           break;
         }
         case 219:{
@@ -125,6 +131,7 @@ var Keys = {
     };
 
   },
+
   isActive: function(){
     var id = document.activeElement.id;
     var i = ['x','y','w','h'].indexOf(id);
