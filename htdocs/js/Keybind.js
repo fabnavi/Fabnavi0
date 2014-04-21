@@ -1,5 +1,14 @@
-var Keys = {
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with PlayConfig file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+var Keys = {
+  /*
+   * Key.isActive() はx,y,w,hの Key が選択されているとき、ページを送らないように
+   * するために必要です。
+   *
+   *
+   */
   playerKeyBind: function () {
     window.onkeydown = function(e) {
       console.log(e.keyCode);
@@ -34,7 +43,7 @@ var Keys = {
           break;
         }
         case 13: {
-          Note.shoot();
+//          Note.shoot();
           break;
         }
         case 86 : {
