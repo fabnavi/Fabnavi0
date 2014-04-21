@@ -64,7 +64,7 @@
             <input max="4000" min="1" type="range" id="h" step="1">
           </div>
         </div>
-        <div id="rgba-panel">
+<!--        <div id="rgba-panel">
           <div>
            <div id="R" class="indicator"></div>
            <input type="range" id="Rval" min="1" max="255" step="1">
@@ -82,6 +82,7 @@
            <input type="range" id="Aval" min="0" max="1.0" step="0.001">
           </div>
         </div>
+-->
         <div id="info">
           <input type="button" value="save config" id="save">
           <input type="button" value="save PlayList" id="savePlaylist">
