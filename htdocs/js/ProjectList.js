@@ -26,7 +26,6 @@ var ProjectList = {
         var project = result[i];
         var id = project.id;
         var thumbnail = project.thumbnail;
-        console.log(id);
 
         var image = $(document.createElement("img"));
         image.attr("src", thumbnail);

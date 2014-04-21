@@ -219,7 +219,6 @@ var PlayConfig = {
 
   postConfig: function(){
     PlayConfig.setXMLFromObjects();
-    console.log(PlayConfig.xml);
     $.post("/api/postConfig.php",
         {project:PlayConfig.projectName,data:PlayConfig.xml},
         function(){},

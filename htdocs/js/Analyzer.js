@@ -59,7 +59,6 @@ var Analyzer = {
       cvs.style.position = "absolute";
       cvs.style.top = "0px";
       cvs.style.left = "0px";
-      console.log(this.img);
       IMG = this.img;
       cvs.width = this.img.width//screen.width;
       cvs.height = this.img.height//screen.height;

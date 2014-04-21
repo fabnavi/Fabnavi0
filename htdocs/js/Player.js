@@ -55,7 +55,6 @@ var PlayController = {
   },
 
   draw: function(){
-    console.log(PlayConfig.fastDraw);
     if(PlayConfig.fastDraw){
       PlayController.drawImage(document.getElementById('photo'));
       for(i in PlayConfig.notes){
