@@ -36,7 +36,7 @@ var PlayController = {
     window.setTimeout(function () {
       $('.help').fadeOut(3000);
     },3000);
-    
+
   },
 
   defaultInit : function () {

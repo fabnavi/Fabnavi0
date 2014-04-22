@@ -61,8 +61,8 @@ var CalibrateController = {
     $('#py').text = $('#y').val();
     $('#pw').text = $('#w').val();
     $('#ph').text = $('#h').val();
-      CalibrateController.updateConfig();
-      PlayController.show(PlayConfig.index);
+    CalibrateController.updateConfig();
+    PlayController.show(PlayConfig.index);
 
   },
   initProject: function(id) {

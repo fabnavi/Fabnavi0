@@ -42,14 +42,14 @@ var Keys = {
           break;
         }
         case 13: {
-//        Note.shoot();
+          //        Note.shoot();
           break;
         }
         case 86 : {
           PlayController.info();
           break;
         }
-        // Common Key Bind
+                  // Common Key Bind
         case 88:{
           document.getElementById('x').focus();
           break;
@@ -106,7 +106,7 @@ var Keys = {
           PlayController.info();
           break;
         }
-        // Common Key Bind
+                  // Common Key Bind
         case 88:{
           document.getElementById('x').focus();
           break;

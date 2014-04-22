@@ -18,13 +18,13 @@ var Analyzer = {
     });
     return dfd.promise();
   },/*
-  test : function (r,g,b) {
-        Analyzer.gen( 
-          Analyzer.pCvs.getContext('2d').getImageData(
-            0,0,Analyzer.cvs.width,this.cvs.height)i,r,g,b)).then(function(res){
-            PlayController.drawImage(res);
-          });
-  },*/
+       test : function (r,g,b) {
+       Analyzer.gen( 
+       Analyzer.pCvs.getContext('2d').getImageData(
+       0,0,Analyzer.cvs.width,this.cvs.height)i,r,g,b)).then(function(res){
+       PlayController.drawImage(res);
+       });
+       },*/
 
   gen: function (imageData,red,green,blue) {
     console.time("apfel");

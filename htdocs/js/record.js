@@ -17,7 +17,7 @@ var RecordController = {
   },
 
   shoot: function() {
-//    document.body.style.backgroundColor = "rgba("+Panel.R.innerHTML+","+Panel.G.innerHTML+","+Panel.B.innerHTML+","+Panel.A.innerHTML+")";
+    //    document.body.style.backgroundColor = "rgba("+Panel.R.innerHTML+","+Panel.G.innerHTML+","+Panel.B.innerHTML+","+Panel.A.innerHTML+")";
     $('#shoot').hide();
     $('#projectList').hide();
     $('#contents').hide();
@@ -36,19 +36,19 @@ var RecordController = {
         PlayConfig.postConfig();
         PlayController.next();
         window.setTimeout(function(){
-         CalibrateController.update();
+          CalibrateController.update();
         },2000);
-        
+
         $('#shoot').show();
         $('#contents').show();
       });
     }, 10);
   },
   updateList: function () {
-     ListController.clear();
-     for(key in PlayConfig.imgURLs){
-        ListController.append(PlayConfig.imgURLs[key]);
-     }
+    ListController.clear();
+    for(key in PlayConfig.imgURLs){
+      ListController.append(PlayConfig.imgURLs[key]);
+    }
   }
 };
 
