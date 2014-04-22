@@ -57,7 +57,6 @@ var CommonController = {
 
   setLocalData: function(key,jsonData){
     var d = jsonData.toSource();
-    console.log(d);
     localStorage.setItem(key,d);
   },
 

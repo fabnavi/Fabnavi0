@@ -43,7 +43,7 @@ var Note = {
     });
   },
   drawScanLine : function () {
-    
+
   }
 };
 

@@ -54,7 +54,7 @@ var PlayConfig = {
     PlayConfig.projectName = id;
     PlayConfig.notes = [];
     $('#savePlaylist').click(PlayConfig.postConfig);
-    Panel.init();
+    //    Panel.init();
   },
 
   initProject: function(id){
@@ -219,7 +219,6 @@ var PlayConfig = {
 
   postConfig: function(){
     PlayConfig.setXMLFromObjects();
-    console.log(PlayConfig.xml);
     $.post("/api/postConfig.php",
         {project:PlayConfig.projectName,data:PlayConfig.xml},
         function(){},

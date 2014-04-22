@@ -32,6 +32,11 @@ var PlayController = {
         }
       }
     };
+
+    window.setTimeout(function () {
+      $('.help').fadeOut(3000);
+    },3000);
+
   },
 
   defaultInit : function () {
@@ -50,7 +55,6 @@ var PlayController = {
   },
 
   draw: function(){
-    console.log(PlayConfig.fastDraw);
     if(PlayConfig.fastDraw){
       PlayController.drawImage(document.getElementById('photo'));
       for(i in PlayConfig.notes){

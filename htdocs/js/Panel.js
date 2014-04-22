@@ -21,7 +21,7 @@ var Panel = {
   },
 
   draw:function () {
-   
+
   }
 
 

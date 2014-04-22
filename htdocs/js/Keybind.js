@@ -1,5 +1,13 @@
-var Keys = {
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with PlayConfig file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+var Keys = {
+  /*
+   * Key.isActive() はx,y,w,hの Key が選択されているとき、ページを送らないように
+   * するために必要です。
+   *
+   */
   playerKeyBind: function () {
     window.onkeydown = function(e) {
       console.log(e.keyCode);
@@ -34,14 +42,14 @@ var Keys = {
           break;
         }
         case 13: {
-          Note.shoot();
+          //        Note.shoot();
           break;
         }
         case 86 : {
           PlayController.info();
           break;
         }
-        // Common Key Bind
+                  // Common Key Bind
         case 88:{
           document.getElementById('x').focus();
           break;
@@ -56,6 +64,13 @@ var Keys = {
         }
         case 72:{
           document.getElementById('h').focus();
+          break;
+        }
+        case 191 : {
+          $('.help').fadeIn(1000);
+          window.setTimeout(function () {
+            $('.help').fadeOut(3000);
+          },10000);
           break;
         }
         case 219:{
@@ -91,7 +106,7 @@ var Keys = {
           PlayController.info();
           break;
         }
-        // Common Key Bind
+                  // Common Key Bind
         case 88:{
           document.getElementById('x').focus();
           break;
@@ -116,6 +131,7 @@ var Keys = {
     };
 
   },
+
   isActive: function(){
     var id = document.activeElement.id;
     var i = ['x','y','w','h'].indexOf(id);
