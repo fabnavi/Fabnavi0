@@ -5,7 +5,8 @@ require "open-uri"
 require "uri"
 require "resque"
 require "redis"
-
+require "camera"
+include Camera
 
 $host = "10.0.0.1"
 $port = 10000
@@ -27,16 +28,6 @@ module Gdworker
     end
 
 
-    get '/takepicture' do
-      s = TCPSocket.open($host, $port)
-      s.print("POST /sony/camera HTTP/1.1\r\nContent-Length: 63\r\n\r\n{\"method\":\"actTakePicture\",\"params\":[],\"id\":10,\"version\":\"1.0\"}")
-      s.flush
-      body = s.read.split(/\r\n\r\n/)[1]
-      doc = JSON.parse(body)
-      puts doc
-      s.close
-
-    end
     ##
     # Caching support.
     #
