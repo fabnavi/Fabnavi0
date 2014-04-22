@@ -6,6 +6,10 @@ require "uri"
 require "resque"
 require "redis"
 
+
+$host = "10.0.0.1"
+$port = 10000
+
 module Gdworker
   class App < Padrino::Application
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
@@ -24,13 +28,12 @@ module Gdworker
 
 
     get '/takepicture' do
-      $host = "10.0.0.1"
-      $port = 10000
       s = TCPSocket.open($host, $port)
       s.print("POST /sony/camera HTTP/1.1\r\nContent-Length: 63\r\n\r\n{\"method\":\"actTakePicture\",\"params\":[],\"id\":10,\"version\":\"1.0\"}")
       s.flush
       body = s.read.split(/\r\n\r\n/)[1]
       doc = JSON.parse(body)
+      puts doc
       s.close
 
     end
