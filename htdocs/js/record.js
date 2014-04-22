@@ -17,7 +17,7 @@ var RecordController = {
   },
 
   shoot: function() {
-    document.body.style.backgroundColor = "rgba("+Panel.R.innerHTML+","+Panel.G.innerHTML+","+Panel.B.innerHTML+","+Panel.A.innerHTML+")";
+//    document.body.style.backgroundColor = "rgba("+Panel.R.innerHTML+","+Panel.G.innerHTML+","+Panel.B.innerHTML+","+Panel.A.innerHTML+")";
     $('#shoot').hide();
     $('#projectList').hide();
     $('#contents').hide();

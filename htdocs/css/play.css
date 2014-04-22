@@ -19,7 +19,7 @@ li > div {
 }
 
 #newProject{
-  width:200px;
+  width:210px;
   height : 159px;
   text-align: center;
   font-size:30px;
@@ -32,7 +32,11 @@ li > div {
 }
 
 .thumbnail {
-  width: 200px;
+  width: 210px;
+}
+
+li > img {
+  transform:rotateZ(180deg);
 }
 
 #param{
