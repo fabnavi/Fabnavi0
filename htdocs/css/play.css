@@ -6,16 +6,25 @@ ul {
 
 li {
   float: left;
-  margin: 1em;
+  margin: 14px;
+  height : 159px;
   border : 2px white solid;
   list-style:none;
+  position:relative;
+}
+
+li > div { 
+  position:absolute;
+  top:140px;
 }
 
 #newProject{
   width:200px;
-  height : 150px;
+  height : 159px;
   text-align: center;
   font-size:30px;
+  margin: 14px;
+  border : 2px white solid;
 }
 
 .selectedItem{
