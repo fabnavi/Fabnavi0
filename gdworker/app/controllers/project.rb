@@ -12,6 +12,15 @@ Gdworker::App.controllers :project do
     res.to_json
   end
 
+  get "/getProject" do 
+    res = []
+    Dir.chdir(Fabnavi::DATADIR + params[:project_id])
+    Dir.glob('*.{jpg,JPG}').each do |t|
+      res.push({:id=>t,:thumbnail=>("data/original/"+params[:project_id]+"/"+t)})
+    end
+    res.to_json
+  end
+
   get "/new" do
     if params[:projectName] == nil then
       id = Time.now.nsec.to_s
@@ -24,16 +33,22 @@ Gdworker::App.controllers :project do
     Dir.mkdir "original"
     Dir.mkdir "note"
     FileUtils.touch "fabnavi.play.config"
+    backup_config id
 
     return {:id=>id}.to_json 
   end
 
   get "/takePicture" do
-    save_pict "https://s3.amazonaws.com/ksr/assets/000/165/359/2631d7c4135c03a50ede06537c8e806a_large.jpg", "754097000"
-    Dir.chdir(Fabnavi::DATADIR+params[:project_id])
     api = CameraAPI.new 
     query = api.generateOp("actTakePicture",[])
-    api.fire query
+    doc = api.fire query
+    url = doc['result'][0][0]
+    save_pict url,params[:project_id]
+    return {:url=>Fabnavi::DATADIR+params[:project_id]+"/original/"+File.basename(url)}
+  end
+
+  post "/postConfig" do
+    puts params
   end
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'

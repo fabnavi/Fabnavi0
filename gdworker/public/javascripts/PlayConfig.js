@@ -67,7 +67,7 @@ var PlayConfig = {
       })
     .then(function() {
       if(PlayConfig.imgURLs.length == 0){
-        CommonController.getJSON("api/getProject.php?project_id="+id,
+        CommonController.getJSON("project/getProject?project_id="+id,
           function(result, error) {
             if (error) {
               alert(error);
@@ -219,7 +219,7 @@ var PlayConfig = {
 
   postConfig: function(){
     PlayConfig.setXMLFromObjects();
-    $.post("/api/postConfig.php",
+    $.post("project/postConfig",
         {project:PlayConfig.projectName,data:PlayConfig.xml},
         function(){},
         "json");

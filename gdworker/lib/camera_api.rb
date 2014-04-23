@@ -19,7 +19,6 @@ class CameraAPI
   end
 
   def fire query
-    save_pict "http://www.google.co.jp/imgres?imgurl=http%3A%2F%2Fwww.lisperati.com%2Flisplogo_alien_256.png&imgrefurl=http%3A%2F%2Fwww.lisperati.com%2Flogo.html&h=150&w=256&tbnid=btOUQId011ersM%3A&zoom=1&docid=Es_nEeQt--nrGM&hl=ja&ei=FPFXU9DYDIqlkgW2koCoCA&tbm=isch&client=firefox-a&ved=0CFIQMygBMAE&iact=rc&uact=3&dur=1543&page=1&start=0&ndsp=24"
     puts "***** Query: " + query
     s = TCPSocket.open($host, $port)
     s.print(query);

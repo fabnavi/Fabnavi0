@@ -12,4 +12,9 @@ module Fabnavi
       end
     end
   end
+
+  def backup_config id
+    dirName = DATADIR + id  + "/"
+    FileUtils.copy_file(dirName+"fabnavi.play.config",dirName+Time.now.utc.to_s+".config")
+  end
 end
