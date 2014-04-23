@@ -2,7 +2,7 @@ Gdworker::App.controllers :project do
 
   get "/getList" do 
     res = []
-    Dir.chdir(Dir.home+"/src/moz/fabnavi/htdocs/data")
+    Dir.chdir(Dir.home+"/src/moz/fabnavi/gdworker/public/data")
     Dir.glob('*').each do |t|
       Dir.chdir(t)
       picts = Dir.glob('*.{jpg,JPG}')  
@@ -18,6 +18,13 @@ Gdworker::App.controllers :project do
     else 
       id = params[:projectName].to_s
     end
+    Dir.chdir(Dir.home+"/src/moz/fabnavi/gdworker/public/data")
+    Dir.mkdir id
+    Dir.chdir(id)
+    Dir.mkdir "original"
+    Dir.mkdir "note"
+    FileUtils.touch "fabnavi.play.config"
+
     return {:id=>id}.to_json 
   end
 
