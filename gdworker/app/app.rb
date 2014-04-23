@@ -23,8 +23,7 @@ module Gdworker
     Resque.redis = Redis.new
 
     get '/' do
-      @info = Resque.info
-      puts @info
+     render 'project/index' 
     end
 
 

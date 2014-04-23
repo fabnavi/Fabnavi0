@@ -1,16 +1,5 @@
-Gdworker::App.controllers :project do
-
-  get "/getList" do 
-    res = []
-    Dir.chdir(Dir.home+"/src/moz/fabnavi/htdocs/data")
-    Dir.glob('*').each do |t|
-      Dir.chdir(t)
-      picts = Dir.glob('*.{jpg,JPG}')  
-      res.push({:id=>t,:thumbnail=>("data/"+t+"/"+picts[0].to_s)})
-      Dir.chdir("../")
-    end
-    res.to_json
-  end
+Gdworker::App.controllers :data do
+  
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'
   #   render 'index'
@@ -29,6 +18,6 @@ Gdworker::App.controllers :project do
   # get '/example' do
   #   'Hello world!'
   # end
-
+  
 
 end

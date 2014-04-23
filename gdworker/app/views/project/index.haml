@@ -9,23 +9,9 @@
     %title{"data-l10n-id" => "title"} PlayController : FabNavi
     %link{href: "/css/common.css", rel: "stylesheet", type: "text/css"}/
     %link{href: "/css/play.css", rel: "stylesheet", type: "text/css"}/
-    :javascript
-      var ID = "<?php if(isset($_GET['id']))echo $_GET['id'] ?>";
-    %script{src: "/js/jquery-1.9.1.min.js", type: "text/javascript"}
-    %script{src: "/js/common.js", type: "text/javascript"}
-    %script{src: "/js/Analyzer.js", type: "text/javascript"}
-    %script{src: "/js/Keybind.js", type: "text/javascript"}
-    %script{src: "/js/PlayConfig.js", type: "text/javascript"}
-    %script{src: "/js/ProjectList.js", type: "text/javascript"}
-    %script{src: "/js/Calibrator.js", type: "text/javascript"}
-    %script{src: "/js/Panel.js", type: "text/javascript"}
-    %script{src: "/js/Note.js", type: "text/javascript"}
-    %script{src: "/js/record.js", type: "text/javascript"}
-    %script{src: "/js/Player.js", type: "text/javascript"}
-    %script{src: "/js/list.js", type: "text/javascript"}
+    = javascript_include_tag 'jquery', 'common', 'Analyzer','Keybind','PlayConfig','ProjectList','Player','Calibrator','Panel','Note','record','list'
     %meta{content: "width=device-width, user-scalable=no", name: "viewport"}/
   %body{onload: "PlayController.init()"}
-    !!! XML
     #projectList
       #buttons
         %input#editButton{type: "button", value: "Edit"}/
@@ -66,29 +52,9 @@
             .param-name H:
             #ph.indicator
             %input#h{max: "4000", min: "1", step: "1", type: "range"}/
-        /
-          <div id="rgba-panel">
-          <div>
-          <div id="R" class="indicator"></div>
-          <input type="range" id="Rval" min="1" max="255" step="1">
-          </div>
-          <div>
-          <div id="G" class="indicator"></div>
-          <input type="range" id="Gval" min="1" max="255" step="1">
-          </div>
-          <div>
-          <div id="B" class="indicator"></div>
-          <input type="range" id="Bval" min="1" max="255" step="1">
-          </div>
-          <div>
-          <div id="A" class="indicator"></div>
-          <input type="range" id="Aval" min="0" max="1.0" step="0.001">
-          </div>
-          </div>
         #info
           %input#save{type: "button", value: "save config"}/
           %input#savePlaylist{type: "button", value: "save PlayList"}/
           %input#delete{type: "button", value: "delete slide"}/
         %img#note{alt: ""}/
         %ul#processes
-    !!! XML0n-id=>
