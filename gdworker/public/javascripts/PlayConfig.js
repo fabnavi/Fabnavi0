@@ -220,7 +220,7 @@ var PlayConfig = {
   postConfig: function(){
     PlayConfig.setXMLFromObjects();
     $.post("project/postConfig",
-        {project:PlayConfig.projectName,data:PlayConfig.xml},
+        {project_id:PlayConfig.projectName,data:PlayConfig.xml},
         function(){},
         "json");
   }

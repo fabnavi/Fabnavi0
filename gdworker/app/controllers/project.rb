@@ -13,10 +13,11 @@ Gdworker::App.controllers :project do
   end
 
   get "/getProject" do 
+    id = params[:project_id]
     res = []
-    Dir.chdir(Fabnavi::DATADIR + params[:project_id])
+    Dir.chdir(Fabnavi::DATADIR + id)
     Dir.glob('*.{jpg,JPG}').each do |t|
-      res.push({:id=>t,:thumbnail=>("data/original/"+params[:project_id]+"/"+t)})
+      res.push({:id=>t,:thumbnail=>("data/original/"+id+"/"+t)})
     end
     res.to_json
   end
@@ -39,16 +40,21 @@ Gdworker::App.controllers :project do
   end
 
   get "/takePicture" do
+    id = params[:project_id]
     api = CameraAPI.new 
     query = api.generateOp("actTakePicture",[])
     doc = api.fire query
     url = doc['result'][0][0]
-    save_pict url,params[:project_id]
-    return {:url=>Fabnavi::DATADIR+params[:project_id]+"/original/"+File.basename(url)}
+    save_pict url, id
+    return {:url=>Fabnavi::DATADIR+id+"/original/"+File.basename(url)}
   end
 
   post "/postConfig" do
     puts params
+    id = params[:project_id]
+    data = params[:data]
+    backup_config id
+    save_config id,data
   end
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'

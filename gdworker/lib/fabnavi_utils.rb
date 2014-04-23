@@ -13,6 +13,15 @@ module Fabnavi
     end
   end
 
+  def save_config id ,data
+    fileName = "fabnavi.play.config"
+    dirName = DATADIR + id + "/"
+    filePath = dirName + fileName
+    open(filePath, 'w') do |output|
+      output.write(data)
+    end
+  end
+
   def backup_config id
     dirName = DATADIR + id  + "/"
     FileUtils.copy_file(dirName+"fabnavi.play.config",dirName+Time.now.utc.to_s+".config")
