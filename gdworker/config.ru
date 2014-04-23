@@ -5,5 +5,5 @@
 # just execute it from the command line.
 
 require File.expand_path("../config/boot.rb", __FILE__)
-
+use Rack::Static, :urls=>["/data*","/fonts*"],:root=>"public"
 run Padrino.application

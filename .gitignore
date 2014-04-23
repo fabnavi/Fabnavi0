@@ -4,4 +4,5 @@ htdocs/data/*
 samples/nex/jpeg*
 *.config
 *tmp
+gdworker/public/data
 

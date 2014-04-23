@@ -9,6 +9,7 @@
     %title{"data-l10n-id" => "title"} PlayController : FabNavi
     %link{href: "/css/common.css", rel: "stylesheet", type: "text/css"}/
     %link{href: "/css/play.css", rel: "stylesheet", type: "text/css"}/
+    = stylesheet_link_tag 'common', 'play','record'
     = javascript_include_tag 'jquery', 'common', 'Analyzer','Keybind','PlayConfig','ProjectList','Player','Calibrator','Panel','Note','record','list'
     %meta{content: "width=device-width, user-scalable=no", name: "viewport"}/
   %body{onload: "PlayController.init()"}
