@@ -2,11 +2,14 @@ require "socket"
 require "json"
 require "pp"
 require "open-uri"
+require "FileUtils"
 require "uri"
 require "resque"
 require "redis"
 require "camera_api"
+require "fabnavi_utils"
 
+include Fabnavi
 
 $host = "10.0.0.1"
 $port = 10000

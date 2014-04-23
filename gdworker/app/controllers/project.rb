@@ -2,7 +2,7 @@ Gdworker::App.controllers :project do
 
   get "/getList" do 
     res = []
-    Dir.chdir(Dir.home+"/src/moz/fabnavi/gdworker/public/data")
+    Dir.chdir(Fabnavi::DATADIR)
     Dir.glob('*').each do |t|
       Dir.chdir(t)
       picts = Dir.glob('*.{jpg,JPG}')  
@@ -18,7 +18,7 @@ Gdworker::App.controllers :project do
     else 
       id = params[:projectName].to_s
     end
-    Dir.chdir(Dir.home+"/src/moz/fabnavi/gdworker/public/data")
+    Dir.chdir(Fabnavi::DATADIR)
     Dir.mkdir id
     Dir.chdir(id)
     Dir.mkdir "original"
@@ -29,8 +29,10 @@ Gdworker::App.controllers :project do
   end
 
   get "/takePicture" do
+    save_pict "https://s3.amazonaws.com/ksr/assets/000/165/359/2631d7c4135c03a50ede06537c8e806a_large.jpg", "754097000"
+    Dir.chdir(Fabnavi::DATADIR+params[:project_id])
     api = CameraAPI.new 
-    query = api.generateOp("actTakePicture")
+    query = api.generateOp("actTakePicture",[])
     api.fire query
   end
   # get :index, :map => '/foo/bar' do
