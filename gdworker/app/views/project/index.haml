@@ -1,2 +1,94 @@
-- @title = "Welcome"
-
+!!!
+/
+  This Source Code Form is subject to the terms of the Mozilla Public
+  \- License, v. 2.0. If a copy of the MPL was not distributed with this file,
+  \- You can obtain one at http://mozilla.org/MPL/2.0/.
+%html
+  %head
+    %meta{charset: "utf-8"}/
+    %title{"data-l10n-id" => "title"} PlayController : FabNavi
+    %link{href: "/css/common.css", rel: "stylesheet", type: "text/css"}/
+    %link{href: "/css/play.css", rel: "stylesheet", type: "text/css"}/
+    :javascript
+      var ID = "<?php if(isset($_GET['id']))echo $_GET['id'] ?>";
+    %script{src: "/js/jquery-1.9.1.min.js", type: "text/javascript"}
+    %script{src: "/js/common.js", type: "text/javascript"}
+    %script{src: "/js/Analyzer.js", type: "text/javascript"}
+    %script{src: "/js/Keybind.js", type: "text/javascript"}
+    %script{src: "/js/PlayConfig.js", type: "text/javascript"}
+    %script{src: "/js/ProjectList.js", type: "text/javascript"}
+    %script{src: "/js/Calibrator.js", type: "text/javascript"}
+    %script{src: "/js/Panel.js", type: "text/javascript"}
+    %script{src: "/js/Note.js", type: "text/javascript"}
+    %script{src: "/js/record.js", type: "text/javascript"}
+    %script{src: "/js/Player.js", type: "text/javascript"}
+    %script{src: "/js/list.js", type: "text/javascript"}
+    %meta{content: "width=device-width, user-scalable=no", name: "viewport"}/
+  %body{onload: "PlayController.init()"}
+    !!! XML
+    #projectList
+      #buttons
+        %input#editButton{type: "button", value: "Edit"}/
+        %input#makeButton{type: "button", value: "Make!"}/
+      %ul#project-list
+      %li#newProject New Project
+    #contents
+      %img#photo{height: "3715", width: "4928"}/
+      %canvas#cvs
+      #counter
+      #arrow ▶
+      .help
+        x,y,w,h : スライダーを選択します
+        %br/
+        ← , → : 選択されているスライダーの値を調整します。
+        %br>/
+        スライダーが選択されていなければ、ページを移動します。
+        %br/
+        q : プロジェクト選択画面に戻ります
+        %br/
+        v : 設定画面を表示/非表示
+        %br/
+      #panel
+        #param
+          .x-slider
+            .param-name X:
+            #px.indicator
+            %input#x{max: "3000", min: "1", step: "1", type: "range"}/
+          .y-slider
+            .param-name Y:
+            #py.indicator
+            %input#y{max: "3000", min: "1", step: "1", type: "range"}/
+          .x-slider
+            .param-name W:
+            #pw.indicator
+            %input#w{max: "4000", min: "1", step: "1", type: "range"}/
+          .y-slider
+            .param-name H:
+            #ph.indicator
+            %input#h{max: "4000", min: "1", step: "1", type: "range"}/
+        /
+          <div id="rgba-panel">
+          <div>
+          <div id="R" class="indicator"></div>
+          <input type="range" id="Rval" min="1" max="255" step="1">
+          </div>
+          <div>
+          <div id="G" class="indicator"></div>
+          <input type="range" id="Gval" min="1" max="255" step="1">
+          </div>
+          <div>
+          <div id="B" class="indicator"></div>
+          <input type="range" id="Bval" min="1" max="255" step="1">
+          </div>
+          <div>
+          <div id="A" class="indicator"></div>
+          <input type="range" id="Aval" min="0" max="1.0" step="0.001">
+          </div>
+          </div>
+        #info
+          %input#save{type: "button", value: "save config"}/
+          %input#savePlaylist{type: "button", value: "save PlayList"}/
+          %input#delete{type: "button", value: "delete slide"}/
+        %img#note{alt: ""}/
+        %ul#processes
+    !!! XML0n-id=>

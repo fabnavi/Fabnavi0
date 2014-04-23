@@ -1,8 +1,11 @@
 !!!5
 :ruby 
   apilist = [   
-    {:url=>"actZoom",:params=>["in","1shot"]},
-    {:url=>"actZoom",:params=>["out","1shot"]},
+    {:label=>"Zoom In", :url=>"actZoom",:params=>["in","1shot"]},
+    {:label=>"Zoom Out" ,:url=>"actZoom",:params=>["out","1shot"]},
+    {:label=>"takePicture" ,:url=>"actTakePicture",:params=>[]},
+    {:label=>"SetFullSize" ,:url=>"setPostviewImageSize",:params=>["Original"]},
+    {:label=>"SetSmallSize" ,:url=>"setPostviewImageSize",:params=>["2M"]},
     {:url=>"getShootMode",:params=>[]},
     {:url=>"getSupportedShootMode",:params=>[]},
     {:url=>"getAvailableShootMode",:params=>[]},
@@ -20,12 +23,22 @@
 %html
   %head
     = javascript_include_tag 'jquery', 'camera'
+    = stylesheet_link_tag 'apilog'
+
   %body(onload="main()")
-    %ul
+    %form
       - apilist.each do |api|
-        %form
-          - if api[:params] == []
-            %input(class="api" type="button" href="#{"/camera/api/"+api[:url]}" value="#{api[:url]}")
-          - else 
-            %input(class="api" type="button" href="#{"/camera/api/"+api[:url]+"?params=" + api[:params].to_s}" value="#{api[:url]}")
-    %div#log
+        :ruby
+          if api[:params] == [] then
+            url="/camera/api/"+api[:url]
+          else 
+            url="/camera/api/"+api[:url]+ "?params=" + api[:params].to_s
+          end 
+          if api[:label] == nil then
+            label = api[:url]
+          else 
+            label = api[:label]
+          end
+        %input(class="api" type="button" href="#{url}" value="#{label}")
+    %div#frame
+      %div#log
