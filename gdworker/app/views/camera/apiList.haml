@@ -1,0 +1,28 @@
+!!!5
+:ruby 
+  apilist = [   
+    {:url=>"actZoom",:params=>["in","1shot"]},
+    {:url=>"actZoom",:params=>["out","1shot"]},
+    {:url=>"getShootMode",:params=>[]},
+    {:url=>"getSupportedShootMode",:params=>[]},
+    {:url=>"getAvailableShootMode",:params=>[]},
+    {:url=>"getEvent",:params=>[true]},
+    {:url=>"getApplicationInfo",:params=>[]},
+    {:url=>"getVersions",:params=>[]},
+    {:url=>"getMethodTypes",:params=>[]},
+    {:url=>"getPostviewImageSize",:params=>[]},
+    {:url=>"getAvailablePostviewImageSize",:params=>[]},
+    {:url=>"getSupportedPostviewImageSize",:params=>[]},
+    {:url=>"getSelfTimer",:params=>[]},
+    {:url=>"getSupportedSelfTimer",:params=>[]},
+    {:url=>"getAvailableSelfTimer",:params=>[]}
+  ]
+%head
+%body
+  %ul
+  - apilist.each do |i|
+    %li
+      - if i[:params] == []
+        %a(href="#{"/camera/"+i[:url]}")#{i[:url]}
+      - else 
+        %a(href="#{"/camera/"+i[:url]+"?params=" + i[:params].to_s}")#{i[:url]}

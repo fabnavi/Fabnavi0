@@ -1,22 +1,28 @@
 Gdworker::App.controllers :camera do
 
   get '/' do
-    @api = CameraAPI.new
-    puts @api.takePicture
+   render :apiList
   end
 
 
+  get '/:type' do 
+    api = CameraAPI.new
+    p = params[:params]
+    if p == nil then
+      query = api.generateOp params[:type],[]
+    else 
+      query = api.generateOp params[:type], p
+    end
+    @doc = api.fire query
+    render :log
+  end
+
 
   get '/takepicture' do
-    query = @api.takePicture()
-    s = TCPSocket.open($host, $port)
-    s.print(query);
-    s.flush
-    body = s.read.split(/\r\n\r\n/)[1]
-    @doc = JSON.parse(body)
+    api = CameraAPI.new
+    query = api.generateOp("actTakePicture")
+    @doc = api.fire query
     @url = @doc['result'][0][0]
-    puts open(@url)
-    s.close
     render 'log'
   end
   # get :index, :map => '/foo/bar' do
