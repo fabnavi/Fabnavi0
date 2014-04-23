@@ -11,6 +11,21 @@ Gdworker::App.controllers :project do
     end
     res.to_json
   end
+
+  get "/new" do
+    if params[:projectName] == nil then
+      id = Time.now.nsec.to_s
+    else 
+      id = params[:projectName].to_s
+    end
+    return {:id=>id}.to_json 
+  end
+
+  get "/takePicture" do
+    api = CameraAPI.new 
+    query = api.generateOp("actTakePicture")
+    api.fire query
+  end
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'
   #   render 'index'

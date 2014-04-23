@@ -7,7 +7,7 @@ var RecordController = {
     $("#start").hide();
     $('#projectList').hide();
     PlayConfig.init();
-    CommonController.getJSON("/api/startProject.php", function(result, error) {
+    CommonController.getJSON("/project/new", function(result, error) {
       if (error) {
         alert(error);
         return;
@@ -23,7 +23,7 @@ var RecordController = {
     $('#contents').hide();
     clearTimeout(RecordController.timer);
     RecordController.timer = setTimeout(function() {
-      CommonController.getJSON("/api/takePicture.php?project_id="+PlayConfig.projectName, function(result, error) {
+      CommonController.getJSON("/project/takePicture?project_id="+PlayConfig.projectName, function(result, error) {
         if (error) {
           alert(error);
           return;
