@@ -17,12 +17,15 @@
     {:url=>"getSupportedSelfTimer",:params=>[]},
     {:url=>"getAvailableSelfTimer",:params=>[]}
   ]
-%head
-%body
-  %ul
-  - apilist.each do |i|
-    %li
-      - if i[:params] == []
-        %a(href="#{"/camera/"+i[:url]}")#{i[:url]}
-      - else 
-        %a(href="#{"/camera/"+i[:url]+"?params=" + i[:params].to_s}")#{i[:url]}
+%html
+  %head
+    = javascript_include_tag 'jquery', 'camera'
+  %body(onload="main()")
+    %ul
+      - apilist.each do |api|
+        %form
+          - if api[:params] == []
+            %input(class="api" type="button" href="#{"/camera/api/"+api[:url]}" value="#{api[:url]}")
+          - else 
+            %input(class="api" type="button" href="#{"/camera/api/"+api[:url]+"?params=" + api[:params].to_s}" value="#{api[:url]}")
+    %div#log
