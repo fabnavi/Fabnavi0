@@ -5,8 +5,8 @@ require "open-uri"
 require "uri"
 require "resque"
 require "redis"
-require "camera"
-include Camera
+require "camera_api"
+
 
 $host = "10.0.0.1"
 $port = 10000

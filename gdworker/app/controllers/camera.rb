@@ -1,13 +1,15 @@
 Gdworker::App.controllers :camera do
 
   get '/' do
+    @api = CameraAPI.new
+    puts @api.takePicture
   end
 
 
 
   get '/takepicture' do
+    query = @api.takePicture()
     s = TCPSocket.open($host, $port)
-    query = Camera.takePicture()
     s.print(query);
     s.flush
     body = s.read.split(/\r\n\r\n/)[1]
