@@ -1,4 +1,8 @@
 Gdworker::App.controllers :data do
+  get '/:id/:pict'  do 
+    puts params
+    send_file params[:pict]
+  end
   
   # get :index, :map => '/foo/bar' do
   #   session[:foo] = 'bar'
