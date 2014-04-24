@@ -46,13 +46,16 @@ Gdworker::App.controllers :project do
     doc = api.fire query
     url = doc['result'][0][0]
     save_pict url, id
-    return {:url=>Fabnavi::DATADIR+id+"/original/"+File.basename(url)}
+    fileName = File.basename(/^http.*.JPG/.match(url)[0])
+    puts fileName
+    puts "********************"
+    return {:url=>"data/"+id+"/original/"+fileName}.to_json
   end
 
   post "/postConfig" do
-    puts params
     id = params[:project_id]
     data = params[:data]
+    puts data
     backup_config id
     save_config id,data
   end

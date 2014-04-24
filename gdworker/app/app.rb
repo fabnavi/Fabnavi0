@@ -6,6 +6,7 @@ require "FileUtils"
 require "uri"
 require "resque"
 require "redis"
+#require "gd2"
 require "camera_api"
 require "fabnavi_utils"
 

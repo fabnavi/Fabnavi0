@@ -2,12 +2,10 @@ module Fabnavi
   DATADIR = "/Users/hrl7/src/moz/fabnavi/gdworker/public/data/" 
 
   def save_pict url, id
-    fileName = File.basename(url)
-    dirName = DATADIR + id + "/original/"
-    filePath = dirName + fileName
-    FileUtils.mkdir_p(dirName) unless FileTest.exist?(dirName)
+    fileName =File.basename(/^http.*.JPG/.match(url)[0])
+    filePath = DATADIR+id+"/original/"+ fileName
     open(filePath, 'wb') do |output|
-      open(url) do |data|
+      open(url) do |data| 
         output.write(data.read)
       end
     end
