@@ -74,7 +74,6 @@ var CommonController = {
       CommonController.localConfig = res;
     }
 
-    //CommonController.localConfig ={x:"1669", y:"2151", w:"2190", h:"1122"};
   },
 
   setLocalConfig: function(id){

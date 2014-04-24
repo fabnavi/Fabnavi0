@@ -63,7 +63,8 @@ var ProjectList = {
         if(ProjectList.selectedId){
           PlayConfig.fastDraw = true;
           Keys.recorderKeyBind();
-          PlayController.play(ProjectList.selectedId);
+          var id = ProjectList.selectedId;
+          PlayController.play(id);
           PlayController.info();
         }
       }

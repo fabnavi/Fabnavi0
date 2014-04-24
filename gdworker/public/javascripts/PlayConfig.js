@@ -73,6 +73,7 @@ var PlayConfig = {
               alert(error);
               return;
             }
+            console.log("********");
             PlayConfig.imgURLs = result;
             d.resolve();
             PlayConfig.postConfig();

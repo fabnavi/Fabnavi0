@@ -21,6 +21,7 @@ var ListController　= {
   },
 
   append : function (data){
+   console.log(data);
     var a = data.split('/');
     var str = a[a.length-1];
     var row = $('<tr draggable="true" class="data" id="'+str.split('.')[0]+'"><td draggable="true" class="tableIndex"></td><td draggable="true">'+str+'</td><td></td></tr>'); 

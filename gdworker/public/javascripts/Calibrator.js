@@ -29,6 +29,7 @@ var CalibrateController = {
       w = CalibrateController.image.naturalWidth - $('#x').val();
       $('#w').val(w);
     }
+
     if(h > CalibrateController.image.naturalHeight- $('#y').val()){
       h = CalibrateController.image.naturalHeight - $('#y').val();
       $('#h').val(h);
