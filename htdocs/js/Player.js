@@ -79,15 +79,40 @@ var PlayController = {
   },
 
   drawImage:function(image){
-    PlayController.ctx.drawImage(
-        image,
-        CommonController.localConfig.x,
-        CommonController.localConfig.y,
-        CommonController.localConfig.w,
-        CommonController.localConfig.h,
-        0,0,
-        PlayController.cvs.width,
-        PlayController.cvs.height);
+    var sx = Number(CommonController.localConfig.x);
+    var sy = Number(CommonController.localConfig.y);
+    var sw = Number(CommonController.localConfig.w);
+    var sh = Number(CommonController.localConfig.h);
+
+    var dx = 0;
+    var dy = 0;
+    var dw = PlayController.cvs.width;
+    var dh = PlayController.cvs.height;
+
+    if(CommonController.localConfig.y < 0){
+     var StoDh = dh/sh; 
+     var StoDw = dw/sw;
+      dy = sy*StoDh;
+      dh += dy;
+      sh += sy;
+      sy = 0;
+      dy *=-1;
+
+      dx = sx*StoDw;
+      dw += dx;
+      sw += sx;
+      sx = 0;
+      dx *= -1;
+      PlayController.ctx.fillStyle = "black"; 
+      PlayController.ctx.fillRect(0,0,dw,dy);
+      PlayController.ctx.fillRect(0,0,dx,dh);
+    } 
+    
+    PlayController._drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
+  },
+
+  _drawImage:function(image,sx,sy,sw,sh,dx,dy,dw,dh){
+    PlayController.ctx.drawImage(image,sx,sy,sw,sh,dx,dy,dw,dh);
   },
 
   play: function(id) {
@@ -100,7 +125,6 @@ var PlayController = {
     }
     CalibrateController.initProject(id);
     PlayConfig.initProject(id).then(function(){
-      console.log("show");
       PlayController.playSlide(id);
     });
   },
