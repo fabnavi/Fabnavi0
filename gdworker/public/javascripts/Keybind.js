@@ -8,11 +8,39 @@ var Keys = {
    * するために必要です。
    *
    */
+  projectListKeyBind: function () {
+    window.onkeydown = function(e) {
+      console.log(e.keyCode);
+      switch (e.keyCode) {
+        case 81 :
+        case 27 : {
+        }
+        case 37 :
+        case 97 : {
+          ProjectList.prev();
+          break;
+        }
+        case 39 :
+        case 99 : {
+          ProjectList.next();
+          break;
+        }
+        case 98 :
+        case 13: {
+          ProjectList.play();
+          break;
+        }
+      }
+    };
+
+  },
+
   playerKeyBind: function () {
     window.onkeydown = function(e) {
       console.log(e.keyCode);
       switch (e.keyCode) {
         case 81 :
+        case 103:
         case 27 : {
           ListController.clear();
           PlayConfig.initProject();
@@ -20,6 +48,7 @@ var Keys = {
           $('#projectList').show();
           $('#contents').hide();
           document.title = "Play: FabNavi";
+          Keys.projectListKeyBind();
           break;
         }
         case 37 :
@@ -32,19 +61,12 @@ var Keys = {
           if(!Keys.isActive())PlayController.next();
           break;
         }
-        case 32 :
-        case 105 : {
-          window.close();
-          break;
-        }
-        case 104 : {
-          location.reload();
-          break;
-        }
         case 13: {
           //        Note.shoot();
           break;
         }
+
+        case 105:
         case 86 : {
           PlayController.info();
           break;
@@ -66,6 +88,7 @@ var Keys = {
           document.getElementById('h').focus();
           break;
         }
+        case 104: 
         case 191 : {
           $('.help').fadeIn(1000);
           window.setTimeout(function () {
@@ -84,16 +107,21 @@ var Keys = {
 
   recorderKeyBind: function () {
     window.onkeydown = function(e) {
+      console.log(e.keyCode);
       switch (e.keyCode) {
         case 81 :
         case 27 : {
           location.reload();
           break;
         }
+        case 37:
+        case 97:
         case 52 : {
           if(!Keys.isActive())PlayController.previous();
           break;
         }
+        case 39:
+        case 99:
         case 54 : {
           if(!Keys.isActive())PlayController.next();
           break;

@@ -16,12 +16,15 @@ var ProjectList = {
         return;
       }
       var projectList = $("#projectList");
-      document.getElementById('newProject').onclick = function(){
+      document.getElementById('newProject').ondblclick = function(){
         PlayConfig.fastDraw = true;
         Keys.recorderKeyBind();
         RecordController.newProject();
         PlayController.info();
       };
+      document.getElementById('newProject').click(function(e){
+        ProjectList.select(e.currentTarget);
+      });
       for (var i = 0, n = result.length; i < n; i++) {
         var project = result[i];
         var id = project.id;
@@ -35,12 +38,10 @@ var ProjectList = {
         li.append(image);
         li.attr("id", id);
         li.click(function(e){
-          $('li').removeClass('selectedItem');
-          e.currentTarget.className = 'selectedItem';
-          ProjectList.selectedId = e.currentTarget.id;
+          ProjectList.select(e.currentTarget);
         });
         li.dblclick(function(e){
-          PlayConfig.fastDraw = false;
+          PlayConfig.fastDraw = true;
           Keys.playerKeyBind();
           PlayController.play(e.currentTarget.id);
         });
@@ -51,6 +52,7 @@ var ProjectList = {
         projectList.append(li);
 
       }
+
       document.getElementById('makeButton').onclick = function(){ 
         if(ProjectList.selectedId){
           PlayConfig.fastDraw = false;
@@ -69,10 +71,48 @@ var ProjectList = {
         }
       }
     });
+    ProjectList.select($('li')[0]);
+    Keys.projectListKeyBind();
+  },
+
+  select : function (target) {
+    if(target.tagName != "LI")return 0;
+    $('li').removeClass('selectedItem');
+    target.className = 'selectedItem';
+    ProjectList.selectedId = target.id;
+  },
+
+  prev : function () {
+    if(ProjectList.selectedId == "")return 0;
+    var s = $('#'+ProjectList.selectedId)[0].previousElementSibling;
+    if(s == null)return 0;
+    ProjectList.select(s); 
+  },
+
+  next : function () {
+    if(ProjectList.selectedId == ""){
+      ProjectList.select($("li")[0]);
+      return 0;
+    }
+    var s = $('#'+ProjectList.selectedId)[0].nextElementSibling;
+    if(s == null)return 0;
+    ProjectList.select(s); 
+  },
+
+  play : function () {
+    if(ProjectList.selectedId == "")return 0;
+    if(ProjectList.selectedId == "newProject"){
+      PlayConfig.fastDraw = true;
+      Keys.recorderKeyBind();
+      RecordController.newProject();
+      PlayController.info();
+      return 0;
+    }
+    Keys.playerKeyBind();
+    PlayController.play(ProjectList.selectedId);
   },
 
   selected: function(id){
     console.log("Not implemented yet. "+id + " was selected."); 
   }
-
 };

@@ -20,8 +20,7 @@ li > div {
   height: 159px;
   text-align: center;
   font-size: 30px;
-  margin: 14px;
-  border: 2px white solid; }
+  margin: 14px; }
 
 .selectedItem {
   border: 2px red solid; }
