@@ -102,10 +102,12 @@ var ProjectList = {
   play : function () {
     if(ProjectList.selectedId == "")return 0;
     if(ProjectList.selectedId == "newProject"){
-      PlayConfig.fastDraw = true;
+     /* 
+     PlayConfig.fastDraw = true;
       Keys.recorderKeyBind();
       RecordController.newProject();
       PlayController.info();
+      */
       return 0;
     }
     Keys.playerKeyBind();

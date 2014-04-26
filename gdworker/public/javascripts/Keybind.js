@@ -110,8 +110,15 @@ var Keys = {
       console.log(e.keyCode);
       switch (e.keyCode) {
         case 81 :
+        case 103:
         case 27 : {
-          location.reload();
+          ListController.clear();
+          PlayConfig.initProject();
+          CommonController.localConfig = "";
+          $('#projectList').show();
+          $('#contents').hide();
+          document.title = "Play: FabNavi";
+          Keys.projectListKeyBind();
           break;
         }
         case 37:
