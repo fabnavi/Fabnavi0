@@ -179,7 +179,6 @@ var PlayController = {
     }
   },
 
-
   show: function(index) {
     $("#arrow").text("");
     clearTimeout(PlayController.timerid);
