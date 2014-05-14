@@ -1,6 +1,7 @@
 *.DS_Store
 *.swp
 htdocs/data/*
+parts/images*
 samples/nex/jpeg*
 *.config
 *tmp
