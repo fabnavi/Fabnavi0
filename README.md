@@ -1,3 +1,9 @@
+#推奨バージョン
+[firefox27.0](https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/27.0/)
+[fullScreen addon](https://addons.mozilla.org/zh-CN/firefox/addon/fullscreen-1/?src=api)
+[Camera API Addon](https://github.com/hrl7/SonyCameraRemoteControllerAddon/blob/master/addon/sonycameraremotecontroller.xpi?raw=true)
+
+
 #fabnavi使用方法
 設定は操作説明の下にあります。
 
@@ -78,6 +84,3 @@ htdocs/.htaccessを開き、CAMERAを指定する。現段階では、QX10かNEX
 
 6. 操作マシンとカメラを接続
 カメラのリモートコントローラを起動し、操作マシンをカメラのWIFIに接続する。
-
-
-
